@@ -16,6 +16,8 @@ from creditscore.decision import ModuloDecision
 from creditscore.percepcion import ModuloPercepcion
 
 R = Path(__file__).resolve().parents[1]
+URL_REPO = "https://github.com/stevencontre/creditscore-agent"
+URL_APP = "PENDIENTE"   # pegar aqui la URL publica https://<nombre>.streamlit.app tras desplegar
 D, L = R / "docs", R / "logs"
 MZ = json.loads((D / "resultados_matriz.json").read_text(encoding="utf-8"))
 MX = json.loads((D / "matriz_decision.json").read_text(encoding="utf-8"))
@@ -298,7 +300,7 @@ T(["Tecnología", "Versión", "Función", "Justificación", "Alternativa conside
     ["Mermaid (fuentes .mmd) y render_secuencia.py con Matplotlib 3.10.8", "—", "Diagramas de secuencia", "Fuente en texto; PNG generado por el mismo archivo", "PlantUML, mermaid-cli", "mermaid-cli no pudo ejecutarse (sin navegador); se escribió un renderizador propio", "Usada"],
     ["python-docx / LibreOffice", "1.2.0 / 24.2.7.2", "Generación del informe DOCX y PDF", "Informe reproducible desde datos reales", "Edición manual", "Evita transcribir cifras a mano", "Usada"],
     ["scikit-learn", "1.8.0", "Modelos de clasificación", "Biblioteca estándar de ML", "—", "Descartada para mantener una sola dependencia", "Solo evaluada"],
-    ["Streamlit / Hugging Face Spaces", "—", "Despliegue (Opción A)", "Demostración pública", "Video (Opción B)", "Se eligió la Opción B; no se escribió ni probó código de despliegue", "Solo evaluada"],
+    ["Streamlit y pandas (app.py)", "1.66.0 (probada)", "Interfaz web y despliegue público (Opción A)", "Evalúa solicitudes y ejecuta las pruebas en vivo; despliegue gratuito desde GitHub", "Video (Opción B)", "Los integrantes no pueden grabar juntos; la interfaz no contiene lógica de decisión", "Usada"],
 ], [2.5, 1.5, 2.1, 2.6, 2.1, 3.9, 1.5], fs=7, cap="Tabla 5. Tecnologías usadas y evaluadas")
 H("9.3 Entradas y sensores", 2)
 T(["Entrada", "Tipo", "Rango o formato", "Origen", "Validaciones", "Ejemplo"], [
@@ -354,6 +356,7 @@ T(["Elemento del diseño", "Implementación realizada", "Diferencia encontrada",
     ["Recalibración periódica", "revisar_aprendizaje() invocable", "No está programada", "Alcance del curso", "Requiere activación manual"],
     ["Muestra de 5.000 solicitudes históricas reales", "5.000 solicitudes sintéticas (3.500 entrenamiento y 1.500 prueba)", "Datos sintéticos", "No se dispone de datos reales", "El AUC refleja la señal del simulador, no la de una entidad real"],
     ["Meta: reducir 20 % el tiempo frente al proceso manual", "Se mide la latencia p95 por evaluación; la reducción queda pendiente", "Medida reformulada", "No existe línea base manual", "Medida M2b pendiente"],
+    ["Entrada por formulario", "app.py: interfaz web", "No estaba en el diseño", "Opción A", "Ninguno"],
     ["Métricas complementarias (precisión, recall, falsos positivos, subgrupos)", "ECE con umbral; recall y tasas como información sin umbral", "Subgrupos no evaluados", "El simulador no tiene atributos de subgrupo", "Equidad sin verificar"],
 ], [3.4, 3.8, 3.0, 3.2, 3.0], fs=7, cap="Tabla 8. Diferencias entre el diseño y la implementación")
 
@@ -376,7 +379,7 @@ pagina_landscape(True)
 H("Tabla de resultados obtenidos", 3)
 filas = [r[:] for r in TABLA[1:]]
 T(TABLA[0], filas, [5.0, 4.4, 1.8, 1.7, 4.9, 2.1, 6.0], fs=7, cap="Tabla 10. Resultados de las pruebas (fuente: logs/resultados_pruebas.csv; generado por scripts/run_pruebas_desempeno.py)")
-P("El minuto del video se completa cuando se grabe la demostración (ver docs/guion_video.md); mientras tanto la evidencia verificable son los archivos de la columna final.", italic=True, size=8)
+P("Evidencia de funcionamiento (Opción A): la pestaña «3. Pruebas» de la app desplegada ejecuta en vivo las pruebas unitarias, los 17 escenarios y las medidas M1–M7 y muestra esta misma tabla; los archivos de la columna final son el respaldo.", italic=True, size=8)
 pagina_landscape(False)
 H("Escenarios de prueba deterministas (17 casos) y pruebas unitarias (20)", 3)
 T(["ID", "Escenario", "Categoría", "Resultado esperado", "¿Cumple?"], [[e["id"], e["escenario"], e["categoria"], e["esperado"], "Sí" if e["cumple"] else "No"] for e in ES], [1.0, 5.6, 2.0, 6.6, 1.2], fs=7.5, cap="Tabla 11. Escenarios (fuente: logs/escenarios.csv y logs/escenarios_eventos.jsonl)")
@@ -411,13 +414,16 @@ for t in ["Alta: medir la línea base manual (mínimo 10 solicitudes) y cerrar M
           "Alta: añadir evaluación de equidad por subgrupos y revisión de variables sensibles.",
           "Media: PSI por variable y monitoreo de la tasa de incumplimiento; recalibración isotónica o por intercepto.",
           "Media: calibrar costos de decisión y el umbral de R3 con datos de la entidad.",
-          "Baja: persistir la memoria de largo plazo entre ejecuciones, programar la revisión de aprendizaje y exponer el agente con una interfaz web (Opción A de despliegue)."]:
+          "Baja: persistir la memoria de largo plazo entre ejecuciones, programar la revisión de aprendizaje."]:
     B(" " + t)
 H("9.9 Enlaces", 2)
 T(["Recurso", "Estado", "Cómo obtenerlo"], [
-    ["Repositorio (GitHub o GitLab)", "PENDIENTE: no se ha publicado", "Crear el repositorio, ejecutar «git init», «git add .», «git commit» y «git push» (ver README, sección Git); pegar aquí la URL real."],
-    ["Video de la demostración (máximo 20 minutos)", "PENDIENTE: no se ha grabado", "Grabar siguiendo docs/guion_video.md con cámara y voz de ambos integrantes; subirlo a YouTube (no listado), OneDrive o Drive con acceso habilitado; pegar aquí el enlace y completar los minutos en la tabla de resultados."],
-    ["Plataforma de despliegue", "No aplica: se eligió la Opción B (video)", "—"],
+    ["Repositorio (GitHub)", "Publicado (comprobado por el integrante: abre sin iniciar sesión)", URL_REPO],
+    ["Plataforma de despliegue (Opción A: Streamlit Community Cloud)",
+     "PENDIENTE: no se ha desplegado" if URL_APP == "PENDIENTE" else "Publicada; disponible hasta la fecha de calificación",
+     "Desplegar siguiendo docs/guia_despliegue.md y pegar aquí la URL." if URL_APP == "PENDIENTE" else URL_APP],
+    ["Instrucciones de uso y casos de prueba sugeridos", "En el repositorio", "docs/guia_despliegue.md y pestaña «Evaluar una solicitud» de la app"],
+    ["Video de la demostración", "No aplica: se eligió la Opción A (plataforma de despliegue)", "—"],
 ], [4.5, 4.5, 7.4], fs=8, cap="Tabla 12. Enlaces de entrega")
 PB([("Declaración de uso de herramientas de IA. ", True), ("El código, los diagramas y este documento se prepararon con ayuda de un asistente de IA (Claude, de Anthropic). Los resultados numéricos provienen de ejecuciones reales del código incluido. La bitácora docs/bitacora_uso_ia.md registra el uso; los campos de verificación humana están pendientes de completar por los integrantes, que deben revisar y poder explicar el código y el documento.", False)])
 

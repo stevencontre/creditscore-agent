@@ -2,3 +2,4 @@
 __pycache__/
 *.pyc
 logs/ejecucion_*.jsonl
+logs/web_*.jsonl
