@@ -8,7 +8,7 @@
      "A": {"p": 3, "tipo": "verificado", "evidencia": "No existen las 5.000 solicitudes históricas reales; se construyó un simulador sintético propio (src/creditscore/simulador.py). El simulador existe, pero la señal predictiva la define el propio simulador."},
      "B": {"p": 3, "tipo": "estimación", "evidencia": "ESTIMACIÓN: tampoco hay acceso a una tienda en línea ni a sesiones reales; se requeriría un simulador de carritos y comportamiento de compra."}},
     {"nombre": "Medibilidad del desempeño", "peso": 0.20,
-     "A": {"p": 4, "tipo": "verificado", "evidencia": "El diseño define AUC-ROC ≥ 0,75 (fórmula y umbral explícitos), medible con salidas del programa. La reducción del 20 % del tiempo exige una línea base manual inexistente (se reformuló y queda pendiente)."},
+     "A": {"p": 4, "tipo": "verificado", "evidencia": "El diseño define AUC-ROC ≥ 0,75 (fórmula y umbral explícitos), medible con salidas del programa. La reducción del 20 % del tiempo se probó con una línea base manual simulada (3,6 s sobre 10 solicitudes), sin digitación ni consulta real al buró."},
      "B": {"p": 4, "tipo": "estimación", "evidencia": "ESTIMACIÓN: la tasa de recuperación y de conversión de carritos son medibles de forma objetiva; se desconocen sus umbrales en el diseño."}},
     {"nombre": "Complejidad de IA", "peso": 0.15,
      "A": {"p": 5, "tipo": "verificado", "evidencia": "Agente de aprendizaje (recalibración ante deriva) con decisión por utilidad esperada y abstención por incertidumbre; cubre los siete componentes IBM (ver sección 9.1)."},
