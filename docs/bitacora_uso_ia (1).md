@@ -134,7 +134,7 @@ El código, los diagramas, las pruebas y los textos de esta entrega fueron gener
 - Si remite, el caso llega a la bandeja del analista con la razón y los 3 factores principales.
 - Siempre registra la calificación (A a E) y deja la auditoría con marca de tiempo.
 
-**Ejemplo para decir en voz alta:** «Con el buró caído, el agente reintenta 3 veces, marca la solicitud como incompleta, aplica la regla R1 y la manda al analista sin calcular probabilidad. Así no decide con datos que no tiene».
+
 
 ## La matriz de decisión
 
