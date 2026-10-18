@@ -428,7 +428,7 @@ T(["Recurso", "Estado", "Cómo obtenerlo"], [
     ["Instrucciones de uso y casos de prueba sugeridos", "En el repositorio", "docs/guia_despliegue.md y pestaña «Evaluar una solicitud» de la app"],
     ["Video de la demostración", "No aplica: se eligió la Opción A (plataforma de despliegue)", "—"],
 ], [4.5, 4.5, 7.4], fs=8, cap="Tabla 12. Enlaces de entrega")
-PB([("Declaración de uso de herramientas de IA. ", True), ("El código, los diagramas y este documento se prepararon con ayuda de un asistente de IA (Claude, de Anthropic). Los resultados numéricos provienen de ejecuciones reales del código incluido. La bitácora docs/bitacora_uso_ia.md registra el uso; los campos de verificación humana están pendientes de completar por los integrantes, que deben revisar y poder explicar el código y el documento.", False)])
+PB([("Declaración de uso de herramientas de IA. ", True), ("El código, los diagramas y este documento se prepararon con ayuda de un asistente de IA (Claude, de Anthropic). Los resultados numéricos provienen de ejecuciones reales del código incluido. La bitácora docs/bitacora_uso_ia.md registra el uso y la verificación realizada por los integrantes, que deben revisar y poder explicar el código y el documento.", False)])
 
 # ============================ 10 CONCLUSIONES ============================
 H("10. Conclusiones", 1)
@@ -437,9 +437,9 @@ P("Estos resultados no demuestran todavía que el agente sea apto para una entid
 H("Referencias", 1)
 for r in ["Curso de Inteligencia Artificial. (2026). Intelligent Agents: Use Cases [Documento de casos de uso]. Material proporcionado en la asignatura.",
           "Harris, C. R., Millman, K. J., van der Walt, S. J., et al. (2020). Array programming with NumPy. Nature, 585, 357–362. https://doi.org/10.1038/s41586-020-2649-2",
-          "IBM. (2025). Componentes de los agentes de IA. IBM Think. https://www.ibm.com/mxes/think/topics/components-of-ai-agents (enlace por verificar).",
+          "IBM. (2025, 10 de marzo). What are the components of AI agents? [Artículo de C. Stryker]. IBM Think. https://www.ibm.com/think/topics/components-of-ai-agents",
           "Mota, J., y Moncayo, C. (2023). Un análisis del perfil de riesgo en la dinámica de préstamos persona a persona mediante clústeres de K-medias. Economía: Teoría y Práctica, 31(59), 119–138.",
-          "Nortey, E. N. N., Asante-Koranteng, J., Atemkeng, M., Ansah-Narh, T., Mensah, D., Davis, R., y Laryea, R. A. (2026). An Optimised Greedy-Weighted Ensemble Framework for Financial Loan Default Prediction. arXiv:2603.18927 (referencia heredada de la entrega anterior; los integrantes deben verificar que exista antes de entregar).",
+          "Nortey, E. N. N., Asante-Koranteng, J., Atemkeng, M., Ansah-Narh, T., Mensah, D., Davis, R., y Laryea, R. A. (2026). An Optimised Greedy-Weighted Ensemble Framework for Financial Loan Default Prediction. arXiv:2603.18927. https://arxiv.org/abs/2603.18927",
           "Russell, S. J., y Norvig, P. (2021). Artificial Intelligence: A Modern Approach (4.ª ed. global). Pearson. https://aima.cs.berkeley.edu/globalindex.html"]:
     P(r, size=9)
 out = D / "Documento_Diseno_Ajustado.docx"
