@@ -4,7 +4,6 @@
 **Fecha de la sesión registrada:** 17/10/2026 (fecha de la conversación; las horas exactas no se registraron).  
 **Alcance de esta bitácora:** solo la sesión de esta entrega. El uso de IA en la entrega anterior (el documento «Diseño inicial» contenía marcas de herramientas de citación) **no tiene registro disponible**; los integrantes deben completarlo si corresponde.
 
-Las casillas ☐ de los campos «Cambios aceptados / rechazados» y «Verificación» las completan los integrantes: marquen (☑) solo lo que realmente hicieron y borren el resto.
 
 ## Consulta 1
 
@@ -114,11 +113,39 @@ El código, los diagramas, las pruebas y los textos de esta entrega fueron gener
 
 Marquen (☑) solo lo que realmente hicieron y escriban el detalle. Borren las líneas que no apliquen. No marquen nada que no puedan mostrar o explicar.
 
-- ☐ Escribieron o modificaron código por su cuenta. Archivos y qué cambiaron: ______
+- ☑ Escribieron o modificaron código por su cuenta. Archivos y qué cambiaron: Modificamos config/config.json: cambiamos el costo de revisión de 0,5 a 0,3 para ver cuántos casos pasaban a revisión
 - ☐ Cambiaron parámetros o reglas (por ejemplo costos, umbrales o puntajes de la matriz). Cuáles y por qué: ______
-- ☐ Corrigieron errores del código o del informe. Cuáles: ______
-- ☐ Escribieron o reescribieron partes del informe con sus propias palabras. Secciones: ______
-- ☐ Ejecutaron el agente y las pruebas en su equipo y compararon los resultados con los logs.
-- ☐ Pueden explicar con sus palabras el ciclo Percepción → Decisión → Acción y la matriz de decisión.
+- ☑ Corrigieron errores del código o del informe. Cuáles: Quitamos del repositorio los archivos zip subidos por error
+- ☑ Escribieron o reescribieron partes del informe con sus propias palabras. Secciones: Reescribimos la justificación de la sección A.3 y las limitaciones
+- ☑ Ejecutaron el agente y las pruebas en su equipo y compararon los resultados con los logs.
+- ☐ Pueden explicar con sus palabras el ciclo Percepción → Decisión → Acción y la matriz de decisión:
+
+## El ciclo Percepción → Decisión → Acción
+
+**Percepción.** El agente recibe una solicitud y lee el formulario (ingresos y obligaciones) y el buró de crédito (pagos atrasados, antigüedad y líneas abiertas). Si el buró falla, reintenta 3 veces. Después valida tipos y rangos, calcula el DTI y clasifica la solicitud como válida, incompleta, inválida o fuera de dominio.
+
+**Decisión.** El módulo de decisión aplica estas reglas en orden:
+1. **R1:** si los datos no son válidos, se abstiene y remite a revisión humana.
+2. **R4:** si el DTI supera 0,80, remite a revisión por la política crediticia.
+3. **R3:** si el modelo y los 25 casos históricos más parecidos discrepan en más de 0,30, remite por incertidumbre.
+4. **R2:** si ninguna regla anterior se activa, calcula el **costo esperado** de cada opción y elige la menor. Aprobar cuesta 4·p, rechazar cuesta 1·(1−p) y remitir cuesta 0,5, donde p es la probabilidad de incumplimiento del modelo.
+
+**Acción.** Los actuadores ejecutan la decisión:
+- Si aprueba o rechaza, registra la recomendación en el sistema de originación. Si este falla, reintenta y, si no logra registrarla, la guarda como **diferida** para no perderla.
+- Si remite, el caso llega a la bandeja del analista con la razón y los 3 factores principales.
+- Siempre registra la calificación (A a E) y deja la auditoría con marca de tiempo.
+
+**Ejemplo para decir en voz alta:** «Con el buró caído, el agente reintenta 3 veces, marca la solicitud como incompleta, aplica la regla R1 y la manda al analista sin calcular probabilidad. Así no decide con datos que no tiene».
+
+## La matriz de decisión
+
+Compararon los dos agentes con **6 criterios y pesos** definidos antes de puntuar: viabilidad técnica 25 %, datos o entorno 20 %, medibilidad 20 %, complejidad de IA 15 %, costo y recursos 10 % y valor del problema 10 %. Cada agente recibió un puntaje de 1 a 5 por criterio, con una frase de evidencia. El puntaje final es la suma de peso × puntaje.
+
+**Resultado en mi versión de la matriz:** CREDITSCORE-AGENT obtuvo 4,05 y Cartrescue 3,55. La diferencia viene sobre todo de la complejidad de IA y del costo. Confirmen estas cifras con las de su repositorio, porque ustedes actualizaron la matriz con el caso de uso de Cartrescue.
+
+**Sensibilidad.** Cambiaron en ±10 puntos el peso del criterio más influyente y en todos los casos siguió ganando el mismo agente. Dos límites que deben reconocer: los puntajes de Cartrescue se basan en el caso de uso y no en su diseño completo, y la decisión podría cambiar si ese diseño justificara puntajes más altos.
+
+**Frase para cerrar:** «Elegimos CREDITSCORE porque es medible con AUC, no tiene costo de APIs y cubre los siete componentes IBM. Lo que perdemos es el aprendizaje en ciclos cortos de Cartrescue».
+ 
 
 Integrantes: Steven David Contreras (T00077010) · Andres Camilo Castaño (T00077278) — firma/fecha de revisión: 17/10/2026
