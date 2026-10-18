@@ -17,7 +17,7 @@ from creditscore.percepcion import ModuloPercepcion
 
 R = Path(__file__).resolve().parents[1]
 URL_REPO = "https://github.com/stevencontre/creditscore-agent"
-URL_APP = "PENDIENTE"   # pegar aqui la URL publica https://<nombre>.streamlit.app tras desplegar
+URL_APP = "https://creditscore-agent-7pyg7dzx7yiykdggfwoinw.streamlit.app/"   # pegar aqui la URL publica https://<nombre>.streamlit.app tras desplegar
 D, L = R / "docs", R / "logs"
 MZ = json.loads((D / "resultados_matriz.json").read_text(encoding="utf-8"))
 MX = json.loads((D / "matriz_decision.json").read_text(encoding="utf-8"))

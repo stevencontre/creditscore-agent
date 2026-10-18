@@ -1,6 +1,6 @@
 # Opción A — Plataforma de despliegue (Streamlit Community Cloud)
 
-**Enlace público de la app:** `PENDIENTE: pegar aquí la URL https://<nombre>.streamlit.app`
+**Enlace público de la app:** https://creditscore-agent-7pyg7dzx7yiykdggfwoinw.streamlit.app/
 La app debe estar disponible hasta la fecha de calificación (ábranla antes de entregar: si una app gratuita se duerme por inactividad, hay que despertarla y comprobar que carga).
 
 ## Cómo desplegar (una sola vez)

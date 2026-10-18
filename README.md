@@ -63,7 +63,7 @@ streamlit run app.py
 ```
 Guía de despliegue en Streamlit Community Cloud, instrucciones de uso y casos de prueba sugeridos: `docs/guia_despliegue.md`.
 
-**Enlace público de la app:** PENDIENTE (pegar la URL `https://<nombre>.streamlit.app` tras desplegar).
+**Enlace público de la app:** https://creditscore-agent-7pyg7dzx7yiykdggfwoinw.streamlit.app/
 
 ## Reproducibilidad
 Todo es determinista dado el valor de semilla (`config/config.json` y `config/umbrales.json`). Las latencias dependen del equipo y varían ligeramente entre ejecuciones; el resto de cifras se reproduce exactamente.
