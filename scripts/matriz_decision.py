@@ -11,7 +11,7 @@ C = M["criterios"]
 
 def puntajes(pesos, ajuste_b=0):
     sa = sum(w * c["A"]["p"] for w, c in zip(pesos, C))
-    sb = sum(w * min(5, c["B"]["p"] + (ajuste_b if c["B"]["tipo"] == "estimación" else 0)) for w, c in zip(pesos, C))
+    sb = sum(w * min(5, c["B"]["p"] + (ajuste_b if c["B"]["tipo"] in ("estimación", "caso de uso") else 0)) for w, c in zip(pesos, C))
     return sa, sb
 
 
@@ -26,21 +26,26 @@ sa, sb = puntajes(w0)
 contrib = [w * abs(c["A"]["p"] - c["B"]["p"]) for w, c in zip(w0, C)]
 i_inf = max(range(len(C)), key=lambda i: contrib[i])
 esc = {"original": w0}
-esc["+10 pp"] = reescalar(w0, i_inf, w0[i_inf] + 0.10)
-esc["-10 pp"] = reescalar(w0, i_inf, w0[i_inf] - 0.10)
+# si varios criterios empatan como mas influyentes, se prueban todos (+-10 pp)
+tope = max(contrib)
+empatados = [i for i in range(len(C)) if abs(contrib[i] - tope) < 1e-9]
+for i in empatados:
+    esc[f"{C[i]['nombre']} +10 pp"] = reescalar(w0, i, w0[i] + 0.10)
+    esc[f"{C[i]['nombre']} -10 pp"] = reescalar(w0, i, w0[i] - 0.10)
 esc["pesos iguales (1/6)"] = [1 / 6] * 6
-res = {"S_A": sa, "S_B": sb, "criterio_mas_influyente": C[i_inf]["nombre"],
+res = {"S_A": sa, "S_B": sb, "criterio_mas_influyente": C[i_inf]["nombre"], "criterios_mas_influyentes": [C[i]["nombre"] for i in empatados],
+       "contribucion_firmada_A_menos_B": {c["nombre"]: round(w * (c["A"]["p"] - c["B"]["p"]), 4) for w, c in zip(w0, C)},
        "contribucion_a_la_diferencia": {c["nombre"]: round(x, 4) for c, x in zip(C, contrib)}, "escenarios": {}}
 for k, w in esc.items():
     a, b = puntajes(w)
     res["escenarios"][k] = {"pesos": [round(x, 4) for x in w], "S_A": a, "S_B": b, "elegido": "A" if a > b else "B" if b > a else "empate"}
 a, b = puntajes(w0, ajuste_b=1)
-res["robustez_B_mas_1_en_estimaciones"] = {"S_A": a, "S_B": b, "elegido": "A" if a > b else "B" if b > a else "empate"}
+res["robustez_B_mas_1"] = {"S_A": a, "S_B": b, "elegido": "A" if a > b else "B" if b > a else "empate"}
 res["diferencia_minima_para_cambiar_decision"] = sa - sb
 (D / "resultados_matriz.json").write_text(json.dumps(res, indent=2, ensure_ascii=False), encoding="utf-8")
 
 f = lambda x, n=2: f"{x:.{n}f}".replace(".", ",")
-L = ["| Criterio | Peso | A: p | A: peso×p | B: p (estimado) | B: peso×p |", "|---|---:|---:|---:|---:|---:|"]
+L = ["| Criterio | Peso | A: p | A: peso×p | B: p (caso de uso) | B: peso×p |", "|---|---:|---:|---:|---:|---:|"]
 for w, c in zip(w0, C):
     L.append(f"| {c['nombre']} | {f(w*100,0)} % | {c['A']['p']} | {f(w*c['A']['p'],2)} | {c['B']['p']} | {f(w*c['B']['p'],2)} |")
 L.append(f"| **Puntaje ponderado S** | 100 % | | **{f(sa)}** | | **{f(sb)}** |")

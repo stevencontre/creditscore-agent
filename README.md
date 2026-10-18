@@ -71,7 +71,7 @@ Antes de repetir las pruebas, no modifique `config/umbrales.json`: sus umbrales 
 
 ## Pendiente por los integrantes
 1. Medir el tiempo del proceso manual (≥ 10 solicitudes) con `python scripts/medir_linea_base_manual.py` y luego `python scripts/run_pruebas_desempeno.py` (medida M2b).
-2. Revisar `docs/matriz_decision.json`: los puntajes del agente B (Cartrescue) son **estimaciones** hechas sin su diseño.
+2. Contrastar `docs/matriz_decision.json`: los puntajes del agente B (Cartrescue) se basan en la descripción del caso (Intelligent Agents – Use Cases, p. 3), no en su diseño completo; si lo tienen, ajustarlos y volver a ejecutar `python scripts/matriz_decision.py`.
 3. Desplegar la app (`docs/guia_despliegue.md`), publicar el repositorio y pegar los enlaces en la sección 9.9 del informe (`docs/construir_informe.py` o el DOCX).
 4. Completar las verificaciones humanas de `docs/bitacora_uso_ia.md`.
 

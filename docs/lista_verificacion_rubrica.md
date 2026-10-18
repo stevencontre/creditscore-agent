@@ -4,7 +4,7 @@ No se calcula una nota: hay elementos que solo los integrantes pueden completar 
 
 | # | Criterio (pts) | Estado | Evidencia disponible | Acciones antes de entregar |
 |---|---|---|---|---|
-| 1 | Matriz de decisión y justificación (15) | **Parcial** | 6 criterios con pesos, evidencia por puntaje, sensibilidad ±10 pp y pesos iguales (`docs/resultados_matriz.*`, sección A del PDF) | Revisar y corregir los puntajes de Cartrescue con su diseño real y volver a ejecutar `scripts/matriz_decision.py`; la decisión es sensible a esos puntajes |
+| 1 | Matriz de decisión y justificación (15) | **Parcial** | 6 criterios con pesos, evidencia por puntaje, sensibilidad ±10 pp y pesos iguales (`docs/resultados_matriz.*`, sección A del PDF) | Los puntajes de Cartrescue se apoyan en la descripción oficial del caso (Use Cases, p. 3); si tienen su diseño completo, contrastarlos y volver a ejecutar `scripts/matriz_decision.py`. La decisión se mantiene en A en 8 escenarios de pesos (ventaja mínima 0,17), pero depende de los puntajes de B |
 | 2 | Documento ajustado (10) | **Cumplido en lo verificable** | Tabla de cambios al inicio; corrección de artefactos de citación y de encabezados (`docs/Documento_Diseno_Ajustado.pdf`) | Confirmar datos del segundo integrante; verificar que existan los enlaces de las referencias (IBM, arXiv) |
 | 3 | Implementación del agente (25) | **Cumplido** | Ciclo P→D→A en `agente.py`; 20 pruebas unitarias y 17 escenarios aprobados; reproducible con README | Ejecutar todo en su equipo; leer el código para poder explicarlo |
 | 4 | Tecnologías, entradas y arquitectura (10) | **Cumplido** | Secciones 9.1 a 9.4 del PDF (tablas 3 a 7, diagrama de componentes, correspondencia con los 7 componentes IBM) | Revisar |
@@ -15,6 +15,6 @@ No se calcula una nota: hay elementos que solo los integrantes pueden completar 
 ## Pendientes críticos
 1. Probar la URL pública de la app en incógnito antes de entregar (las apps gratuitas se duermen).
 2. Línea base manual: `python scripts/medir_linea_base_manual.py` (≥ 10 solicitudes), luego `python scripts/run_pruebas_desempeno.py`; enviar `config/linea_base_manual.json` para regenerar el informe.
-3. Diseño real de Cartrescue-agent y revisión de la matriz.
+3. (Opcional) Contrastar los puntajes de Cartrescue con su diseño completo, si lo consiguen.
 4. Bitácora de IA: completar campos [PENDIENTE].
 5. Confirmar el nombre y código del segundo integrante.

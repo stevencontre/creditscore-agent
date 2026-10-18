@@ -1,12 +1,25 @@
 {
   "S_A": 4.05,
-  "S_B": 3.5500000000000003,
-  "criterio_mas_influyente": "Complejidad de IA",
+  "S_B": 3.7,
+  "criterio_mas_influyente": "Disponibilidad de datos o entorno",
+  "criterios_mas_influyentes": [
+    "Disponibilidad de datos o entorno",
+    "Medibilidad del desempeño",
+    "Costo y recursos"
+  ],
+  "contribucion_firmada_A_menos_B": {
+    "Viabilidad técnica": 0.0,
+    "Disponibilidad de datos o entorno": -0.2,
+    "Medibilidad del desempeño": 0.2,
+    "Complejidad de IA": 0.15,
+    "Costo y recursos": 0.2,
+    "Valor del problema": 0.0
+  },
   "contribucion_a_la_diferencia": {
     "Viabilidad técnica": 0.0,
-    "Disponibilidad de datos o entorno": 0.0,
-    "Medibilidad del desempeño": 0.0,
-    "Complejidad de IA": 0.3,
+    "Disponibilidad de datos o entorno": 0.2,
+    "Medibilidad del desempeño": 0.2,
+    "Complejidad de IA": 0.15,
     "Costo y recursos": 0.2,
     "Valor del problema": 0.0
   },
@@ -21,33 +34,85 @@
         0.1
       ],
       "S_A": 4.05,
-      "S_B": 3.5500000000000003,
+      "S_B": 3.7,
       "elegido": "A"
     },
-    "+10 pp": {
+    "Disponibilidad de datos o entorno +10 pp": {
       "pesos": [
-        0.2206,
-        0.1765,
-        0.1765,
-        0.25,
-        0.0882,
-        0.0882
+        0.2187,
+        0.3,
+        0.175,
+        0.1312,
+        0.0875,
+        0.0875
       ],
-      "S_A": 4.161764705882353,
-      "S_B": 3.485294117647059,
+      "S_A": 3.9187499999999997,
+      "S_B": 3.7375,
       "elegido": "A"
     },
-    "-10 pp": {
+    "Disponibilidad de datos o entorno -10 pp": {
       "pesos": [
-        0.2794,
-        0.2235,
-        0.2235,
-        0.05,
-        0.1118,
-        0.1118
+        0.2812,
+        0.1,
+        0.225,
+        0.1688,
+        0.1125,
+        0.1125
       ],
-      "S_A": 3.938235294117647,
-      "S_B": 3.6147058823529408,
+      "S_A": 4.18125,
+      "S_B": 3.6625,
+      "elegido": "A"
+    },
+    "Medibilidad del desempeño +10 pp": {
+      "pesos": [
+        0.2187,
+        0.175,
+        0.3,
+        0.1312,
+        0.0875,
+        0.0875
+      ],
+      "S_A": 4.043749999999999,
+      "S_B": 3.6125,
+      "elegido": "A"
+    },
+    "Medibilidad del desempeño -10 pp": {
+      "pesos": [
+        0.2812,
+        0.225,
+        0.1,
+        0.1688,
+        0.1125,
+        0.1125
+      ],
+      "S_A": 4.05625,
+      "S_B": 3.7875,
+      "elegido": "A"
+    },
+    "Costo y recursos +10 pp": {
+      "pesos": [
+        0.2222,
+        0.1778,
+        0.1778,
+        0.1333,
+        0.2,
+        0.0889
+      ],
+      "S_A": 4.155555555555556,
+      "S_B": 3.6222222222222227,
+      "elegido": "A"
+    },
+    "Costo y recursos -10 pp": {
+      "pesos": [
+        0.2778,
+        0.2222,
+        0.2222,
+        0.1667,
+        0.0,
+        0.1111
+      ],
+      "S_A": 3.9444444444444446,
+      "S_B": 3.777777777777778,
       "elegido": "A"
     },
     "pesos iguales (1/6)": {
@@ -60,14 +125,14 @@
         0.1667
       ],
       "S_A": 4.166666666666666,
-      "S_B": 3.5,
+      "S_B": 3.6666666666666665,
       "elegido": "A"
     }
   },
-  "robustez_B_mas_1_en_estimaciones": {
+  "robustez_B_mas_1": {
     "S_A": 4.05,
-    "S_B": 4.55,
+    "S_B": 4.7,
     "elegido": "B"
   },
-  "diferencia_minima_para_cambiar_decision": 0.49999999999999956
+  "diferencia_minima_para_cambiar_decision": 0.34999999999999964
 }

@@ -1,23 +1,92 @@
 {
-  "agentes": {"A": "CREDITSCORE-AGENT (riesgo crediticio)", "B": "Cartrescue-agent (carritos abandonados)"},
+  "agentes": {
+    "A": "CREDITSCORE-AGENT (riesgo crediticio)",
+    "B": "Cartrescue-agent (carritos abandonados)"
+  },
   "criterios": [
-    {"nombre": "Viabilidad técnica", "peso": 0.25,
-     "A": {"p": 4, "tipo": "verificado", "evidencia": "Modelo logístico, reglas y búsqueda de casos similares con solo numpy; sin GPU ni APIs. El prototipo de esta entrega corre y pasa 20 pruebas unitarias. Se resta 1 porque la integración real con originación y buró no es posible en el curso (se simula)."},
-     "B": {"p": 4, "tipo": "estimación", "evidencia": "ESTIMACIÓN: el diseño no fue revisado. Un agente de reglas/utilidad sobre eventos de carrito es técnicamente simple de implementar en Python."}},
-    {"nombre": "Disponibilidad de datos o entorno", "peso": 0.20,
-     "A": {"p": 3, "tipo": "verificado", "evidencia": "No existen las 5.000 solicitudes históricas reales; se construyó un simulador sintético propio (src/creditscore/simulador.py). El simulador existe, pero la señal predictiva la define el propio simulador."},
-     "B": {"p": 3, "tipo": "estimación", "evidencia": "ESTIMACIÓN: tampoco hay acceso a una tienda en línea ni a sesiones reales; se requeriría un simulador de carritos y comportamiento de compra."}},
-    {"nombre": "Medibilidad del desempeño", "peso": 0.20,
-     "A": {"p": 4, "tipo": "verificado", "evidencia": "El diseño define AUC-ROC ≥ 0,75 (fórmula y umbral explícitos), medible con salidas del programa. La reducción del 20 % del tiempo se probó con una línea base manual simulada (3,6 s sobre 10 solicitudes), sin digitación ni consulta real al buró."},
-     "B": {"p": 4, "tipo": "estimación", "evidencia": "ESTIMACIÓN: la tasa de recuperación y de conversión de carritos son medibles de forma objetiva; se desconocen sus umbrales en el diseño."}},
-    {"nombre": "Complejidad de IA", "peso": 0.15,
-     "A": {"p": 5, "tipo": "verificado", "evidencia": "Agente de aprendizaje (recalibración ante deriva) con decisión por utilidad esperada y abstención por incertidumbre; cubre los siete componentes IBM (ver sección 9.1)."},
-     "B": {"p": 3, "tipo": "estimación", "evidencia": "ESTIMACIÓN: probablemente basado en reglas o utilidad (momento y canal del recordatorio), con aprendizaje solo si el diseño lo incluye."}},
-    {"nombre": "Costo y recursos", "peso": 0.10,
-     "A": {"p": 5, "tipo": "verificado", "evidencia": "Costo de 0 COP en APIs; Python y numpy gratuitos; se ejecuta en un portátil (latencia p95 inferior a 1 ms medida en logs/resultados_pruebas.json)."},
-     "B": {"p": 3, "tipo": "estimación", "evidencia": "ESTIMACIÓN: el envío real de correos, SMS o WhatsApp suele requerir APIs con cuota o costo."}},
-    {"nombre": "Valor del problema", "peso": 0.10,
-     "A": {"p": 4, "tipo": "verificado", "evidencia": "Usuario identificable (analista de crédito) y beneficio concreto (priorizar y dar consistencia a la evaluación). El beneficio real no se verificó con datos reales."},
-     "B": {"p": 4, "tipo": "estimación", "evidencia": "ESTIMACIÓN: usuario identificable (tienda en línea) y beneficio concreto (ventas recuperadas)."}}
+    {
+      "nombre": "Viabilidad técnica",
+      "peso": 0.25,
+      "A": {
+        "p": 4,
+        "tipo": "verificado",
+        "evidencia": "Modelo logístico, reglas y búsqueda de casos similares con solo numpy; sin GPU ni APIs. El prototipo de esta entrega corre y pasa 20 pruebas unitarias. Se resta 1 porque la integración real con originación y buró no es posible en el curso (se simula)."
+      },
+      "B": {
+        "p": 4,
+        "tipo": "caso de uso",
+        "evidencia": "Caso de uso de Cartrescue (Intelligent Agents – Use Cases, p. 3). El caso describe percepción de eventos de carrito, un modelo de probabilidad de abandono, una decisión de intervención según el desempeño histórico y actuadores de correo o descuentos. Cinco de esos seis componentes (percepción simulada, modelo de probabilidad, decisión, actuadores simulados y registro de resultados con aprendizaje) ya se implementaron en el otro agente; falta la captura en tiempo real en el navegador (movimiento del ratón)."
+      }
+    },
+    {
+      "nombre": "Disponibilidad de datos o entorno",
+      "peso": 0.2,
+      "A": {
+        "p": 3,
+        "tipo": "verificado",
+        "evidencia": "No existen las 5.000 solicitudes históricas reales; se construyó un simulador sintético propio (src/creditscore/simulador.py). El simulador existe, pero la señal predictiva la define el propio simulador."
+      },
+      "B": {
+        "p": 4,
+        "tipo": "caso de uso",
+        "evidencia": "Caso de uso de Cartrescue (Intelligent Agents – Use Cases, p. 3). El caso recomienda usar el clickstream de la tienda o, alternativamente, el conjunto público REES46 (más de 30 millones de eventos). REES46 trae eventos view, cart, remove_from_cart y purchase por sesión, de los que se puede derivar el abandono; no trae movimientos del ratón ni respuestas a intervenciones, que habría que simular."
+      }
+    },
+    {
+      "nombre": "Medibilidad del desempeño",
+      "peso": 0.2,
+      "A": {
+        "p": 4,
+        "tipo": "verificado",
+        "evidencia": "El diseño define AUC-ROC ≥ 0,75 (fórmula y umbral explícitos), medible con salidas del programa. La reducción del 20 % del tiempo se probó con una línea base manual simulada (3,6 s sobre 10 solicitudes), sin digitación ni consulta real al buró."
+      },
+      "B": {
+        "p": 3,
+        "tipo": "caso de uso",
+        "evidencia": "Caso de uso de Cartrescue (Intelligent Agents – Use Cases, p. 3). La meta del caso (recuperar al menos 15 % más de carritos que la tasa actual durante tres semanas) exige una tienda piloto, una tasa base real y un grupo de comparación; con datos simulados el efecto lo fijaría el propio simulador. Sí se pueden medir sin tienda el AUC del modelo de abandono y la latencia."
+      }
+    },
+    {
+      "nombre": "Complejidad de IA",
+      "peso": 0.15,
+      "A": {
+        "p": 5,
+        "tipo": "verificado",
+        "evidencia": "Agente de aprendizaje (recalibración ante deriva) con decisión por utilidad esperada y abstención por incertidumbre; cubre los siete componentes IBM (ver sección 9.1)."
+      },
+      "B": {
+        "p": 4,
+        "tipo": "caso de uso",
+        "evidencia": "Caso de uso de Cartrescue (Intelligent Agents – Use Cases, p. 3). Un modelo estima la probabilidad de abandono y la intervención (recordatorio, descuento o producto alternativo) se elige según el perfil y el desempeño histórico por tipo, registrando el resultado para refinar la estrategia: agente de aprendizaje con decisión por utilidad. No llega a 5 porque el caso no menciona detección de deriva ni abstención por incertidumbre."
+      }
+    },
+    {
+      "nombre": "Costo y recursos",
+      "peso": 0.1,
+      "A": {
+        "p": 5,
+        "tipo": "verificado",
+        "evidencia": "Costo de 0 COP en APIs; Python y numpy gratuitos; se ejecuta en un portátil (latencia p95 inferior a 1 ms medida en logs/resultados_pruebas.json)."
+      },
+      "B": {
+        "p": 3,
+        "tipo": "caso de uso",
+        "evidencia": "Caso de uso de Cartrescue (Intelligent Agents – Use Cases, p. 3). El caso exige una tienda piloto durante tres semanas, un servicio de correo o notificaciones push y un motor de descuentos. Pueden simularse sin costo, pero una prueba real requeriría permisos y servicios con cuota."
+      }
+    },
+    {
+      "nombre": "Valor del problema",
+      "peso": 0.1,
+      "A": {
+        "p": 4,
+        "tipo": "verificado",
+        "evidencia": "Usuario identificable (analista de crédito) y beneficio concreto (priorizar y dar consistencia a la evaluación). El beneficio real no se verificó con datos reales."
+      },
+      "B": {
+        "p": 4,
+        "tipo": "caso de uso",
+        "evidencia": "Caso de uso de Cartrescue (Intelligent Agents – Use Cases, p. 3). Usuario identificable (la tienda en línea) y beneficio concreto (carritos recuperados, es decir, ventas); el caso cita la fuente de diseño de Datagrid sobre el ROI del abandono de carritos. El beneficio no se verificó con datos reales."
+      }
+    }
   ]
 }
