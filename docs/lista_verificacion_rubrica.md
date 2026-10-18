@@ -14,7 +14,7 @@ No se calcula una nota: hay elementos que solo los integrantes pueden completar 
 
 ## Pendientes críticos
 1. Probar la URL pública de la app en incógnito antes de entregar (las apps gratuitas se duermen).
-2. Línea base manual (`config/linea_base_manual.json`).
+2. Línea base manual: `python scripts/medir_linea_base_manual.py` (≥ 10 solicitudes), luego `python scripts/run_pruebas_desempeno.py`; enviar `config/linea_base_manual.json` para regenerar el informe.
 3. Diseño real de Cartrescue-agent y revisión de la matriz.
 4. Bitácora de IA: completar campos [PENDIENTE].
 5. Confirmar el nombre y código del segundo integrante.

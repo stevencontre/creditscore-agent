@@ -273,7 +273,8 @@ with tab3:
         df = pd.DataFrame([[*f[:5], "PENDIENTE" if f[5] is None else ("Sí" if f[5] else "No"), f[6]] for f in filas],
                           columns=cab)
         st.dataframe(df, width="stretch", hide_index=True)
-        st.caption("M2b queda PENDIENTE hasta medir la línea base manual (config/linea_base_manual.json).")
+        if any(f[5] is None for f in filas):
+            st.caption("M2b queda PENDIENTE hasta medir la línea base manual (scripts/medir_linea_base_manual.py).")
         st.download_button("Descargar tabla (CSV)", df.to_csv(index=False, sep=";").encode("utf-8-sig"),
                            file_name="tabla_resultados.csv")
 

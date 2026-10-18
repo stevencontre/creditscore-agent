@@ -1,5 +1,7 @@
 {
-  "_nota": "PENDIENTE: los integrantes deben medir el tiempo del proceso manual (segundos por solicitud, minimo 10 solicitudes) y escribir aqui el promedio. Mientras sea null, la medida 'reduccion 20 % vs manual' se reporta como PENDIENTE.",
-  "tiempo_manual_promedio_s": null,
-  "n_solicitudes_medidas": null
+  "_nota": "Medido con scripts/medir_linea_base_manual.py: tiempo de decision de una persona sobre solicitudes simuladas, sin usar el agente. No incluye digitacion ni consulta real al buro.",
+  "tiempo_manual_promedio_s": 3.6,
+  "n_solicitudes_medidas": 10,
+  "analista": "Steven Contreras",
+  "fecha": "2026-10-18T02:18:17"
 }

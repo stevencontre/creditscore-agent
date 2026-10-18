@@ -158,6 +158,22 @@ def _m7(U, cfg):
     return filas, falsas
 
 
+def _m2b(media_ms):
+    """M2b: reduccion del tiempo frente al proceso manual. Devuelve (casos, resultado, cumple).
+    Si config/linea_base_manual.json no tiene el promedio manual, la medida queda PENDIENTE (cumple=None)."""
+    try:
+        d = json.loads((RAIZ / "config" / "linea_base_manual.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        d = {}
+    t_man, n = d.get("tiempo_manual_promedio_s"), d.get("n_solicitudes_medidas")
+    if not t_man or not n or t_man <= 0:
+        return 0, "PENDIENTE: falta línea base manual (config/linea_base_manual.json)", None
+    t_ag = media_ms / 1000.0
+    red = (t_man - t_ag) / t_man
+    txt = f"T_manual = {t_man:.1f} s; T_agente = {media_ms:.3f} ms; reducción = {red*100:.2f} %".replace(".", ",")
+    return int(n), txt, red >= 0.20
+
+
 def ejecutar(dir_logs=None):
     dir_logs = Path(dir_logs or RAIZ / "logs")
     dir_logs.mkdir(parents=True, exist_ok=True)
@@ -191,8 +207,8 @@ def ejecutar(dir_logs=None):
         ("M2. Tiempo de respuesta por evaluación (extremo a extremo, entorno simulado)", "p95 de latencia_ms de EVALUACION_COMPLETA",
          f"<= {fmt(U['M2_latencia_p95_max_ms'], 0)} ms", len(lat), f"p95 = {fmt(p95, 3)} ms; media = {fmt(media, 3)} ms",
          p95 <= U["M2_latencia_p95_max_ms"], f"{ev}#M2; {lg}"),
-        ("M2b. Reducción del 20 % del tiempo frente al proceso manual", "(T_manual - T_agente) / T_manual", ">= 20 %", 0,
-         "PENDIENTE: falta línea base manual (config/linea_base_manual.json)", None, "config/linea_base_manual.json"),
+        ("M2b. Reducción del 20 % del tiempo frente al proceso manual", "(T_manual - T_agente) / T_manual", ">= 20 %", *_m2b(media),
+         "config/linea_base_manual.json; logs/linea_base_manual_tiempos.csv"),
         ("M3. Remisión correcta ante entradas inválidas, incompletas o fuera de dominio", "casos con REVISION_HUMANA, sin p_default y sin llamada a originación / casos invalidos",
          f">= {U['M3_remision_entradas_invalidas_min']*100:.0f} %", m3["total"], f"{m3['correctos']}/{m3['total']} = {m3['tasa']*100:.1f} %".replace(".", ","),
          m3["tasa"] >= U["M3_remision_entradas_invalidas_min"], f"{ev}#M3; {lg}"),

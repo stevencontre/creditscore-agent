@@ -1,12 +1,12 @@
 | Medida de desempeño | Fórmula | Umbral | Casos ejecutados | Resultado obtenido | ¿Cumple? | Evidencia (log, captura, minuto del video) |
 |---|---|---|---|---|---|---|
 | M1. Discriminación: AUC-ROC (Mann-Whitney) sobre solicitudes de prueba sintéticas | AUC = P(score_default > score_no_default); promedio de 5 semillas | >= 0,75 | 7500 | 0,7793 ± 0,0101 (min 0,7698) | Sí | logs/resultados_pruebas.json#M1; logs/pruebas_eventos.jsonl |
-| M2. Tiempo de respuesta por evaluación (extremo a extremo, entorno simulado) | p95 de latencia_ms de EVALUACION_COMPLETA | <= 200 ms | 7500 | p95 = 0,804 ms; media = 0,507 ms | Sí | logs/resultados_pruebas.json#M2; logs/pruebas_eventos.jsonl |
-| M2b. Reducción del 20 % del tiempo frente al proceso manual | (T_manual - T_agente) / T_manual | >= 20 % | 0 | PENDIENTE: falta línea base manual (config/linea_base_manual.json) | PENDIENTE | config/linea_base_manual.json |
+| M2. Tiempo de respuesta por evaluación (extremo a extremo, entorno simulado) | p95 de latencia_ms de EVALUACION_COMPLETA | <= 200 ms | 7500 | p95 = 0,701 ms; media = 0,489 ms | Sí | logs/resultados_pruebas.json#M2; logs/pruebas_eventos.jsonl |
+| M2b. Reducción del 20 % del tiempo frente al proceso manual | (T_manual - T_agente) / T_manual | >= 20 % | 10 | T_manual = 3,6 s; T_agente = 0,489 ms; reducción = 99,99 % | Sí | config/linea_base_manual.json; logs/linea_base_manual_tiempos.csv |
 | M3. Remisión correcta ante entradas inválidas, incompletas o fuera de dominio | casos con REVISION_HUMANA, sin p_default y sin llamada a originación / casos invalidos | >= 100 % | 1000 | 1000/1000 = 100,0 % | Sí | logs/resultados_pruebas.json#M3; logs/pruebas_eventos.jsonl |
 | M4. Calibración de probabilidades: ECE (10 bins) | ECE = Σ_b (n_b/n)·|frec_obs_b − prob_media_b|; promedio de 5 semillas | <= 0,05 | 7500 | 0,0237 ± 0,0066 (max 0,0328) | Sí | logs/resultados_pruebas.json#M4; logs/pruebas_eventos.jsonl |
 | M5. Trazabilidad: evaluaciones con cadena completa de eventos y auditoría (releida del log) | evaluaciones completas / evaluaciones totales | >= 100 % | 9000 | 9000/9000 = 100,0 % | Sí | logs/resultados_pruebas.json#M5; logs/pruebas_eventos.jsonl |
 | M6a. Estabilidad entre ejecuciones: desviación estándar del AUC | s = desv. estándar muestral de AUC en 5 semillas | <= 0,02 | 5 | s = 0,0101 | Sí | logs/resultados_pruebas.json#M1 |
 | M6b. Reproducibilidad: la misma semilla produce las mismas decisiones | salidas idénticas (acción, p, calificación) / comparaciones | >= 100 % | 1500 | 1500/1500 = 100,0 % | Sí | logs/resultados_pruebas.json#M6b |
-| M7a. Detección de deriva (cambio de distribucion económica) | semillas con deriva detectada / semillas | >= 100 % | 5 | 5/5 = 100 % | Sí | logs/resultados_pruebas.json#M7 |
+| M7a. Detección de deriva (cambio de distribución económica) | semillas con deriva detectada / semillas | >= 100 % | 5 | 5/5 = 100 % | Sí | logs/resultados_pruebas.json#M7 |
 | M7b. Mejora tras recalibración: Brier en solicitudes con deriva | semillas con Brier_después < Brier_antes / semillas | >= 80 % | 5 | 5/5 = 100 % | Sí | logs/resultados_pruebas.json#M7 |

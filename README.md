@@ -9,7 +9,7 @@ Proyecto de Inteligencia Artificial (Universidad Tecnológica de Bolívar). Agen
 | Ruta | Contenido |
 |---|---|
 | `src/creditscore/` | Código del agente: `percepcion.py` (sensores), `decision.py`, `acciones.py` (actuadores), `memoria.py`, `modelo.py`, `agente.py` (ciclo Percepción → Decisión → Acción), `entorno.py`/`simulador.py`/`fabrica.py`, `registro.py`, `evaluacion.py`, `escenarios.py` |
-| `config/` | `config.json` (parámetros), `umbrales.json` (umbrales fijados **antes** de las pruebas), `linea_base_manual.json` (pendiente) |
+| `config/` | `config.json` (parámetros), `umbrales.json` (umbrales fijados **antes** de las pruebas), `linea_base_manual.json` (la llena `scripts/medir_linea_base_manual.py`) |
 | `scripts/` | `run_agente.py`, `run_escenarios.py`, `run_pruebas_desempeno.py`, `matriz_decision.py` |
 | `tests/` | 20 pruebas unitarias (`unittest`) |
 | `logs/` | Registros de las ejecuciones reales (JSONL, CSV, JSON, TXT) |
@@ -70,7 +70,7 @@ Todo es determinista dado el valor de semilla (`config/config.json` y `config/um
 Antes de repetir las pruebas, no modifique `config/umbrales.json`: sus umbrales se fijaron antes de ejecutar (su SHA-256 queda en `logs/resultados_pruebas.json`).
 
 ## Pendiente por los integrantes
-1. Medir el tiempo del proceso manual (≥ 10 solicitudes) y escribirlo en `config/linea_base_manual.json` (medida M2b).
+1. Medir el tiempo del proceso manual (≥ 10 solicitudes) con `python scripts/medir_linea_base_manual.py` y luego `python scripts/run_pruebas_desempeno.py` (medida M2b).
 2. Revisar `docs/matriz_decision.json`: los puntajes del agente B (Cartrescue) son **estimaciones** hechas sin su diseño.
 3. Desplegar la app (`docs/guia_despliegue.md`), publicar el repositorio y pegar los enlaces en la sección 9.9 del informe (`docs/construir_informe.py` o el DOCX).
 4. Completar las verificaciones humanas de `docs/bitacora_uso_ia.md`.
