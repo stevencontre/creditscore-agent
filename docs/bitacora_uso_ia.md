@@ -73,7 +73,7 @@
 - **Código o documentación generados o corregidos:** `Documento_Diseno_Ajustado.docx` y `.pdf`
 - **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó 
 - **Verificación realizada por los integrantes:** ☑ Leyeron el documento completo ☑ Verificaron los enlaces de IBM y arXiv
-- **Errores o limitaciones identificados:** Se normalizaron y luego se restauraron los enlaces de referencia; no se pudieron verificar (sin acceso a Internet): IBM, arXiv:2603.18927
+- **Errores o limitaciones identificados:** En una primera versión no se pudieron verificar los enlaces (sin acceso a Internet). Después se verificaron en línea (18/10/2026): arXiv:2603.18927 existe y coincide con título y autores; el enlace de IBM se reemplazó por el oficial (https://www.ibm.com/think/topics/components-of-ai-agents)
 
 ## Consulta 8
 
@@ -93,7 +93,7 @@
 - **Código o documentación generados o corregidos:** Interfaz Streamlit que llama a `AgenteCreditScore.evaluar()` sin cambiar su lógica; guía de despliegue y casos de prueba; ajuste de `construir_informe.py` y regeneración del informe
 - **Cambios aceptados / rechazados:** `app.py`, `docs/guia_despliegue.md` y los cambios al informe se incorporaron al repositorio (commit 7863c77). ☑ Sin modificaciones 
 - **Verificación realizada por los integrantes:** Ejecutaron `streamlit run app.py` en local y probaron «Típico: bajo riesgo» (APROBAR) e «ingreso faltante» (REVISION_HUMANA), con capturas; desplegaron la app en Streamlit Community Cloud. ☑ Probaron la URL pública en ventana de incógnito el día de la entrega
-- **Errores o limitaciones identificados:** Probada solo en local y con pruebas automáticas de Streamlit; el despliegue real en Streamlit Community Cloud se pudo ejecutar
+- **Errores o limitaciones identificados:** La IA solo pudo probar la app en local y con pruebas automáticas de Streamlit; el despliegue en Streamlit Community Cloud lo ejecutaron los integrantes
 
 ## Consulta 10
 
@@ -140,9 +140,9 @@ El código, los diagramas, las pruebas y los textos de esta entrega fueron gener
 
 Compararon los dos agentes con **6 criterios y pesos** definidos antes de puntuar: viabilidad técnica 25 %, datos o entorno 20 %, medibilidad 20 %, complejidad de IA 15 %, costo y recursos 10 % y valor del problema 10 %. Cada agente recibió un puntaje de 1 a 5 por criterio, con una frase de evidencia. El puntaje final es la suma de peso × puntaje.
 
-**Resultado en mi versión de la matriz:** CREDITSCORE-AGENT obtuvo 4,05 y Cartrescue 3,55. La diferencia viene sobre todo de la complejidad de IA y del costo. Confirmen estas cifras con las de su repositorio, porque ustedes actualizaron la matriz con el caso de uso de Cartrescue.
+**Resultado final de la matriz (sección A del informe):** CREDITSCORE-AGENT obtuvo 4,05 y Cartrescue-agent 3,70. CREDITSCORE gana en medibilidad, costo y complejidad de IA; Cartrescue gana en disponibilidad de datos (conjunto público REES46); viabilidad y valor empatan.
 
-**Sensibilidad.** Cambiaron en ±10 puntos el peso del criterio más influyente y en todos los casos siguió ganando el mismo agente. Dos límites que deben reconocer: los puntajes de Cartrescue se basan en el caso de uso y no en su diseño completo, y la decisión podría cambiar si ese diseño justificara puntajes más altos.
+**Sensibilidad.** Tres criterios empatan como los más influyentes (datos, medibilidad y costo); se cambió el peso de cada uno en ±10 puntos y, con pesos iguales, en los 8 escenarios siguió ganando CREDITSCORE-AGENT (ventaja mínima de 0,17). Dos límites que deben reconocer: los puntajes de Cartrescue se basan en el caso de uso y no en su diseño completo, y la decisión podría cambiar si ese diseño justificara puntajes más altos.
 
 **Frase para cerrar:** «Elegimos CREDITSCORE porque es medible con AUC, no tiene costo de APIs y cubre los siete componentes IBM. Lo que perdemos es el aprendizaje en ciclos cortos de Cartrescue».
  
