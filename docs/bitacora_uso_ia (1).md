@@ -71,7 +71,7 @@
 - **Apartados del proyecto:** Fase 7; `docs/construir_informe.py`
 - **Tipo de ayuda:** Redacción y maquetación
 - **Código o documentación generados o corregidos:** `Documento_Diseno_Ajustado.docx` y `.pdf`
-- **Cambios aceptados / rechazados:** ☐ Aceptado tal como se generó ☑ Modificado: 
+- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó 
 - **Verificación realizada por los integrantes:** ☑ Leyeron el documento completo ☑ Verificaron los enlaces de IBM y arXiv
 - **Errores o limitaciones identificados:** Se normalizaron y luego se restauraron los enlaces de referencia; no se pudieron verificar (sin acceso a Internet): IBM, arXiv:2603.18927
 
@@ -111,12 +111,11 @@ El código, los diagramas, las pruebas y los textos de esta entrega fueron gener
 
 ## Contribución de los integrantes
 
-Marquen (☑) solo lo que realmente hicieron y escriban el detalle. Borren las líneas que no apliquen. No marquen nada que no puedan mostrar o explicar.
 
-- ☑ Escribieron o modificaron código por su cuenta. Archivos y qué cambiaron: Modificamos config/config.json: cambiamos el costo de revisión de 0,5 a 0,3 para ver cuántos casos pasaban a revisión
+
+-  ☑ Escribieron o modificaron código por su cuenta. Archivos y qué cambiaron: Probamos cambiar en config/config.json el costo de revisión de 0,5 a 0,3 para ver cuántos casos pasaban a revisión; después volvimos al valor original (0,5).
 
 - ☑ Corrigieron errores del código o del informe. Cuáles: Quitamos del repositorio los archivos zip subidos por error
-- ☑ Escribieron o reescribieron partes del informe con sus propias palabras. Secciones: Reescribimos la justificación de la sección A.3 y las limitaciones
 - ☑ Ejecutaron el agente y las pruebas en su equipo y compararon los resultados con los logs.
 - ☐ Pueden explicar con sus palabras el ciclo Percepción → Decisión → Acción y la matriz de decisión:
 
