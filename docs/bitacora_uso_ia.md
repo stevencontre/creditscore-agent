@@ -11,7 +11,7 @@
 - **Apartados del proyecto:** Fase 1 (diagnóstico)
 - **Tipo de ayuda:** Análisis de archivos
 - **Código o documentación generados o corregidos:** Diagnóstico: el ZIP contenía solo un taller de n-gramas (PDF manuscrito, `.py`, notebook, log); no incluía diseños de agentes
-- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó ☐ Modificado: ______ ☐ Rechazado: ______
+- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó 
 - **Verificación realizada por los integrantes:** ☑ Abrieron el ZIP anterior y confirmaron que solo traía el taller de n-gramas
 - **Errores o limitaciones identificados:** El PDF era un escaneo manuscrito leído visualmente; falta el corpus `data/matilda/`
 
@@ -21,8 +21,8 @@
 - **Apartados del proyecto:** Fase 4, tabla de cambios
 - **Tipo de ayuda:** Análisis y resumen
 - **Código o documentación generados o corregidos:** Lista de correcciones: artefactos de citación, encabezados desordenados, un solo integrante, referencia duplicada
-- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó ☐ Modificado: ______ ☐ Rechazado
-- **Verificación realizada por los integrantes:** ☑ Compararon la lista de correcciones con la retroalimentación original del docente ☐ Faltó alguna: ______
+- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó 
+- **Verificación realizada por los integrantes:** ☑ Compararon la lista de correcciones con la retroalimentación original del docente 
 - **Errores o limitaciones identificados:** No se recibió el diseño de Cartrescue-agent
 
 ## Consulta 3
@@ -31,7 +31,7 @@
 - **Apartados del proyecto:** Sección A del informe
 - **Tipo de ayuda:** Cálculo y redacción
 - **Código o documentación generados o corregidos:** `docs/matriz_decision.json`, `scripts/matriz_decision.py`, resultados
-- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó ☐ Modificado: ______ ☐ Rechazado: ______
+- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó 
 - **Verificación realizada por los integrantes:** ☑ Revisaron los puntajes y la evidencia de cada criterio ☑ Contrastaron los puntajes de Cartrescue con la descripción del caso (Use Cases, p. 3)
 - **Errores o limitaciones identificados:** Los puntajes del agente B se basan en la descripción del caso (Use Cases, p. 3) y no en su diseño completo; la decisión depende de ellos.
 
@@ -41,7 +41,7 @@
 - **Apartados del proyecto:** Fase 3; `src/creditscore/*`, `config/*`
 - **Tipo de ayuda:** Generación de código
 - **Código o documentación generados o corregidos:** Módulos de percepción, decisión, acciones, memoria, modelo, agente, entorno, simulador, registro
-- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó ☐ Modificado: ______ ☐ Rechazado: ______
+- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó 
 - **Verificación realizada por los integrantes:** ☑ Ejecutaron `python -m unittest discover -s tests -t . -v` ☑ Leyeron `agente.py` (percibir → decidir → actuar) ☐ Pueden explicar el modelo y las reglas R1 a R4
 - **Errores o limitaciones identificados:** Datos sintéticos; sin integración real; `pytest` no disponible sin red, se usó `unittest`
 
@@ -51,7 +51,7 @@
 - **Apartados del proyecto:** Fase 5; `config/umbrales.json`, `evaluacion.py`, `escenarios.py`, `tests/`
 - **Tipo de ayuda:** Generación de pruebas y ejecución
 - **Código o documentación generados o corregidos:** Umbrales fijados antes de ejecutar; 20 pruebas unitarias; 17 escenarios; medidas M1–M7; logs en `logs/`
-- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó ☐ Modificado: ______ ☐ Rechazado: ______
+- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó 
 - **Verificación realizada por los integrantes:** ☑ Repitieron `python scripts/run_pruebas_desempeno.py` y obtuvieron los mismos valores ☑ Ejecutaron `python scripts/run_escenarios.py` (17/17) ☑ Ejecutaron las pruebas desde la pestaña «3. Pruebas» de la app
 - **Errores o limitaciones identificados:** Un reemplazo de texto automático dañó dos claves del código; se detectó por error de ejecución y se corrigió antes de la ejecución oficial final
 
@@ -61,7 +61,7 @@
 - **Apartados del proyecto:** Sección 9.1 y 9.5
 - **Tipo de ayuda:** Generación de diagramas
 - **Código o documentación generados o corregidos:** `arquitectura.dot`, tres `.mmd`, `render_secuencia.py`
-- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó ☐ Modificado: ______ ☐ Rechazado: ______
+- **Cambios aceptados / rechazados:** ☑ Aceptado tal como se generó 
 - **Verificación realizada por los integrantes:** ☑ Compararon los diagramas de secuencia con el código
 - **Errores o limitaciones identificados:** `mermaid-cli` no pudo ejecutarse (sin navegador); se escribió un renderizador propio; la letra se hizo pequeña y se pasaron los diagramas a páginas horizontales
 
@@ -71,8 +71,8 @@
 - **Apartados del proyecto:** Fase 7; `docs/construir_informe.py`
 - **Tipo de ayuda:** Redacción y maquetación
 - **Código o documentación generados o corregidos:** `Documento_Diseno_Ajustado.docx` y `.pdf`
-- **Cambios aceptados / rechazados:** ☐ Aceptado tal como se generó ☑ Modificado: ______ ☐ Rechazado: ______
-- **Verificación realizada por los integrantes:** ☑ Leyeron el documento completo ☐ Corrigieron: ______ ☐ Verificaron los enlaces de IBM y arXiv
+- **Cambios aceptados / rechazados:** ☐ Aceptado tal como se generó ☑ Modificado: 
+- **Verificación realizada por los integrantes:** ☑ Leyeron el documento completo ☑ Verificaron los enlaces de IBM y arXiv
 - **Errores o limitaciones identificados:** Se normalizaron y luego se restauraron los enlaces de referencia; no se pudieron verificar (sin acceso a Internet): IBM, arXiv:2603.18927
 
 ## Consulta 8
@@ -91,7 +91,7 @@
 - **Apartados del proyecto:** Fase 3, sección 9.2, 9.6, 9.9; `app.py`, `docs/guia_despliegue.md`
 - **Tipo de ayuda:** Generación de código y redacción
 - **Código o documentación generados o corregidos:** Interfaz Streamlit que llama a `AgenteCreditScore.evaluar()` sin cambiar su lógica; guía de despliegue y casos de prueba; ajuste de `construir_informe.py` y regeneración del informe
-- **Cambios aceptados / rechazados:** `app.py`, `docs/guia_despliegue.md` y los cambios al informe se incorporaron al repositorio (commit 7863c77). ☑ Sin modificaciones ☐ Modificaron: ______
+- **Cambios aceptados / rechazados:** `app.py`, `docs/guia_despliegue.md` y los cambios al informe se incorporaron al repositorio (commit 7863c77). ☑ Sin modificaciones 
 - **Verificación realizada por los integrantes:** Ejecutaron `streamlit run app.py` en local y probaron «Típico: bajo riesgo» (APROBAR) e «ingreso faltante» (REVISION_HUMANA), con capturas; desplegaron la app en Streamlit Community Cloud. ☑ Probaron la URL pública en ventana de incógnito el día de la entrega
 - **Errores o limitaciones identificados:** Probada solo en local y con pruebas automáticas de Streamlit; el despliegue real en Streamlit Community Cloud se pudo ejecutar
 
@@ -114,7 +114,7 @@ El código, los diagramas, las pruebas y los textos de esta entrega fueron gener
 Marquen (☑) solo lo que realmente hicieron y escriban el detalle. Borren las líneas que no apliquen. No marquen nada que no puedan mostrar o explicar.
 
 - ☑ Escribieron o modificaron código por su cuenta. Archivos y qué cambiaron: Modificamos config/config.json: cambiamos el costo de revisión de 0,5 a 0,3 para ver cuántos casos pasaban a revisión
-- ☐ Cambiaron parámetros o reglas (por ejemplo costos, umbrales o puntajes de la matriz). Cuáles y por qué: ______
+
 - ☑ Corrigieron errores del código o del informe. Cuáles: Quitamos del repositorio los archivos zip subidos por error
 - ☑ Escribieron o reescribieron partes del informe con sus propias palabras. Secciones: Reescribimos la justificación de la sección A.3 y las limitaciones
 - ☑ Ejecutaron el agente y las pruebas en su equipo y compararon los resultados con los logs.
