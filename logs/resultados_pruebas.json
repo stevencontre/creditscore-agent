@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "fecha": "2026-10-17T23:17:04",
+    "python": "3.12.3",
+    "numpy": "2.4.4",
+    "plataforma": "Linux-6.18.44-fc-v139-x86_64-with-glibc2.39",
+    "sha256_umbrales": "f67a40474eb0044334dcfbacc538eee2e3f29b5e6f8cccdbda71e744b8646e16",
+    "sha256_config": "03ebeb2393abff4f8670673e6b223fcbd75e7c81c791b0d626d069132a01cd2e"
+  },
+  "umbrales": {
+    "_nota": "Umbrales de aceptacion FIJADOS ANTES de ejecutar las pruebas de desempeno (ver docs). No modificar despues de observar resultados.",
+    "fecha_fijacion": "2026-10-17",
+    "semillas": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "n_prueba_por_semilla": 1500,
+    "n_invalidas_por_semilla": 200,
+    "n_trazabilidad_fallos_por_semilla": 100,
+    "M1_auc_roc_min": 0.75,
+    "M2_latencia_p95_max_ms": 200.0,
+    "M3_remision_entradas_invalidas_min": 1.0,
+    "M4_ece_max": 0.05,
+    "M5_trazabilidad_min": 1.0,
+    "M6a_desv_auc_max": 0.02,
+    "M6b_reproducibilidad_min": 1.0,
+    "M7a_deteccion_deriva_min": 1.0,
+    "M7b_mejora_brier_min": 0.8
+  },
+  "M1_M2_M4_por_semilla": [
+    {
+      "semilla": 1,
+      "n": 1500,
+      "n_validas": 1500,
+      "auc": 0.7740659170258595,
+      "ece": 0.032847807252505426,
+      "brier": 0.14968934119221172,
+      "tasa_default": 0.242,
+      "pct_aprobar": 0.39066666666666666,
+      "pct_rechazar": 0.10333333333333333,
+      "pct_revision": 0.506,
+      "default_entre_aprobados": 0.07679180887372014,
+      "recall_default_no_aprobado": 0.8760330578512396
+    },
+    {
+      "semilla": 2,
+      "n": 1500,
+      "n_validas": 1500,
+      "auc": 0.7830319187806003,
+      "ece": 0.018849607547107617,
+      "brier": 0.13828073482312916,
+      "tasa_default": 0.22866666666666666,
+      "pct_aprobar": 0.37666666666666665,
+      "pct_rechazar": 0.10333333333333333,
+      "pct_revision": 0.52,
+      "default_entre_aprobados": 0.07610619469026549,
+      "recall_default_no_aprobado": 0.8746355685131195
+    },
+    {
+      "semilla": 3,
+      "n": 1500,
+      "n_validas": 1500,
+      "auc": 0.7951391058534183,
+      "ece": 0.02832623147547319,
+      "brier": 0.14033582530636396,
+      "tasa_default": 0.23133333333333334,
+      "pct_aprobar": 0.38066666666666665,
+      "pct_rechazar": 0.09533333333333334,
+      "pct_revision": 0.524,
+      "default_entre_aprobados": 0.05779334500875657,
+      "recall_default_no_aprobado": 0.9048991354466859
+    },
+    {
+      "semilla": 4,
+      "n": 1500,
+      "n_validas": 1500,
+      "auc": 0.7744402046913361,
+      "ece": 0.017958070409295448,
+      "brier": 0.1473098935468691,
+      "tasa_default": 0.236,
+      "pct_aprobar": 0.368,
+      "pct_rechazar": 0.10533333333333333,
+      "pct_revision": 0.5266666666666666,
+      "default_entre_aprobados": 0.08152173913043478,
+      "recall_default_no_aprobado": 0.8728813559322034
+    },
+    {
+      "semilla": 5,
+      "n": 1500,
+      "n_validas": 1500,
+      "auc": 0.7697974548330441,
+      "ece": 0.020515266799833492,
+      "brier": 0.14485838019147115,
+      "tasa_default": 0.22266666666666668,
+      "pct_aprobar": 0.42,
+      "pct_rechazar": 0.09933333333333333,
+      "pct_revision": 0.4806666666666667,
+      "default_entre_aprobados": 0.0761904761904762,
+      "recall_default_no_aprobado": 0.8562874251497006
+    }
+  ],
+  "M2": {
+    "n": 7500,
+    "p95_ms": 0.804,
+    "media_ms": 0.5069864000000001,
+    "max_ms": 12.325
+  },
+  "M3": {
+    "correctos": 1000,
+    "total": 1000,
+    "tasa": 1.0,
+    "por_tipo": {
+      "ingreso_faltante": [
+        100,
+        100
+      ],
+      "obligaciones_faltante": [
+        100,
+        100
+      ],
+      "ingreso_negativo": [
+        100,
+        100
+      ],
+      "valor_no_numerico": [
+        100,
+        100
+      ],
+      "valor_NaN": [
+        100,
+        100
+      ],
+      "ingreso_fuera_dominio": [
+        100,
+        100
+      ],
+      "pagos_fuera_rango": [
+        100,
+        100
+      ],
+      "lineas_negativas": [
+        100,
+        100
+      ],
+      "dti_inconsistente": [
+        100,
+        100
+      ],
+      "buro_caido": [
+        100,
+        100
+      ]
+    }
+  },
+  "M5": {
+    "evaluaciones": 9000,
+    "completas": 9000,
+    "tasa": 1.0,
+    "evaluaciones_con_fallos_aleatorios": 500
+  },
+  "M6b": {
+    "identicas": 1500,
+    "total": 1500,
+    "tasa": 1.0
+  },
+  "M7": [
+    {
+      "semilla": 1,
+      "deriva_detectada": true,
+      "causas": [
+        "brecha_calibracion"
+      ],
+      "psi": 0.0576,
+      "brecha_calibracion": 0.0772,
+      "accion": "recalibrado",
+      "brier_antes": 0.18065587409551104,
+      "brier_despues": 0.1750721167563837,
+      "ece_antes": 0.08066417693545606,
+      "ece_despues": 0.04908414856595257,
+      "auc_antes": 0.7805188244469654,
+      "auc_despues": 0.7823090967101531
+    },
+    {
+      "semilla": 2,
+      "deriva_detectada": true,
+      "causas": [
+        "brecha_calibracion"
+      ],
+      "psi": 0.0241,
+      "brecha_calibracion": 0.093,
+      "accion": "recalibrado",
+      "brier_antes": 0.17741183006464928,
+      "brier_despues": 0.16982692601478022,
+      "ece_antes": 0.08673238992766154,
+      "ece_despues": 0.04795927175312814,
+      "auc_antes": 0.7973930481283422,
+      "auc_despues": 0.7983600713012478
+    },
+    {
+      "semilla": 3,
+      "deriva_detectada": true,
+      "causas": [
+        "brecha_calibracion"
+      ],
+      "psi": 0.0253,
+      "brecha_calibracion": 0.082,
+      "accion": "recalibrado",
+      "brier_antes": 0.19110823254480802,
+      "brier_despues": 0.18253062751891494,
+      "ece_antes": 0.11268572571279034,
+      "ece_despues": 0.08046957608864122,
+      "auc_antes": 0.791427030525294,
+      "auc_despues": 0.7922165893646855
+    },
+    {
+      "semilla": 4,
+      "deriva_detectada": true,
+      "causas": [
+        "brecha_calibracion"
+      ],
+      "psi": 0.0391,
+      "brecha_calibracion": 0.0941,
+      "accion": "recalibrado",
+      "brier_antes": 0.17688864005498595,
+      "brier_despues": 0.17021046497925257,
+      "ece_antes": 0.0825687280146562,
+      "ece_despues": 0.051356871478236976,
+      "auc_antes": 0.8018829308227589,
+      "auc_despues": 0.8021822279147356
+    },
+    {
+      "semilla": 5,
+      "deriva_detectada": true,
+      "causas": [
+        "brecha_calibracion"
+      ],
+      "psi": 0.0503,
+      "brecha_calibracion": 0.1112,
+      "accion": "recalibrado",
+      "brier_antes": 0.1777300214508359,
+      "brier_despues": 0.1712906166885278,
+      "ece_antes": 0.07938330227099955,
+      "ece_despues": 0.04098053631141566,
+      "auc_antes": 0.785287858018902,
+      "auc_despues": 0.7823434456388428
+    }
+  ],
+  "M7_falsas_alarmas_sin_deriva": "0/5"
+}

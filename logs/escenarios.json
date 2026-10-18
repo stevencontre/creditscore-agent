@@ -1,0 +1,138 @@
+[
+  {
+    "id": "E01",
+    "escenario": "Normal: bajo riesgo",
+    "categoria": "normal",
+    "esperado": "APROBAR; originacion REGISTRADA",
+    "observado": "APROBAR | VALIDA | R2_UTILIDAD | p=0.016 | acciones={'calificacion': 'REGISTRADA', 'originacion': 'REGISTRADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E02",
+    "escenario": "Normal: alto riesgo",
+    "categoria": "normal",
+    "esperado": "RECHAZAR; originacion REGISTRADA",
+    "observado": "RECHAZAR | VALIDA | R2_UTILIDAD | p=0.945 | acciones={'calificacion': 'REGISTRADA', 'originacion': 'REGISTRADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E03",
+    "escenario": "Normal: riesgo intermedio",
+    "categoria": "normal",
+    "esperado": "REVISION_HUMANA; caso en bandeja del analista",
+    "observado": "REVISION_HUMANA | VALIDA | R2_UTILIDAD | p=0.161 | acciones={'calificacion': 'REGISTRADA', 'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E04",
+    "escenario": "Limite: DTI = 0,80 exacto (no excede la politica)",
+    "categoria": "limite",
+    "esperado": "estado VALIDA y sin regla R4",
+    "observado": "RECHAZAR | VALIDA | R2_UTILIDAD | p=0.756 | acciones={'calificacion': 'REGISTRADA', 'originacion': 'REGISTRADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E05",
+    "escenario": "Limite: DTI = 0,8001 (excede la politica)",
+    "categoria": "limite",
+    "esperado": "REVISION_HUMANA por R4",
+    "observado": "REVISION_HUMANA | VALIDA | R4_POLITICA_DTI | p=0.756 | acciones={'calificacion': 'REGISTRADA', 'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E06",
+    "escenario": "Limite: 24 pagos atrasados (maximo permitido)",
+    "categoria": "limite",
+    "esperado": "estado VALIDA",
+    "observado": "REVISION_HUMANA | VALIDA | R3_INCERTIDUMBRE | p=1.0 | acciones={'calificacion': 'REGISTRADA', 'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E07",
+    "escenario": "Invalida: 25 pagos atrasados (fuera de rango)",
+    "categoria": "invalida",
+    "esperado": "REVISION_HUMANA; sin llamada a originacion",
+    "observado": "REVISION_HUMANA | FUERA_DOMINIO | R1_DATOS_NO_VALIDOS | p=None | acciones={'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E08",
+    "escenario": "Invalida: ingreso faltante",
+    "categoria": "invalida",
+    "esperado": "REVISION_HUMANA; estado INCOMPLETA",
+    "observado": "REVISION_HUMANA | INCOMPLETA | R1_DATOS_NO_VALIDOS | p=None | acciones={'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E09",
+    "escenario": "Invalida: ingreso negativo",
+    "categoria": "invalida",
+    "esperado": "REVISION_HUMANA; estado INVALIDA",
+    "observado": "REVISION_HUMANA | INVALIDA | R1_DATOS_NO_VALIDOS | p=None | acciones={'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E10",
+    "escenario": "Invalida: ingreso fuera de dominio (9e9)",
+    "categoria": "invalida",
+    "esperado": "REVISION_HUMANA; estado FUERA_DOMINIO",
+    "observado": "REVISION_HUMANA | FUERA_DOMINIO | R1_DATOS_NO_VALIDOS | p=None | acciones={'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E11",
+    "escenario": "Invalida: valor no numerico ('abc')",
+    "categoria": "invalida",
+    "esperado": "REVISION_HUMANA; estado INVALIDA",
+    "observado": "REVISION_HUMANA | INVALIDA | R1_DATOS_NO_VALIDOS | p=None | acciones={'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E12",
+    "escenario": "Fallo: buro de credito caido (sensor sin dato)",
+    "categoria": "fallo",
+    "esperado": "3 reintentos, REVISION_HUMANA por buro_no_disponible",
+    "observado": "REVISION_HUMANA | INCOMPLETA | R1_DATOS_NO_VALIDOS | p=None | acciones={'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E13",
+    "escenario": "Adverso: buro falla 2 veces y responde al 3.er intento",
+    "categoria": "adverso",
+    "esperado": "2 SENSOR_FALLO y decision normal APROBAR",
+    "observado": "APROBAR | VALIDA | R2_UTILIDAD | p=0.016 | acciones={'calificacion': 'REGISTRADA', 'originacion': 'REGISTRADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E14",
+    "escenario": "Fallo: originacion caida",
+    "categoria": "fallo",
+    "esperado": "APROBAR; originacion DIFERIDA, recomendacion conservada en outbox y auditada",
+    "observado": "APROBAR | VALIDA | R2_UTILIDAD | p=0.016 | acciones={'calificacion': 'REGISTRADA', 'originacion': 'DIFERIDA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E15",
+    "escenario": "Adverso: originacion falla 1 vez y se recupera",
+    "categoria": "adverso",
+    "esperado": "originacion REGISTRADA tras reintento",
+    "observado": "APROBAR | VALIDA | R2_UTILIDAD | p=0.016 | acciones={'calificacion': 'REGISTRADA', 'originacion': 'REGISTRADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E16",
+    "escenario": "Fallo: solicitud inexistente",
+    "categoria": "fallo",
+    "esperado": "sin excepcion; REVISION_HUMANA INVALIDA",
+    "observado": "REVISION_HUMANA | INVALIDA | R1_DATOS_NO_VALIDOS | p=None | acciones={'revision_humana': 'ENVIADA', 'historico': 'REGISTRADO'}",
+    "cumple": true
+  },
+  {
+    "id": "E17",
+    "escenario": "Repetibilidad: mismo caso 5 veces",
+    "categoria": "repeticion",
+    "esperado": "5 salidas identicas",
+    "observado": "('APROBAR', 0.015547040191602388, 'A') x1 distinto(s)",
+    "cumple": true
+  }
+]

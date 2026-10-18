@@ -1,0 +1,43 @@
+sequenceDiagram
+    autonumber
+    actor U as Sistema de originación / Operador
+    participant UI as Interfaz (run_agente.py)
+    participant AG as Agente (agente.py)
+    participant PE as Percepción (percepcion.py)
+    participant EN as Entorno (formulario y buró)
+    participant DE as Decisión (decision.py)
+    participant MO as Modelo + Memoria LP
+    participant AC as Acción (acciones.py)
+    participant OR as Originación / Analista
+    U->>UI: solicitud (id)
+    UI->>AG: evaluar(id)
+    AG->>PE: percibir(id)
+    PE->>EN: recibir_formulario(id)
+    EN-->>PE: ingresos, obligaciones
+    loop hasta 3 intentos
+        PE->>EN: consultar_buro(id)
+        EN-->>PE: pagos, antigüedad, líneas
+    end
+    PE-->>AG: Percepcion(estado=VALIDA, features)
+    AG->>DE: decidir(percepcion)
+    DE->>MO: predict_proba(x), contribuciones(x)
+    MO-->>DE: p_default, factores
+    DE->>MO: vecinos_similares(x, k=25)
+    MO-->>DE: tasa de casos similares
+    alt DTI > límite de política (R4) o desacuerdo > 0,30 (R3)
+        DE-->>AG: REVISION_HUMANA
+    else costo esperado mínimo (R2)
+        DE-->>AG: APROBAR o RECHAZAR o REVISION_HUMANA
+    end
+    AG->>AC: ejecutar(decision, percepcion)
+    AC->>OR: registrar_expediente(calificación)
+    alt acción = APROBAR o RECHAZAR
+        AC->>OR: registrar_originacion(recomendación)
+        OR-->>AC: REGISTRADA
+    else acción = REVISION_HUMANA
+        AC->>OR: notificar_analista(calificación, p, factores, razón)
+    end
+    AC->>OR: registrar_auditoria + memoria LP.agregar
+    AC-->>AG: estados de las acciones
+    AG-->>UI: resultado (acción, p_default, calificación, latencia_ms)
+    UI-->>U: recomendación

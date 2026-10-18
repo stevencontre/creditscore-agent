@@ -1,0 +1,27 @@
+sequenceDiagram
+    autonumber
+    actor U as Sistema de originación / Operador
+    participant AG as Agente (agente.py)
+    participant PE as Percepción (percepcion.py)
+    participant EN as Entorno (buró de crédito)
+    participant DE as Decisión (decision.py)
+    participant AC as Acción (acciones.py)
+    participant AN as Analista (bandeja)
+    participant RG as Registro (JSONL)
+    U->>AG: evaluar(id)
+    AG->>PE: percibir(id)
+    loop intento = 1..3 (buró caído)
+        PE->>EN: consultar_buro(id)
+        EN--xPE: BuroNoDisponible
+        PE->>RG: SENSOR_FALLO(intento)
+    end
+    PE-->>AG: Percepcion(estado=INCOMPLETA, problemas=[buro_no_disponible])
+    AG->>DE: decidir(percepcion)
+    alt estado distinto de VALIDA (regla R1)
+        DE-->>AG: REVISION_HUMANA, sin p_default (abstención)
+    end
+    AG->>AC: ejecutar(decision, percepcion)
+    AC->>AN: notificar_analista(razón: INCOMPLETA, buro_no_disponible)
+    Note over AC: no se llama a originación
+    AC->>RG: AUDITORIA
+    AG-->>U: REVISION_HUMANA

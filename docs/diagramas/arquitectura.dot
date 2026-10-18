@@ -1,0 +1,19 @@
+digraph G {
+  rankdir=LR; fontname="Helvetica"; node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=10, fillcolor="#FFFFFF"]; edge [fontname="Helvetica", fontsize=9];
+  subgraph cluster_ent { label="ENTORNO (simulado: entorno.py + simulador.py)"; style="filled"; fillcolor="#F2F2F2";
+    form [label="Formulario digital\n(ingresos, obligaciones)"]; buro [label="API buró de crédito\n(pagos, antigüedad, líneas)"];
+    orig [label="Sistema de originación\n(API)"]; cart [label="Seguimiento de cartera\n(resultado observado)"]; analista [label="Analista de crédito\n(bandeja)"]; }
+  subgraph cluster_ag { label="CREDITSCORE-AGENT (agente.py: plan + ciclo Percepción→Decisión→Acción)"; style="filled"; fillcolor="#E8F0FE";
+    per [label="SENSORES / PERCEPCIÓN\npercepcion.py\nvalidación, reintentos, features", fillcolor="#D9EAD3"];
+    dec [label="MÓDULO DE DECISIÓN\ndecision.py\nreglas R1–R4 + utilidad esperada", fillcolor="#FFF2CC"];
+    act [label="ACTUADORES / ACCIÓN\nacciones.py\noriginación, bandeja, scoring, auditoría", fillcolor="#F4CCCC"];
+    mod [label="MODELO PREDICTIVO\nmodelo.py\nregresión logística (numpy)"];
+    mcp [label="MEMORIA CORTO PLAZO\nmemoria.py"]; mlp [label="MEMORIA LARGO PLAZO\nmemoria.py\nhistorial + vecinos similares"];
+    apr [label="APRENDIZAJE Y ADAPTACIÓN\nagente.revisar_aprendizaje()\nPSI + brecha de calibración → recalibrar"];
+    reg [label="REGISTRO DE EVENTOS\nregistro.py (JSONL con timestamp)", fillcolor="#EDEDED"]; }
+  form -> per [label="solicitud"]; buro -> per [label="datos de buró"];
+  per -> dec [label="Percepcion"]; mod -> dec [label="p_default,\nfactores"]; mlp -> dec [label="tasa de casos\nsimilares"];
+  dec -> act [label="Decision"]; act -> orig [label="APROBAR / RECHAZAR"]; act -> analista [label="REVISION_HUMANA"];
+  act -> mlp [label="registro histórico"]; cart -> apr [label="resultado observado"]; mlp -> apr; apr -> mod [label="recalibra"];
+  per -> mcp; dec -> mcp; act -> mcp; per -> reg [style=dashed]; dec -> reg [style=dashed]; act -> reg [style=dashed];
+}

@@ -1,0 +1,25 @@
+test_aprendizaje_detecta_deriva_y_recalibra (tests.test_agente_ciclo.TestCiclo.test_aprendizaje_detecta_deriva_y_recalibra) ... ok
+test_orden_percepcion_decision_accion (tests.test_agente_ciclo.TestCiclo.test_orden_percepcion_decision_accion) ... ok
+test_reproducibilidad_misma_semilla (tests.test_agente_ciclo.TestCiclo.test_reproducibilidad_misma_semilla) ... ok
+test_sin_datos_suficientes_no_recalibra (tests.test_agente_ciclo.TestCiclo.test_sin_datos_suficientes_no_recalibra) ... ok
+test_todos_los_escenarios_cumplen (tests.test_agente_ciclo.TestCiclo.test_todos_los_escenarios_cumplen) ... ok
+test_bandas_de_calificacion (tests.test_decision_acciones.TestDecision.test_bandas_de_calificacion) ... ok
+test_error_interno_es_failsafe (tests.test_decision_acciones.TestDecision.test_error_interno_es_failsafe) ... ok
+test_probabilidades_en_rango_y_costos_presentes (tests.test_decision_acciones.TestDecision.test_probabilidades_en_rango_y_costos_presentes) ... ok
+test_r3_desacuerdo_con_casos_similares_remite_a_revision (tests.test_decision_acciones.TestDecision.test_r3_desacuerdo_con_casos_similares_remite_a_revision) ... ok
+test_remision_incluye_factores_para_el_analista (tests.test_decision_acciones.TestDecision.test_remision_incluye_factores_para_el_analista) ... ok
+test_auc_empates_y_extremos (tests.test_metricas.TestMetricas.test_auc_empates_y_extremos) ... ok
+test_auc_valor_conocido (tests.test_metricas.TestMetricas.test_auc_valor_conocido) ... ok
+test_brier_y_ece (tests.test_metricas.TestMetricas.test_brier_y_ece) ... ok
+test_psi_identica_es_cero_y_cambio_es_positivo (tests.test_metricas.TestMetricas.test_psi_identica_es_cero_y_cambio_es_positivo) ... ok
+test_a_numero (tests.test_percepcion.TestPercepcion.test_a_numero) ... ok
+test_buro_caido_marca_incompleta_y_reintenta (tests.test_percepcion.TestPercepcion.test_buro_caido_marca_incompleta_y_reintenta) ... ok
+test_cadena_numerica_es_aceptada (tests.test_percepcion.TestPercepcion.test_cadena_numerica_es_aceptada) ... ok
+test_dti_inconsistente_es_fuera_de_dominio (tests.test_percepcion.TestPercepcion.test_dti_inconsistente_es_fuera_de_dominio) ... ok
+test_pagos_no_entero_es_invalido (tests.test_percepcion.TestPercepcion.test_pagos_no_entero_es_invalido) ... ok
+test_solicitud_valida_genera_5_features (tests.test_percepcion.TestPercepcion.test_solicitud_valida_genera_5_features) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.681s
+
+OK

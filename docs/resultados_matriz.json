@@ -1,0 +1,73 @@
+{
+  "S_A": 4.05,
+  "S_B": 3.5500000000000003,
+  "criterio_mas_influyente": "Complejidad de IA",
+  "contribucion_a_la_diferencia": {
+    "Viabilidad técnica": 0.0,
+    "Disponibilidad de datos o entorno": 0.0,
+    "Medibilidad del desempeño": 0.0,
+    "Complejidad de IA": 0.3,
+    "Costo y recursos": 0.2,
+    "Valor del problema": 0.0
+  },
+  "escenarios": {
+    "original": {
+      "pesos": [
+        0.25,
+        0.2,
+        0.2,
+        0.15,
+        0.1,
+        0.1
+      ],
+      "S_A": 4.05,
+      "S_B": 3.5500000000000003,
+      "elegido": "A"
+    },
+    "+10 pp": {
+      "pesos": [
+        0.2206,
+        0.1765,
+        0.1765,
+        0.25,
+        0.0882,
+        0.0882
+      ],
+      "S_A": 4.161764705882353,
+      "S_B": 3.485294117647059,
+      "elegido": "A"
+    },
+    "-10 pp": {
+      "pesos": [
+        0.2794,
+        0.2235,
+        0.2235,
+        0.05,
+        0.1118,
+        0.1118
+      ],
+      "S_A": 3.938235294117647,
+      "S_B": 3.6147058823529408,
+      "elegido": "A"
+    },
+    "pesos iguales (1/6)": {
+      "pesos": [
+        0.1667,
+        0.1667,
+        0.1667,
+        0.1667,
+        0.1667,
+        0.1667
+      ],
+      "S_A": 4.166666666666666,
+      "S_B": 3.5,
+      "elegido": "A"
+    }
+  },
+  "robustez_B_mas_1_en_estimaciones": {
+    "S_A": 4.05,
+    "S_B": 4.55,
+    "elegido": "B"
+  },
+  "diferencia_minima_para_cambiar_decision": 0.49999999999999956
+}

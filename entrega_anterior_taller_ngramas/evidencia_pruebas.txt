@@ -1,0 +1,555 @@
+==============================================================================
+EJECUCIÓN #1   2026-10-08T21:12:22
+Integrantes : Nombre 1 (codigo1); Nombre 2 (codigo2)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 67942cebe2382e8c8faedddcb65cfc8e1252d0e12e8d56d2808bc1a6e2951c2b
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → failed on setup with "NotImplementedError"
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → failed on setup with "NotImplementedError"
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → failed on setup with "NotImplementedError"
+Caso 4 · Interpolación (3.7)                         FAILED
+      → failed on setup with "NotImplementedError"
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → failed on setup with "NotImplementedError"
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #2   2026-10-08T21:12:27
+Integrantes : Nombre 1 (codigo1); Nombre 2 (codigo2)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 67942cebe2382e8c8faedddcb65cfc8e1252d0e12e8d56d2808bc1a6e2951c2b
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → failed on setup with "NotImplementedError"
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → failed on setup with "NotImplementedError"
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → failed on setup with "NotImplementedError"
+Caso 4 · Interpolación (3.7)                         FAILED
+      → failed on setup with "NotImplementedError"
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → failed on setup with "NotImplementedError"
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #3   2026-10-08T21:25:41
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 1172506b58f67f1d1475fdaf5ddbc4b9ab16b563e22661dacd23647c86574616
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'ModeloNGrama'"
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'ModeloNGrama'"
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'ModeloNGrama'"
+Caso 4 · Interpolación (3.7)                         FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'ModeloNGrama'"
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'ModeloNGrama'"
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #4   2026-10-08T21:27:43
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : a7d60dbec84cb29ffe74dd402bff47c9239127a2c0c50eb0dd72c9f7dbeb93aa
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+Caso 4 · Interpolación (3.7)                         FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #5   2026-10-08T21:28:11
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : a7d60dbec84cb29ffe74dd402bff47c9239127a2c0c50eb0dd72c9f7dbeb93aa
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+Caso 4 · Interpolación (3.7)                         FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → failed on setup with "AttributeError: 'ModeloNGrama' object has no attribute 'entrenar'"
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #6   2026-10-08T21:29:47
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 52cd37af8f6caeb5f811922c75c6d3a2a1c2d8df284cfda1cb0a8f724a68bea9
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'MINI_MATILDA'"
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'MINI_MATILDA'"
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'MINI_MATILDA'"
+Caso 4 · Interpolación (3.7)                         FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'MINI_MATILDA'"
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → failed on setup with "AttributeError: module 'ngram_estudiante' has no attribute 'MINI_MATILDA'"
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #7   2026-10-08T21:31:38
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 8cf4c358f5b2d1070e77e6dd75cd80d62f6f3cf19c7879c4b0f495d5526bf954
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AttributeError: 'NoneType' object has no attribute 'N'
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AttributeError: 'NoneType' object has no attribute 'prob_oracion'
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_mle'
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_unigrama'
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AttributeError: 'NoneType' object has no attribute 'perplejidad'
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #8   2026-10-08T21:32:59
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 36bb7bd9e30f60549cf301e19591e0f6f19b475d6b956ad9a30a4d172bf283a4
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               NO EJECUTADO
+Caso 2 · Probabilidad de oración (3.2-3.3)           NO EJECUTADO
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    NO EJECUTADO
+Caso 4 · Interpolación (3.7)                         NO EJECUTADO
+Caso 5 · Perplejidad (3.11-3.12)                     NO EJECUTADO
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #9   2026-10-08T21:34:19
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : fae3c41a86d2d1832ea145aa8c409958c39b609e23d0cfbc8676d2d8341f86fe
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AttributeError: 'NoneType' object has no attribute 'N'
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AttributeError: 'NoneType' object has no attribute 'prob_oracion'
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_mle'
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_unigrama'
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AttributeError: 'NoneType' object has no attribute 'perplejidad'
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #10   2026-10-08T21:36:14
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 6ec434207018a3f5a82abdd0cb8e7cb0e8d1dce96efae16c369cf27391fff029
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AttributeError: 'NoneType' object has no attribute 'N'
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AttributeError: 'NoneType' object has no attribute 'prob_oracion'
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_mle'
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_unigrama'
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AttributeError: 'NoneType' object has no attribute 'perplejidad'
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #11   2026-10-08T21:38:58
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 2ba61806a0ed70e41bd8f9041f87ff9c62081b47f22699a2e05c558cdb2ad7f9
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AttributeError: 'NoneType' object has no attribute 'N'
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AttributeError: 'NoneType' object has no attribute 'prob_oracion'
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_mle'
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_unigrama'
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AttributeError: 'NoneType' object has no attribute 'perplejidad'
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #12   2026-10-08T21:39:27
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 2ba61806a0ed70e41bd8f9041f87ff9c62081b47f22699a2e05c558cdb2ad7f9
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AttributeError: 'NoneType' object has no attribute 'N'
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AttributeError: 'NoneType' object has no attribute 'prob_oracion'
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_mle'
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_unigrama'
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AttributeError: 'NoneType' object has no attribute 'perplejidad'
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #13   2026-10-08T21:41:52
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : c626fd52e07c9803e9fe599391bf6f90be430f494babbdee174221b1d15a7a91
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AttributeError: 'NoneType' object has no attribute 'N'
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AttributeError: 'NoneType' object has no attribute 'prob_oracion'
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_mle'
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AttributeError: 'NoneType' object has no attribute 'p_unigrama'
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AttributeError: 'NoneType' object has no attribute 'perplejidad'
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #14   2026-10-08T21:50:24
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 5e154f13e6a6a5fcebab116cf8db8df6d460416e2871e8dbaf55f27088d21d14
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AssertionError: 'N' no coincide con el cálculo manual
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AssertionError: 'p_or_mle' no coincide con el cálculo manual
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AssertionError: assert 0.3333333333333333 == 0
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AssertionError: 'p_uni_en' no coincide con el cálculo manual
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AssertionError: 'pp_mle' no coincide con el cálculo manual
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #15   2026-10-08T21:51:56
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 89afdc57145418a83fcffeec83eb92ce7175de57f5bb05260f3856ff2e9b706a
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AssertionError: 'N' no coincide con el cálculo manual
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AssertionError: 'p_or_mle' no coincide con el cálculo manual
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AssertionError: assert 0.3333333333333333 == 0
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AssertionError: 'p_uni_en' no coincide con el cálculo manual
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AssertionError: 'pp_mle' no coincide con el cálculo manual
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #16   2026-10-08T21:54:45
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 78139050e0bfb787f446b570cabc536988c075b0eea4381661c3c1bd1cdbe333
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AssertionError: 'N' no coincide con el cálculo manual
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AssertionError: 'p_or_mle' no coincide con el cálculo manual
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AssertionError: assert 0.3333333333333333 == 0
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AssertionError: 'p_uni_en' no coincide con el cálculo manual
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AssertionError: 'pp_mle' no coincide con el cálculo manual
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #17   2026-10-08T21:58:05
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : a3f61d18ec2957632fe6c2237c4071294e06f6f55c5392a954cdfa2ab196f689
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AssertionError: 'N' no coincide con el cálculo manual
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AssertionError: 'p_or_mle' no coincide con el cálculo manual
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AssertionError: 'lap_es_ing' no coincide con el cálculo manual
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AssertionError: 'p_uni_en' no coincide con el cálculo manual
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AssertionError: 'pp_mle' no coincide con el cálculo manual
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #18   2026-10-08T22:00:12
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 359612d733069a115db23149f522ce58eb3ab83bc2b8b707564b94dd394b785e
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AssertionError: 'N' no coincide con el cálculo manual
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AssertionError: 'p_or_mle' no coincide con el cálculo manual
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AssertionError: assert 0.3333333333333333 == 0
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AssertionError: 'p_uni_en' no coincide con el cálculo manual
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AssertionError: 'pp_mle' no coincide con el cálculo manual
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #19   2026-10-08T22:01:23
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : da3ce3d8ebb27197236aeaa513135ab0f4d6ae26ba4c1ab7a4b7b77c472728e2
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AssertionError: 'N' no coincide con el cálculo manual
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AssertionError: 'p_or_mle' no coincide con el cálculo manual
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AssertionError: assert 0.3333333333333333 == 0
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AssertionError: 'p_uni_en' no coincide con el cálculo manual
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AssertionError: 'pp_mle' no coincide con el cálculo manual
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #20   2026-10-08T22:03:19
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 0c45c928862ea0de2202b55b41cf2c9341b37307a0fef9e4aa53a2d57b53ee5d
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AssertionError: 'N' no coincide con el cálculo manual
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AssertionError: 'p_or_mle' no coincide con el cálculo manual
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AssertionError: 'lap_es_ing' no coincide con el cálculo manual
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AssertionError: 'p_uni_en' no coincide con el cálculo manual
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AssertionError: 'pp_mle' no coincide con el cálculo manual
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #21   2026-10-08T22:07:09
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 26c3617b8f340be077a0f80f17445cbd5f16fc930dfef743240bb26f16b475fe
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AssertionError: 'N' no coincide con el cálculo manual
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AssertionError: 'p_or_mle' no coincide con el cálculo manual
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AssertionError: assert 0.3333333333333333 == 0
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AssertionError: 'p_uni_en' no coincide con el cálculo manual
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AssertionError: 'pp_mle' no coincide con el cálculo manual
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #22   2026-10-08T22:12:54
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 0b6bcb690686ecb834a4a7c8ae658e48d11018d74f73c031e91b33d2beb8ed14
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               FAILED
+      → AssertionError: 'N' no coincide con el cálculo manual
+Caso 2 · Probabilidad de oración (3.2-3.3)           FAILED
+      → AssertionError: 'p_or_mle' no coincide con el cálculo manual
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    FAILED
+      → AssertionError: assert 0.3333333333333333 == 0
+Caso 4 · Interpolación (3.7)                         FAILED
+      → AssertionError: 'p_uni_en' no coincide con el cálculo manual
+Caso 5 · Perplejidad (3.11-3.12)                     FAILED
+      → AssertionError: 'pp_mle' no coincide con el cálculo manual
+------------------------------------------------------------------------------
+RESULTADO: 0/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #23   2026-10-08T22:41:35
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 8598f72dedb419b58b3fee1ba14560a3eea297da7a1c19791c9b7b499b4df073
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               PASSED
+Caso 2 · Probabilidad de oración (3.2-3.3)           PASSED
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    PASSED
+Caso 4 · Interpolación (3.7)                         PASSED
+Caso 5 · Perplejidad (3.11-3.12)                     PASSED
+------------------------------------------------------------------------------
+RESULTADO: 5/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #24   2026-10-08T22:42:33
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 8598f72dedb419b58b3fee1ba14560a3eea297da7a1c19791c9b7b499b4df073
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               PASSED
+Caso 2 · Probabilidad de oración (3.2-3.3)           PASSED
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    PASSED
+Caso 4 · Interpolación (3.7)                         PASSED
+Caso 5 · Perplejidad (3.11-3.12)                     PASSED
+------------------------------------------------------------------------------
+RESULTADO: 5/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #25   2026-10-08T22:50:08
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : f8689c1fc6bf118daf4bb1467db07462c451c93aa9dc0d6f6ff64a4ea3cb4c07
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               PASSED
+Caso 2 · Probabilidad de oración (3.2-3.3)           PASSED
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    PASSED
+Caso 4 · Interpolación (3.7)                         PASSED
+Caso 5 · Perplejidad (3.11-3.12)                     PASSED
+------------------------------------------------------------------------------
+RESULTADO: 5/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #26   2026-10-08T23:13:41
+Integrantes : Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 03302da1dbd3de859ff318de32a1e174ca29220e44424d26c1ce74c4387fbdb7
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               PASSED
+Caso 2 · Probabilidad de oración (3.2-3.3)           PASSED
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    PASSED
+Caso 4 · Interpolación (3.7)                         PASSED
+Caso 5 · Perplejidad (3.11-3.12)                     PASSED
+------------------------------------------------------------------------------
+RESULTADO: 5/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #27   2026-10-08T23:15:32
+Integrantes : Nombre 1 (código); Nombre 2 (código)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 03302da1dbd3de859ff318de32a1e174ca29220e44424d26c1ce74c4387fbdb7
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               PASSED
+Caso 2 · Probabilidad de oración (3.2-3.3)           PASSED
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    PASSED
+Caso 4 · Interpolación (3.7)                         PASSED
+Caso 5 · Perplejidad (3.11-3.12)                     PASSED
+------------------------------------------------------------------------------
+RESULTADO: 5/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #28   2026-10-08T23:17:48
+Integrantes :  Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 03302da1dbd3de859ff318de32a1e174ca29220e44424d26c1ce74c4387fbdb7
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               PASSED
+Caso 2 · Probabilidad de oración (3.2-3.3)           PASSED
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    PASSED
+Caso 4 · Interpolación (3.7)                         PASSED
+Caso 5 · Perplejidad (3.11-3.12)                     PASSED
+------------------------------------------------------------------------------
+RESULTADO: 5/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #29   2026-10-08T23:20:53
+Integrantes :  Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 03302da1dbd3de859ff318de32a1e174ca29220e44424d26c1ce74c4387fbdb7
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               PASSED
+Caso 2 · Probabilidad de oración (3.2-3.3)           PASSED
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    PASSED
+Caso 4 · Interpolación (3.7)                         PASSED
+Caso 5 · Perplejidad (3.11-3.12)                     PASSED
+------------------------------------------------------------------------------
+RESULTADO: 5/5 casos aprobados
+
+==============================================================================
+EJECUCIÓN #30   2026-10-09T00:07:12
+Integrantes :  Steven David Contreras (T00077010); Andres Camilo Castaño (T00077278)
+Python      : 3.14.0  ·  Windows 11
+SHA-256 ngram_estudiante.py   : 03302da1dbd3de859ff318de32a1e174ca29220e44424d26c1ce74c4387fbdb7
+SHA-256 test_casos_estudiante.py: 4038df3e900d7bad1b99b81f25034befcc22bfd5d8d14dd2b82939117b8243cd  [ORIGINAL]
+------------------------------------------------------------------------------
+Caso 1 · Conteos (3.8)                               PASSED
+Caso 2 · Probabilidad de oración (3.2-3.3)           PASSED
+Caso 3 · Laplace bigrama/trigrama (3.1, 3.4, 3.6)    PASSED
+Caso 4 · Interpolación (3.7)                         PASSED
+Caso 5 · Perplejidad (3.11-3.12)                     PASSED
+------------------------------------------------------------------------------
+RESULTADO: 5/5 casos aprobados
+

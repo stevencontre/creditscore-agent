@@ -1,0 +1,17 @@
+{
+  "_nota": "Umbrales de aceptacion FIJADOS ANTES de ejecutar las pruebas de desempeno (ver docs). No modificar despues de observar resultados.",
+  "fecha_fijacion": "2026-10-17",
+  "semillas": [1, 2, 3, 4, 5],
+  "n_prueba_por_semilla": 1500,
+  "n_invalidas_por_semilla": 200,
+  "n_trazabilidad_fallos_por_semilla": 100,
+  "M1_auc_roc_min": 0.75,
+  "M2_latencia_p95_max_ms": 200.0,
+  "M3_remision_entradas_invalidas_min": 1.0,
+  "M4_ece_max": 0.05,
+  "M5_trazabilidad_min": 1.0,
+  "M6a_desv_auc_max": 0.02,
+  "M6b_reproducibilidad_min": 1.0,
+  "M7a_deteccion_deriva_min": 1.0,
+  "M7b_mejora_brier_min": 0.8
+}

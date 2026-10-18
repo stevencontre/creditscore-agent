@@ -1,0 +1,23 @@
+{
+  "agentes": {"A": "CREDITSCORE-AGENT (riesgo crediticio)", "B": "Cartrescue-agent (carritos abandonados)"},
+  "criterios": [
+    {"nombre": "Viabilidad técnica", "peso": 0.25,
+     "A": {"p": 4, "tipo": "verificado", "evidencia": "Modelo logístico, reglas y búsqueda de casos similares con solo numpy; sin GPU ni APIs. El prototipo de esta entrega corre y pasa 20 pruebas unitarias. Se resta 1 porque la integración real con originación y buró no es posible en el curso (se simula)."},
+     "B": {"p": 4, "tipo": "estimación", "evidencia": "ESTIMACIÓN: el diseño no fue revisado. Un agente de reglas/utilidad sobre eventos de carrito es técnicamente simple de implementar en Python."}},
+    {"nombre": "Disponibilidad de datos o entorno", "peso": 0.20,
+     "A": {"p": 3, "tipo": "verificado", "evidencia": "No existen las 5.000 solicitudes históricas reales; se construyó un simulador sintético propio (src/creditscore/simulador.py). El simulador existe, pero la señal predictiva la define el propio simulador."},
+     "B": {"p": 3, "tipo": "estimación", "evidencia": "ESTIMACIÓN: tampoco hay acceso a una tienda en línea ni a sesiones reales; se requeriría un simulador de carritos y comportamiento de compra."}},
+    {"nombre": "Medibilidad del desempeño", "peso": 0.20,
+     "A": {"p": 4, "tipo": "verificado", "evidencia": "El diseño define AUC-ROC ≥ 0,75 (fórmula y umbral explícitos), medible con salidas del programa. La reducción del 20 % del tiempo exige una línea base manual inexistente (se reformuló y queda pendiente)."},
+     "B": {"p": 4, "tipo": "estimación", "evidencia": "ESTIMACIÓN: la tasa de recuperación y de conversión de carritos son medibles de forma objetiva; se desconocen sus umbrales en el diseño."}},
+    {"nombre": "Complejidad de IA", "peso": 0.15,
+     "A": {"p": 5, "tipo": "verificado", "evidencia": "Agente de aprendizaje (recalibración ante deriva) con decisión por utilidad esperada y abstención por incertidumbre; cubre los siete componentes IBM (ver sección 9.1)."},
+     "B": {"p": 3, "tipo": "estimación", "evidencia": "ESTIMACIÓN: probablemente basado en reglas o utilidad (momento y canal del recordatorio), con aprendizaje solo si el diseño lo incluye."}},
+    {"nombre": "Costo y recursos", "peso": 0.10,
+     "A": {"p": 5, "tipo": "verificado", "evidencia": "Costo de 0 COP en APIs; Python y numpy gratuitos; se ejecuta en un portátil (latencia p95 inferior a 1 ms medida en logs/resultados_pruebas.json)."},
+     "B": {"p": 3, "tipo": "estimación", "evidencia": "ESTIMACIÓN: el envío real de correos, SMS o WhatsApp suele requerir APIs con cuota o costo."}},
+    {"nombre": "Valor del problema", "peso": 0.10,
+     "A": {"p": 4, "tipo": "verificado", "evidencia": "Usuario identificable (analista de crédito) y beneficio concreto (priorizar y dar consistencia a la evaluación). El beneficio real no se verificó con datos reales."},
+     "B": {"p": 4, "tipo": "estimación", "evidencia": "ESTIMACIÓN: usuario identificable (tienda en línea) y beneficio concreto (ventas recuperadas)."}}
+  ]
+}

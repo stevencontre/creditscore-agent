@@ -1,0 +1,22 @@
+sequenceDiagram
+    autonumber
+    actor U as Sistema de originación / Operador
+    participant AG as Agente (agente.py)
+    participant AC as Acción (acciones.py)
+    participant OR as API de originación
+    participant OB as Outbox (pendientes)
+    participant RG as Registro y auditoría
+    U->>AG: evaluar(id) [percepción y decisión normales: APROBAR]
+    AG->>AC: ejecutar(decision APROBAR, percepcion)
+    loop intento = 1..3 (originación caída)
+        AC->>OR: registrar_originacion(payload)
+        OR--xAC: OriginacionNoDisponible
+        AC->>RG: ACTUADOR_FALLO(intento)
+    end
+    alt reintentos agotados
+        AC->>OB: pendientes.append(payload)
+        Note over AC,OB: la recomendación no se pierde
+    end
+    AC->>RG: AUDITORIA (originacion = DIFERIDA)
+    AC-->>AG: estados {originacion: DIFERIDA}
+    AG-->>U: APROBAR (registro diferido)

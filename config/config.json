@@ -1,0 +1,23 @@
+{
+  "modelo": {"version_base": "lr-1.0", "l2": 1.0},
+  "decision": {
+    "costo_default": 4.0,
+    "costo_rechazo_bueno": 1.0,
+    "costo_revision": 0.5,
+    "desacuerdo_max": 0.30,
+    "k_vecinos": 25,
+    "dti_politica_max": 0.80,
+    "bandas": [[0.05, "A"], [0.10, "B"], [0.20, "C"], [0.35, "D"], [1.01, "E"]]
+  },
+  "validacion": {
+    "ingresos_mensuales": [500000, 50000000],
+    "obligaciones_mensuales": [0, 100000000],
+    "dti": [0, 3],
+    "pagos_atrasados_24m": [0, 24],
+    "antiguedad_historial_meses": [0, 600],
+    "lineas_credito_abiertas": [0, 30]
+  },
+  "entorno": {"reintentos": 3, "p_fallo_buro": 0.0, "p_fallo_originacion": 0.0},
+  "aprendizaje": {"psi_umbral": 0.2, "brecha_calibracion_umbral": 0.05, "min_retroalimentacion": 500, "peso_reciente": 2.0},
+  "simulador": {"n_historico": 5000, "n_entrenamiento": 3500, "semilla_base": 2026}
+}

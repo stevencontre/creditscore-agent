@@ -1,0 +1,5 @@
+{
+  "_nota": "PENDIENTE: los integrantes deben medir el tiempo del proceso manual (segundos por solicitud, minimo 10 solicitudes) y escribir aqui el promedio. Mientras sea null, la medida 'reduccion 20 % vs manual' se reporta como PENDIENTE.",
+  "tiempo_manual_promedio_s": null,
+  "n_solicitudes_medidas": null
+}
