@@ -15,6 +15,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import streamlit as st
+import plotly.graph_objects as go
 
 RAIZ = Path(__file__).resolve().parent
 sys.path.insert(0, str(RAIZ / "src"))
@@ -56,7 +57,45 @@ button[kind="primary"],button[data-testid="stBaseButton-primary"],button[data-te
 [data-testid="stRadio"] [role="radiogroup"] {display:flex;flex-wrap:wrap;gap:8px;}
 [data-testid="stRadio"] [role="radiogroup"] label {background:#161922;border:1px solid #820AD1;border-radius:20px;padding:8px 12px;}
 [data-testid="stRadio"] [role="radiogroup"] label:has(input:checked) {background:#820AD1;}
+
+[data-testid="stRadio"] [role="radiogroup"] label > div:first-child:has(input[type="radio"]),
+[data-testid="stRadio"] [role="radiogroup"] label > div:first-child:not([data-testid="stMarkdownContainer"]) {position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip-path:inset(50%);}
+[data-testid="stRadio"] [role="radiogroup"] label {position:relative;cursor:pointer;}
+[data-testid="stRadio"] [role="radiogroup"] label:focus-within {outline:2px solid #CBD5E1;outline-offset:2px;}
+[data-testid="stDataFrame"],[data-testid="stTable"],[data-testid="stPlotlyChart"] {background:#161922!important;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:10px;}
+[data-testid="stTable"] table,[data-testid="stTable"] th,[data-testid="stTable"] td {background:#161922!important;color:#CBD5E1!important;border-color:rgba(255,255,255,.08)!important;}
+[data-testid="stDataFrame"] {--gdg-bg-cell:#161922;--gdg-bg-cell-medium:#1A1E29;--gdg-bg-header:#1E2230;--gdg-text-dark:#F8FAFC;--gdg-text-medium:#CBD5E1;--gdg-text-header:#CBD5E1;--gdg-border-color:rgba(255,255,255,.08);}
 </style>""",unsafe_allow_html=True)
+
+
+PALETA = ["#820AD1", "#DA0081", "#00E676"]
+DECISIONES = {"APROBAR":"Aprobado", "RECHAZAR":"Rechazado", "REVISION_HUMANA":"Revisión Manual"}
+
+def etiqueta_visual(x):
+    return DECISIONES.get(str(x), str(x).replace("_", " ").capitalize() if str(x).isupper() else str(x))
+
+def grafico_kredia(fig, **kwargs):
+    fig.update_layout(template="plotly_dark", paper_bgcolor="rgba(0,0,0,0)",
+                      plot_bgcolor="rgba(0,0,0,0)", font=dict(color="#CBD5E1"),
+                      colorway=PALETA, margin=dict(l=20,r=20,t=35,b=30),
+                      hoverlabel=dict(bgcolor="#161922",font_color="#F8FAFC"))
+    fig.update_xaxes(gridcolor="rgba(255,255,255,0.06)", zerolinecolor="rgba(255,255,255,0.06)")
+    fig.update_yaxes(gridcolor="rgba(255,255,255,0.06)", zerolinecolor="rgba(255,255,255,0.06)")
+    st.plotly_chart(fig, theme=None, use_container_width=True, **kwargs)
+
+def barras_kredia(serie, titulo):
+    colores = {"APROBAR":"#00E676","RECHAZAR":"#DA0081","REVISION_HUMANA":"#820AD1"}
+    fig = go.Figure(go.Bar(x=[etiqueta_visual(x) for x in serie.index], y=serie.tolist(),
+                          marker_color=[colores.get(str(x), PALETA[i%3]) for i,x in enumerate(serie.index)]))
+    fig.update_layout(yaxis_title=titulo)
+    grafico_kredia(fig)
+
+def linea_kredia(serie):
+    fig = go.Figure(go.Scatter(x=serie.index.tolist(), y=serie.tolist(), mode="lines+markers",
+                              line=dict(color="#00E676",width=3)))
+    fig.update_layout(xaxis_title="Radicado",yaxis_title="Tiempo de respuesta (ms)")
+    grafico_kredia(fig)
+
 
 CAMPOS = [  # (clave del widget, etiqueta, grupo, campo del agente, ayuda)
     ("f_ing", "Ingresos mensuales (COP)", "formulario", "ingresos_mensuales", "Formulario. Rango válido: 500.000 a 50.000.000"),
@@ -175,12 +214,9 @@ st.markdown("Agente de **aprendizaje con decisión basada en utilidad**: estima 
 
 for clave in CLAVES + ["pr_monto","pr_ingresos","pr_costos","pr_plazo","pr_tasa","pr_gracia","pr_caida","pr_retraso","pr_shock"]:
     if clave in st.session_state: st.session_state[clave] = st.session_state[clave]
-nav = st.radio("Navegación", ["📊 Panel Principal","🚀 Evaluar Proyecto","⚡ Simulador de Crisis","💬 Negociar con Kredia","🗂️ Historial"], horizontal=True,label_visibility="collapsed",key="nav")
-pagina = {"📊 Panel Principal":"Inicio","🚀 Evaluar Proyecto":"Laboratorio de proyectos","⚡ Simulador de Crisis":"Laboratorio de proyectos","💬 Negociar con Kredia":"Laboratorio de proyectos","🗂️ Historial":"Historial"}[nav]
-if nav == "🚀 Evaluar Proyecto":
-    pagina = st.radio("Tipo de evaluación", ["Laboratorio de proyectos","Nueva evaluación"],horizontal=True)
-if pagina == "Inicio":
-    pagina = st.selectbox("Herramientas del laboratorio", ["Inicio","Nueva evaluación","Comparación de modelos","Aprendizaje","Procesamiento por lotes","Memoria inteligente","Monitoreo","Laboratorio","Arquitectura"])
+PAGINAS = {'📊 Panel Principal': 'Inicio', '🚀 Evaluar Proyecto': 'Laboratorio de proyectos', '📝 Nueva evaluación': 'Nueva evaluación', '⚡ Simulador de Crisis': 'Laboratorio de proyectos', '💬 Negociar con Kredia': 'Laboratorio de proyectos', '📈 Comparación de modelos': 'Comparación de modelos', '🧠 Aprendizaje': 'Aprendizaje', '📦 Procesamiento por lotes': 'Procesamiento por lotes', '💾 Memoria inteligente': 'Memoria inteligente', '📡 Monitoreo': 'Monitoreo', '🧪 Laboratorio': 'Laboratorio', '🧩 Arquitectura': 'Arquitectura', '🗂️ Historial': 'Historial'}
+nav = st.radio("Navegación", list(PAGINAS), horizontal=True, label_visibility="collapsed", key="nav_v63")
+pagina = PAGINAS[nav]
 with st.expander("Configuración y estado del agente"):
     semilla = st.number_input("Semilla del simulador", value=None, step=1, placeholder="Ej: 2026")
     if st.button("Reiniciar agente (desde cero)"):
@@ -207,8 +243,8 @@ if pagina == "Inicio":
     for col, action, label in zip(k[1:], ["APROBAR","RECHAZAR","REVISION_HUMANA"], ["Aprobación simulada","Rechazo simulado","Revisión humana"]):
         col.metric(label, int((h["acción"] == action).sum()) if not h.empty else 0)
     if not h.empty:
-        st.bar_chart(h["acción"].value_counts())
-        st.line_chart(h.set_index("id")["latencia_ms"])
+        barras_kredia(h["acción"].value_counts(), "Evaluaciones")
+        linea_kredia(h.set_index("id")["latencia_ms"])
     else:
         st.info("Realiza una evaluación sintética para visualizar la actividad.")
     st.subheader("Flujo del agente")
@@ -372,7 +408,7 @@ if pagina == "Procesamiento por lotes":
             st.json(extra)
         if filas:
             df = pd.DataFrame(filas)
-            st.bar_chart(df["acción"].value_counts())
+            barras_kredia(df["acción"].value_counts(), "Evaluaciones")
             st.dataframe(df, width="stretch", hide_index=True)
             st.download_button("Descargar resultados del lote", df.to_csv(index=False).encode("utf-8-sig"), "lote.csv", "text/csv")
         st.write(f"Bandeja: **{bandeja}** · Originación: **{origen}** · Pendientes: **{pendientes}**")
@@ -443,7 +479,7 @@ if pagina == "Comparación de modelos":
         filas, errores = st.session_state.comparacion
         df=pd.DataFrame(filas)
         st.dataframe(df,hide_index=True)
-        st.bar_chart(df.set_index("Modelo")["AUC prueba"])
+        barras_kredia(df.set_index("Modelo")["AUC prueba"], "AUC de prueba")
         st.caption("AUC y F1: mayor es mejor. Brier: menor es mejor.")
         st.download_button("Descargar métricas",df.to_csv(index=False),"comparacion.csv")
         st.subheader("Errores de clasificación")
@@ -496,7 +532,7 @@ if pagina == "Monitoreo":
     eventos = c["registro"].eventos
     if eventos:
         df = tabla_eventos(eventos)
-        st.bar_chart(df["evento"].value_counts())
+        barras_kredia(df["evento"].value_counts(), "Eventos")
         filtro = st.multiselect("Tipos de evento",sorted(df["evento"].unique()),default=sorted(df["evento"].unique()))
         vista = df[df["evento"].isin(filtro)]
         st.dataframe(vista,hide_index=True)
@@ -589,7 +625,7 @@ if pagina == "Laboratorio de proyectos":
         fig=go.Figure([go.Bar(x=meses,y=flujo,name="Flujo operativo",marker_color="#820AD1"),go.Scatter(x=meses,y=pagos,name="Cuota simulada",line=dict(color="#DA0081",width=3))])
         if g: fig.add_vrect(x0=.5,x1=g+.5,fillcolor="#ffffff",opacity=.1,line_width=0)
         fig.update_layout(template="plotly_dark",paper_bgcolor="rgba(0,0,0,0)",plot_bgcolor="rgba(0,0,0,0)",xaxis_title="Mes",yaxis_title="COP")
-        st.plotly_chart(fig,use_container_width=True)
+        grafico_kredia(fig)
         if st.button("Analizar proyecto",type="primary"):
             with st.status("Comité de análisis",expanded=True) as estado:
                 st.write(f"Auditor: margen operativo acumulado {flujo.sum():,.0f} COP.")
