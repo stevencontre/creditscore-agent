@@ -80,12 +80,13 @@ def iniciar(semilla):
     if ant:
         ant["registro"].cerrar()
     c, ruta = construir_con_log("web", semilla)
+    st.session_state.pop("lote_resultado", None)
     st.session_state.update(c=c, ruta=ruta, n=0, historial=[], ultimo=None, semilla_activa=semilla)
 
 
 def cargar(nombre):
     for k, x in zip(CLAVES, PRESETS[nombre]):
-        st.session_state[k] = x
+        st.session_state[k] = float(x) if k in CLAVES[:2] else int(x) if k in CLAVES[2:5] else x
 
 
 def evaluar_manual():
@@ -95,7 +96,9 @@ def evaluar_manual():
     id_ = f"WEB-{st.session_state.n:04d}"
     sol = {"id": id_, "formulario": {}, "buro": {}}
     for clave, _, grupo, campo, _ in CAMPOS:
-        v = valor(st.session_state[clave])
+        v = st.session_state[clave]
+        if isinstance(v, str):
+            v = valor(v)
         if v is not None:
             sol[grupo][campo] = v
     ent.registrar_solicitud(sol)
@@ -121,14 +124,14 @@ def tabla_eventos(eventos):
 # ------------------------------------------------------------------ estado inicial
 if "c" not in st.session_state:
     for k, x in zip(CLAVES, PRESETS["Típico: bajo riesgo (aprobar)"]):
-        st.session_state.setdefault(k, x)
+        st.session_state.setdefault(k, float(x) if k in CLAVES[:2] else int(x) if k in CLAVES[2:5] else x)
     iniciar(cargar_config()["simulador"]["semilla_base"])
 
 c = st.session_state.c
 
 # ------------------------------------------------------------------ barra lateral
 with st.sidebar:
-    st.header("Agente")
+    st.header("CreditScore | Laboratorio")
     semilla = st.number_input("Semilla del simulador", value=int(st.session_state.semilla_activa), step=1)
     if st.button("Reiniciar agente (desde cero)"):
         iniciar(int(semilla))
@@ -143,32 +146,45 @@ with st.sidebar:
                            file_name=Path(st.session_state.ruta).name, mime="application/json")
     st.caption("Datos 100 % sintéticos: no hay solicitudes reales.")
 
-st.title("💳 CREDITSCORE-AGENT")
+st.markdown("""<div style="background:linear-gradient(120deg,#10243e,#14566b);padding:26px;border-radius:18px;color:white"><div style="font-size:12px;letter-spacing:2px;color:#99f6e4">LABORATORIO DE INTELIGENCIA ARTIFICIAL · UTB</div><h1 style="color:white;margin:8px 0">CreditScore Agent</h1><div>Simulación de riesgo · Decisiones explicables · Supervisión humana</div></div>""", unsafe_allow_html=True)
+st.caption("Prototipo académico · No apto para decisiones crediticias reales")
 st.markdown("Agente de **aprendizaje con decisión basada en utilidad**: estima la probabilidad de incumplimiento de una "
             "solicitud de crédito y recomienda **aprobar, rechazar o remitir a revisión humana**. "
             "El entorno (formulario, buró, originación y cartera) es un **simulador**.")
 
-tab1, tab2, tab3, tab4 = st.tabs(["1. Evaluar una solicitud", "2. Lote simulado", "3. Pruebas", "4. Acerca del agente"])
+pagina = st.sidebar.radio("Navegación", ["Inicio", "Nueva evaluación", "Historial", "Comparación de modelos", "Aprendizaje", "Laboratorio", "Arquitectura"])
+if pagina == "Inicio":
+    st.subheader("Panel de actividad")
+    h = pd.DataFrame(st.session_state.historial)
+    k = st.columns(4)
+    k[0].metric("Evaluaciones", len(h))
+    for col, action, label in zip(k[1:], ["APROBAR","RECHAZAR","REVISION_HUMANA"], ["Aprobación simulada","Rechazo simulado","Revisión humana"]):
+        col.metric(label, int((h["acción"] == action).sum()) if not h.empty else 0)
+    if not h.empty:
+        st.bar_chart(h["acción"].value_counts())
+        st.line_chart(h.set_index("id")["latencia_ms"])
+    else:
+        st.info("Realiza una evaluación sintética para visualizar la actividad.")
+    st.subheader("Flujo del agente")
+    st.markdown("**01 · Percepción** → **02 · Predicción** → **03 · Decisión** → **04 · Acción y auditoría**")
+    st.caption("Los indicadores corresponden exclusivamente a esta sesión.")
 
 # ------------------------------------------------------------------ pestaña 1
-with tab1:
-    st.subheader("Casos de prueba sugeridos")
-    st.caption("Pulsa un caso para cargar sus datos y luego «Evaluar solicitud».")
-    cols = st.columns(3)
-    for i, nombre in enumerate(PRESETS):
-        cols[i % 3].button(nombre, key=f"p{i}", on_click=cargar, args=(nombre,), width="stretch")
-
-    st.subheader("Solicitud")
-    izq, der = st.columns([3, 2])
-    with izq:
-        for clave, etiqueta, _, _, ayuda in CAMPOS:
-            st.text_input(etiqueta, key=clave, help=ayuda + ". Vacío = dato faltante; sin puntos ni comas.")
-    with der:
-        st.markdown("**Estado del entorno (para probar fallas)**")
-        st.checkbox("Buró de crédito caído (sensor sin dato)", key="t_buro")
-        st.checkbox("Sistema de originación caído (actuador falla)", key="t_orig")
-        st.button("Evaluar solicitud", type="primary", on_click=evaluar_manual, width="stretch")
-
+if pagina == "Nueva evaluación":
+    st.subheader("Nueva evaluación sintética")
+    opciones = list(PRESETS)[:3]
+    elegido = st.selectbox("Ejemplo de datos", opciones, format_func=lambda x: ["Perfil A", "Perfil B", "Perfil C"][opciones.index(x)])
+    st.button("Cargar ejemplo", on_click=cargar, args=(elegido,))
+    with st.form("solicitud"):
+        for i, (clave, etiqueta, _, _, ayuda) in enumerate(CAMPOS):
+            limites = [(500000.,50000000.,100000.),(0.,100000000.,100000.),(0,24,1),(0,600,1),(0,30,1)]
+            minimo,maximo,paso = limites[i]
+            st.number_input(etiqueta, min_value=minimo,max_value=maximo,step=paso,key=clave,help=ayuda)
+        enviar = st.form_submit_button("Analizar caso sintético", type="primary")
+    if enviar:
+        st.session_state.t_buro = False
+        st.session_state.t_orig = False
+        evaluar_manual()
     u = st.session_state.ultimo
     if u:
         r = u["res"]
@@ -176,29 +192,49 @@ with tab1:
         st.subheader(f"Resultado de {r['id']}")
         getattr(st, COLORES[r["accion"]])(f"**{r['accion']}** — {r['razon']}")
         m = st.columns(4)
-        m[0].metric("p(incumplimiento)", "n/d" if r["p_default"] is None else f"{r['p_default']:.3f}")
+        m[0].metric("Probabilidad estimada", "n/d" if r["p_default"] is None else f"{r['p_default']:.1%}")
         m[1].metric("Calificación", r["calificacion"])
         m[2].metric("Percepción", r["estado_percepcion"])
         m[3].metric("Latencia", f"{r['latencia_ms']:.2f} ms")
+        if r["p_default"] is not None:
+            st.progress(float(r["p_default"]), text=f"Probabilidad estimada de incumplimiento: {r['p_default']:.1%}")
+        else:
+            st.info("Sin estimación válida: el agente se abstuvo de calcular el riesgo.")
         a, b = st.columns(2)
         a.markdown("**Acciones ejecutadas en el entorno**")
-        a.json(r["estado_acciones"])
+        a.write({k: v for k,v in r["estado_acciones"].items()})
         b.markdown("**Reglas activadas**")
         b.write(", ".join(r["reglas"]) if r["reglas"] else "ninguna")
         dec = next((e for e in u["eventos"] if e["evento"] == "DECISION"), None)
+        if dec and dec.get("p_vecinos") is not None and r["p_default"] is not None:
+            st.markdown("**Modelo frente a memoria histórica**")
+            st.bar_chart(pd.Series({"Modelo": r["p_default"], "Casos similares": dec["p_vecinos"]}, name="Probabilidad"))
+        if r["p_default"] is not None:
+            from creditscore.fabrica import features_de
+            factores = c["modelo"].contribuciones(features_de(u["entrada"]))
+            st.subheader("Factores explicativos")
+            st.bar_chart(pd.Series(dict(factores), name="Contribución al logit"))
+            st.caption("Positivo: aumenta el riesgo estimado; negativo: lo reduce. No implica causalidad.")
         if dec and dec.get("costos"):
             with st.expander("Cómo decidió (costo esperado de cada acción)"):
                 st.json({"costos": dec["costos"], "p_vecinos (memoria)": dec.get("p_vecinos"),
                          "desacuerdo": dec.get("desacuerdo")})
-        with st.expander("Registro de eventos con marca de tiempo (Percepción → Decisión → Acción)", expanded=True):
+        with st.expander("Registro de eventos con marca de tiempo (Percepción → Decisión → Acción)", expanded=False):
             st.dataframe(tabla_eventos(u["eventos"]), width="stretch", hide_index=True)
+if pagina == "Historial":
+    if not st.session_state.historial:
+        st.info("Todavía no hay evaluaciones en esta sesión.")
     if st.session_state.historial:
         st.divider()
         st.subheader("Historial de esta sesión")
-        st.dataframe(pd.DataFrame(st.session_state.historial), width="stretch", hide_index=True)
+        hist = pd.DataFrame(st.session_state.historial)
+        filtro = st.multiselect("Filtrar por recomendación", ["APROBAR","RECHAZAR","REVISION_HUMANA"], default=["APROBAR","RECHAZAR","REVISION_HUMANA"], key="filtro_hist")
+        vista = hist[hist["acción"].isin(filtro)]
+        st.dataframe(vista, width="stretch", hide_index=True)
+        st.download_button("Descargar historial filtrado (CSV)", vista.to_csv(index=False).encode("utf-8-sig"), "historial.csv", "text/csv")
 
 # ------------------------------------------------------------------ pestaña 2
-with tab2:
+if pagina == "Laboratorio":
     st.subheader("Ejecutar un escenario sobre solicitudes simuladas")
     st.caption("Equivale a `python scripts/run_agente.py --n N --escenario X`. Crea un agente nuevo desde cero.")
     e1, e2, e3 = st.columns(3)
@@ -231,21 +267,24 @@ with tab2:
             filas.append({"id": r["id"], "caso": tipo, "acción": r["accion"], "p_default": r["p_default"],
                           "calificación": r["calificacion"], "acciones": json.dumps(r["estado_acciones"], ensure_ascii=False),
                           "latencia_ms": r["latencia_ms"], "razón": r["razon"]})
+        cl["registro"].cerrar()
+        st.session_state["lote_resultado"] = (filas, extra, len(en.bandeja), len(en.originacion), len(ag.actuadores.pendientes), Path(ruta).read_bytes() if ruta and Path(ruta).exists() else None)
+    if "lote_resultado" in st.session_state:
+        filas, extra, bandeja, origen, pendientes, log = st.session_state["lote_resultado"]
         if extra is not None:
-            st.markdown("**Revisión de aprendizaje tras la deriva económica simulada (1.000 casos con resultado observado):**")
+            st.subheader("Revisión de aprendizaje")
             st.json(extra)
         if filas:
             df = pd.DataFrame(filas)
+            st.bar_chart(df["acción"].value_counts())
             st.dataframe(df, width="stretch", hide_index=True)
-            st.write("Resumen de acciones:", df["acción"].value_counts().to_dict())
-        st.write(f"Bandeja de analistas: **{len(en.bandeja)}** · Originación: **{len(en.originacion)}** · "
-                 f"Pendientes (outbox): **{len(ag.actuadores.pendientes)}**")
-        if ruta and Path(ruta).exists():
-            cl["registro"].cerrar()
-            st.download_button("Descargar log del lote (JSONL)", Path(ruta).read_bytes(), file_name=Path(ruta).name)
+            st.download_button("Descargar resultados del lote", df.to_csv(index=False).encode("utf-8-sig"), "lote.csv", "text/csv")
+        st.write(f"Bandeja: **{bandeja}** · Originación: **{origen}** · Pendientes: **{pendientes}**")
+        if log is not None:
+            st.download_button("Descargar log del lote", log, "lote.jsonl", "application/json")
 
 # ------------------------------------------------------------------ pestaña 3
-with tab3:
+if pagina == "Laboratorio":
     st.subheader("Pruebas del agente")
     st.caption("Se ejecutan en vivo con el mismo código del repositorio; nada es un resultado guardado. "
                "Las pruebas de desempeño escriben sus archivos en una carpeta temporal (no sobrescriben `logs/`).")
@@ -279,7 +318,7 @@ with tab3:
                            file_name="tabla_resultados.csv")
 
 # ------------------------------------------------------------------ pestaña 4
-with tab4:
+if pagina == "Arquitectura":
     st.markdown("""
 **Ciclo del agente** (`src/creditscore/agente.py`): `percibir` (formulario + buró, validación) → `decidir`
 (utilidad esperada, memoria de casos similares, reglas) → `actuar` (originación, bandeja del analista, expediente, auditoría).
@@ -296,3 +335,44 @@ with tab4:
 **Datos:** sintéticos (`src/creditscore/simulador.py`). Los resultados demuestran el funcionamiento del agente, no su
 desempeño en una entidad financiera real.
 """)
+
+if pagina == "Comparación de modelos":
+    st.subheader("Experimento independiente de clasificación")
+    st.caption("5.000 casos sintéticos: 70 % entrenamiento, 15 % validación, 15 % prueba. Selección por AUC de validación; umbral F1 fijo de 0,5. No cambia el agente operativo.")
+    if st.button("Comparar modelos",type="primary"):
+        from creditscore.comparacion import comparar
+        with st.spinner("Entrenando y evaluando modelos..."):
+            st.session_state.comparacion = comparar(int(st.session_state.semilla_activa))
+    if "comparacion" in st.session_state:
+        filas, errores = st.session_state.comparacion
+        df=pd.DataFrame(filas)
+        st.dataframe(df,hide_index=True)
+        st.bar_chart(df.set_index("Modelo")["AUC prueba"])
+        st.caption("AUC y F1: mayor es mejor. Brier: menor es mejor.")
+        st.download_button("Descargar métricas",df.to_csv(index=False),"comparacion.csv")
+        st.subheader("Errores de clasificación")
+        st.dataframe(pd.DataFrame(errores),hide_index=True)
+        st.download_button("Descargar errores",pd.DataFrame(errores).to_csv(index=False),"errores.csv")
+
+if pagina == "Aprendizaje":
+    st.subheader("Adaptación ante cambios simulados")
+    st.caption("Experimento aislado: no altera el modelo de la sesión. Se generan resultados observados sintéticos.")
+    if st.button("Simular cambio de distribución",type="primary"):
+        cl=construir(int(st.session_state.semilla_activa))
+        ag,en=cl["agente"],cl["entorno"]
+        d=generar_solicitudes(1000,np.random.default_rng(int(st.session_state.semilla_activa)+1),prefijo="DERIVA",deriva=1.0)
+        antes=cl["modelo"].version
+        for t in d:
+            en.registrar_solicitud(t)
+            ag.evaluar(t["id"])
+            ag.registrar_resultado_observado(t["id"])
+        resultado=ag.revisar_aprendizaje()
+        st.session_state.aprendizaje=(antes,cl["modelo"].version,resultado)
+        cl["registro"].cerrar()
+    if "aprendizaje" in st.session_state:
+        antes,despues,resultado=st.session_state.aprendizaje
+        x,y=st.columns(2)
+        x.metric("Versión inicial",antes)
+        y.metric("Versión posterior",despues)
+        st.write("Se recalibró el modelo." if antes!=despues else "No se activó la recalibración.")
+        st.write(resultado)

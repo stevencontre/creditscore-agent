@@ -1,0 +1,2243 @@
+{
+  "semilla": 2026,
+  "metricas": [
+    {
+      "Modelo": "Frecuencia histórica",
+      "Parámetro": "—",
+      "AUC validación": 0.5,
+      "AUC prueba": 0.5,
+      "F1 (0.5)": 0.0,
+      "Brier": 0.17455844897959186
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Parámetro": "10",
+      "AUC validación": 0.7578343806332684,
+      "AUC prueba": 0.7786411919868824,
+      "F1 (0.5)": 0.2857142857142857,
+      "Brier": 0.14364756374784915
+    },
+    {
+      "Modelo": "Random Forest",
+      "Parámetro": "4",
+      "AUC validación": 0.753505993543065,
+      "AUC prueba": 0.7717870637240423,
+      "F1 (0.5)": 0.19095477386934673,
+      "Brier": 0.14726739458350313
+    }
+  ],
+  "errores": [
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04052",
+      "Observado": 1,
+      "Probabilidad": 0.05935757591794229,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04995",
+      "Observado": 1,
+      "Probabilidad": 0.4788776233035172,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04057",
+      "Observado": 1,
+      "Probabilidad": 0.44711460345111664,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04392",
+      "Observado": 1,
+      "Probabilidad": 0.228422132905361,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03413",
+      "Observado": 1,
+      "Probabilidad": 0.22696785320580798,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02052",
+      "Observado": 1,
+      "Probabilidad": 0.2146669471360694,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00856",
+      "Observado": 1,
+      "Probabilidad": 0.14510533373172263,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04543",
+      "Observado": 1,
+      "Probabilidad": 0.19665176828197672,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02735",
+      "Observado": 0,
+      "Probabilidad": 0.5688905587729006,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02948",
+      "Observado": 1,
+      "Probabilidad": 0.2412924088853421,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00756",
+      "Observado": 1,
+      "Probabilidad": 0.2994938470030925,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00891",
+      "Observado": 1,
+      "Probabilidad": 0.4087931108852017,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03042",
+      "Observado": 1,
+      "Probabilidad": 0.2437249662780299,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01384",
+      "Observado": 1,
+      "Probabilidad": 0.1645008601587531,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03226",
+      "Observado": 1,
+      "Probabilidad": 0.17025856498383063,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00193",
+      "Observado": 1,
+      "Probabilidad": 0.1260825667901907,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03556",
+      "Observado": 1,
+      "Probabilidad": 0.12598119243579156,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04065",
+      "Observado": 1,
+      "Probabilidad": 0.47033074260780966,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02480",
+      "Observado": 1,
+      "Probabilidad": 0.2509606990928797,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03119",
+      "Observado": 1,
+      "Probabilidad": 0.47112377927292054,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04757",
+      "Observado": 1,
+      "Probabilidad": 0.1608329332988418,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04006",
+      "Observado": 1,
+      "Probabilidad": 0.41583400565320017,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02455",
+      "Observado": 1,
+      "Probabilidad": 0.05947966051038904,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01975",
+      "Observado": 0,
+      "Probabilidad": 0.55512306501049,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03257",
+      "Observado": 1,
+      "Probabilidad": 0.2487900721806114,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01527",
+      "Observado": 1,
+      "Probabilidad": 0.09871145776962024,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02023",
+      "Observado": 0,
+      "Probabilidad": 0.5543637655856296,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02298",
+      "Observado": 0,
+      "Probabilidad": 0.5759418755099346,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00813",
+      "Observado": 1,
+      "Probabilidad": 0.3040363395770361,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00338",
+      "Observado": 1,
+      "Probabilidad": 0.23910089400875933,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02991",
+      "Observado": 1,
+      "Probabilidad": 0.40060976971294743,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00544",
+      "Observado": 1,
+      "Probabilidad": 0.326382462598511,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01034",
+      "Observado": 1,
+      "Probabilidad": 0.2835946956490612,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03167",
+      "Observado": 1,
+      "Probabilidad": 0.48588809102605013,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04516",
+      "Observado": 0,
+      "Probabilidad": 0.5810554735252552,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01802",
+      "Observado": 1,
+      "Probabilidad": 0.2709300434994798,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00539",
+      "Observado": 1,
+      "Probabilidad": 0.06342726741500512,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00375",
+      "Observado": 0,
+      "Probabilidad": 0.7122796647470501,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00595",
+      "Observado": 1,
+      "Probabilidad": 0.43301848232605994,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04756",
+      "Observado": 1,
+      "Probabilidad": 0.3706509966223145,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04805",
+      "Observado": 1,
+      "Probabilidad": 0.4051439718741493,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04719",
+      "Observado": 1,
+      "Probabilidad": 0.27896411233756596,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00946",
+      "Observado": 1,
+      "Probabilidad": 0.2732086438661047,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01416",
+      "Observado": 1,
+      "Probabilidad": 0.24682329826439714,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02572",
+      "Observado": 1,
+      "Probabilidad": 0.30227836324666735,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04095",
+      "Observado": 1,
+      "Probabilidad": 0.1775607393031078,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02290",
+      "Observado": 1,
+      "Probabilidad": 0.33853735117494155,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01066",
+      "Observado": 1,
+      "Probabilidad": 0.2729899354903279,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02154",
+      "Observado": 1,
+      "Probabilidad": 0.18599006685149427,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04005",
+      "Observado": 1,
+      "Probabilidad": 0.2821430830105364,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03956",
+      "Observado": 1,
+      "Probabilidad": 0.3093603708685329,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03253",
+      "Observado": 1,
+      "Probabilidad": 0.13551145164037318,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00246",
+      "Observado": 1,
+      "Probabilidad": 0.1792724570144622,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03186",
+      "Observado": 1,
+      "Probabilidad": 0.1822967385513278,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04133",
+      "Observado": 0,
+      "Probabilidad": 0.5307184085316329,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04449",
+      "Observado": 1,
+      "Probabilidad": 0.35334650654345273,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02307",
+      "Observado": 1,
+      "Probabilidad": 0.34824536242675574,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03121",
+      "Observado": 1,
+      "Probabilidad": 0.47280736591272815,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01713",
+      "Observado": 1,
+      "Probabilidad": 0.2289482746183492,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00691",
+      "Observado": 0,
+      "Probabilidad": 0.5356883859591951,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01632",
+      "Observado": 1,
+      "Probabilidad": 0.2793254107729297,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01000",
+      "Observado": 1,
+      "Probabilidad": 0.20093419423698422,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03232",
+      "Observado": 1,
+      "Probabilidad": 0.4724805075176711,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00832",
+      "Observado": 1,
+      "Probabilidad": 0.2764214072864123,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04304",
+      "Observado": 1,
+      "Probabilidad": 0.134833649665864,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00459",
+      "Observado": 1,
+      "Probabilidad": 0.2463557254048804,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00494",
+      "Observado": 1,
+      "Probabilidad": 0.3624094761752817,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01765",
+      "Observado": 1,
+      "Probabilidad": 0.2853490124651423,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03931",
+      "Observado": 1,
+      "Probabilidad": 0.31487044505619183,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02159",
+      "Observado": 1,
+      "Probabilidad": 0.25493419470328177,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01916",
+      "Observado": 1,
+      "Probabilidad": 0.45228507855135325,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02213",
+      "Observado": 1,
+      "Probabilidad": 0.31587315981064634,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02965",
+      "Observado": 1,
+      "Probabilidad": 0.1760047895052544,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02059",
+      "Observado": 1,
+      "Probabilidad": 0.4619689925742174,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03141",
+      "Observado": 1,
+      "Probabilidad": 0.3003583760570735,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04384",
+      "Observado": 1,
+      "Probabilidad": 0.33095822686315624,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04320",
+      "Observado": 1,
+      "Probabilidad": 0.37844707232866914,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00019",
+      "Observado": 1,
+      "Probabilidad": 0.14847972657435257,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04119",
+      "Observado": 0,
+      "Probabilidad": 0.5493595980358358,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03618",
+      "Observado": 1,
+      "Probabilidad": 0.3975684349698319,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02124",
+      "Observado": 1,
+      "Probabilidad": 0.46080438708520066,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03472",
+      "Observado": 0,
+      "Probabilidad": 0.5914247964765474,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03166",
+      "Observado": 1,
+      "Probabilidad": 0.21159223326160773,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01126",
+      "Observado": 1,
+      "Probabilidad": 0.4571268868872681,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04010",
+      "Observado": 0,
+      "Probabilidad": 0.7906681565081279,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01776",
+      "Observado": 0,
+      "Probabilidad": 0.5315648172125803,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02670",
+      "Observado": 1,
+      "Probabilidad": 0.2970087652630605,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03125",
+      "Observado": 1,
+      "Probabilidad": 0.05028715691820364,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00378",
+      "Observado": 1,
+      "Probabilidad": 0.3889189611521218,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04209",
+      "Observado": 1,
+      "Probabilidad": 0.3523882539495881,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00382",
+      "Observado": 1,
+      "Probabilidad": 0.37809020981876884,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01565",
+      "Observado": 0,
+      "Probabilidad": 0.6885847918701964,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02647",
+      "Observado": 1,
+      "Probabilidad": 0.14776076543709063,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00070",
+      "Observado": 0,
+      "Probabilidad": 0.7225290803092347,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02125",
+      "Observado": 1,
+      "Probabilidad": 0.09592884408347176,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03114",
+      "Observado": 1,
+      "Probabilidad": 0.16569850187548293,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03576",
+      "Observado": 1,
+      "Probabilidad": 0.40083237158926416,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03367",
+      "Observado": 1,
+      "Probabilidad": 0.29034491727773676,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02842",
+      "Observado": 1,
+      "Probabilidad": 0.1574343876248814,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01538",
+      "Observado": 1,
+      "Probabilidad": 0.16508975446738733,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03873",
+      "Observado": 1,
+      "Probabilidad": 0.3779240219592863,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01629",
+      "Observado": 1,
+      "Probabilidad": 0.19206163082998434,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03617",
+      "Observado": 1,
+      "Probabilidad": 0.20974380073688365,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00129",
+      "Observado": 0,
+      "Probabilidad": 0.5304850503347901,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02106",
+      "Observado": 1,
+      "Probabilidad": 0.09187305227396322,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02054",
+      "Observado": 1,
+      "Probabilidad": 0.3830173705469379,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04896",
+      "Observado": 1,
+      "Probabilidad": 0.25204525543543577,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01799",
+      "Observado": 1,
+      "Probabilidad": 0.4189431298142994,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04702",
+      "Observado": 1,
+      "Probabilidad": 0.15313708344325627,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01810",
+      "Observado": 1,
+      "Probabilidad": 0.2355874920287397,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00935",
+      "Observado": 1,
+      "Probabilidad": 0.485102812149039,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03579",
+      "Observado": 1,
+      "Probabilidad": 0.2413486070753002,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03881",
+      "Observado": 1,
+      "Probabilidad": 0.24669876505687605,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03013",
+      "Observado": 1,
+      "Probabilidad": 0.22504536632001668,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02584",
+      "Observado": 1,
+      "Probabilidad": 0.3337806155338009,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04794",
+      "Observado": 1,
+      "Probabilidad": 0.282969675160289,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04059",
+      "Observado": 1,
+      "Probabilidad": 0.49413029356263694,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00794",
+      "Observado": 1,
+      "Probabilidad": 0.27604636674553135,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02879",
+      "Observado": 1,
+      "Probabilidad": 0.26807479609784013,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03727",
+      "Observado": 1,
+      "Probabilidad": 0.3388899042726114,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04798",
+      "Observado": 1,
+      "Probabilidad": 0.24558709161055284,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00895",
+      "Observado": 1,
+      "Probabilidad": 0.3245999185531787,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00562",
+      "Observado": 1,
+      "Probabilidad": 0.25147078351572805,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04503",
+      "Observado": 1,
+      "Probabilidad": 0.10388533848707902,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03473",
+      "Observado": 1,
+      "Probabilidad": 0.3235836627409223,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04111",
+      "Observado": 1,
+      "Probabilidad": 0.2038708467426953,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04812",
+      "Observado": 0,
+      "Probabilidad": 0.5071242030187848,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02332",
+      "Observado": 1,
+      "Probabilidad": 0.21729357278466982,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03293",
+      "Observado": 1,
+      "Probabilidad": 0.4566958652675753,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03954",
+      "Observado": 1,
+      "Probabilidad": 0.2744538837609647,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03891",
+      "Observado": 1,
+      "Probabilidad": 0.3654875686985561,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00124",
+      "Observado": 1,
+      "Probabilidad": 0.300924720504161,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03284",
+      "Observado": 1,
+      "Probabilidad": 0.14771860122953615,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00575",
+      "Observado": 1,
+      "Probabilidad": 0.131065880898867,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03282",
+      "Observado": 1,
+      "Probabilidad": 0.2513952160859744,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04322",
+      "Observado": 1,
+      "Probabilidad": 0.34059226545827376,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02995",
+      "Observado": 1,
+      "Probabilidad": 0.44172345352860215,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00213",
+      "Observado": 1,
+      "Probabilidad": 0.3678564840509728,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03014",
+      "Observado": 1,
+      "Probabilidad": 0.29087695457487894,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00347",
+      "Observado": 1,
+      "Probabilidad": 0.16185771946447028,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04546",
+      "Observado": 1,
+      "Probabilidad": 0.4129414509549885,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00976",
+      "Observado": 0,
+      "Probabilidad": 0.5968152775975922,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01803",
+      "Observado": 1,
+      "Probabilidad": 0.15259600525334696,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03362",
+      "Observado": 1,
+      "Probabilidad": 0.29567620101581604,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04818",
+      "Observado": 1,
+      "Probabilidad": 0.1815036850165134,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-02942",
+      "Observado": 1,
+      "Probabilidad": 0.19702143026543426,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04637",
+      "Observado": 1,
+      "Probabilidad": 0.16264432081293267,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-01542",
+      "Observado": 1,
+      "Probabilidad": 0.14045061768550118,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03425",
+      "Observado": 1,
+      "Probabilidad": 0.26171335277042235,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-03722",
+      "Observado": 1,
+      "Probabilidad": 0.10361997338266613,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00380",
+      "Observado": 1,
+      "Probabilidad": 0.14883867708450033,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00348",
+      "Observado": 1,
+      "Probabilidad": 0.345527700756234,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04959",
+      "Observado": 1,
+      "Probabilidad": 0.47859657815994966,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-04765",
+      "Observado": 1,
+      "Probabilidad": 0.45529015995734723,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Regresión logística",
+      "Caso": "S-00697",
+      "Observado": 1,
+      "Probabilidad": 0.12441941564221475,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04052",
+      "Observado": 1,
+      "Probabilidad": 0.11093016223540092,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04995",
+      "Observado": 1,
+      "Probabilidad": 0.3769376552319114,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04057",
+      "Observado": 1,
+      "Probabilidad": 0.3599576847427742,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04392",
+      "Observado": 1,
+      "Probabilidad": 0.27254435414374323,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01117",
+      "Observado": 0,
+      "Probabilidad": 0.5332996043376574,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03413",
+      "Observado": 1,
+      "Probabilidad": 0.27719760450959396,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02052",
+      "Observado": 1,
+      "Probabilidad": 0.15397577528708672,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00856",
+      "Observado": 1,
+      "Probabilidad": 0.22418096749050026,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04543",
+      "Observado": 1,
+      "Probabilidad": 0.26402639670839306,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02948",
+      "Observado": 1,
+      "Probabilidad": 0.23352971352845187,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00756",
+      "Observado": 1,
+      "Probabilidad": 0.3045100418154298,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00891",
+      "Observado": 1,
+      "Probabilidad": 0.4217975828924471,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03042",
+      "Observado": 1,
+      "Probabilidad": 0.2743609039690206,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01384",
+      "Observado": 1,
+      "Probabilidad": 0.18460790916972428,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03226",
+      "Observado": 1,
+      "Probabilidad": 0.14193305421017224,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02650",
+      "Observado": 0,
+      "Probabilidad": 0.5007397078782193,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00193",
+      "Observado": 1,
+      "Probabilidad": 0.18749229132831846,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03556",
+      "Observado": 1,
+      "Probabilidad": 0.20272081827561783,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04065",
+      "Observado": 1,
+      "Probabilidad": 0.46471566603356584,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02480",
+      "Observado": 1,
+      "Probabilidad": 0.2676398309973598,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03119",
+      "Observado": 1,
+      "Probabilidad": 0.38163566101886703,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03515",
+      "Observado": 1,
+      "Probabilidad": 0.4728323311938597,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04757",
+      "Observado": 1,
+      "Probabilidad": 0.18460790916972428,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04006",
+      "Observado": 1,
+      "Probabilidad": 0.3735738113261274,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02455",
+      "Observado": 1,
+      "Probabilidad": 0.10148466290054854,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01975",
+      "Observado": 0,
+      "Probabilidad": 0.5169369369696077,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03257",
+      "Observado": 1,
+      "Probabilidad": 0.2583423297598306,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01527",
+      "Observado": 1,
+      "Probabilidad": 0.13080103623712086,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00495",
+      "Observado": 1,
+      "Probabilidad": 0.4518616541709319,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04029",
+      "Observado": 1,
+      "Probabilidad": 0.4501099475811239,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00813",
+      "Observado": 1,
+      "Probabilidad": 0.33518883382075354,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00338",
+      "Observado": 1,
+      "Probabilidad": 0.19404819552244074,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02991",
+      "Observado": 1,
+      "Probabilidad": 0.4254206597957891,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00544",
+      "Observado": 1,
+      "Probabilidad": 0.30039423188775904,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01034",
+      "Observado": 1,
+      "Probabilidad": 0.3410939943259622,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03167",
+      "Observado": 1,
+      "Probabilidad": 0.4254248235215173,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04516",
+      "Observado": 0,
+      "Probabilidad": 0.5215625691812482,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01802",
+      "Observado": 1,
+      "Probabilidad": 0.34235192732256287,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00539",
+      "Observado": 1,
+      "Probabilidad": 0.11043613711812403,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00248",
+      "Observado": 1,
+      "Probabilidad": 0.3713597390840154,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00595",
+      "Observado": 1,
+      "Probabilidad": 0.4127322661105813,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04756",
+      "Observado": 1,
+      "Probabilidad": 0.38012224444679305,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04805",
+      "Observado": 1,
+      "Probabilidad": 0.30111246469600267,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04719",
+      "Observado": 1,
+      "Probabilidad": 0.29967163872725516,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00946",
+      "Observado": 1,
+      "Probabilidad": 0.296728714104831,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01416",
+      "Observado": 1,
+      "Probabilidad": 0.3122826706106114,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02572",
+      "Observado": 1,
+      "Probabilidad": 0.31501492792361074,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04095",
+      "Observado": 1,
+      "Probabilidad": 0.20731881294132473,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02290",
+      "Observado": 1,
+      "Probabilidad": 0.28682520202727557,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01066",
+      "Observado": 1,
+      "Probabilidad": 0.28774852028193854,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02154",
+      "Observado": 1,
+      "Probabilidad": 0.14141081588074209,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04005",
+      "Observado": 1,
+      "Probabilidad": 0.32574705673055504,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03956",
+      "Observado": 1,
+      "Probabilidad": 0.2898262938822999,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03253",
+      "Observado": 1,
+      "Probabilidad": 0.21515412954889426,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00246",
+      "Observado": 1,
+      "Probabilidad": 0.1613494020559102,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03186",
+      "Observado": 1,
+      "Probabilidad": 0.22380398374492724,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04133",
+      "Observado": 0,
+      "Probabilidad": 0.502021118948817,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04449",
+      "Observado": 1,
+      "Probabilidad": 0.19954579287172955,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02307",
+      "Observado": 1,
+      "Probabilidad": 0.304030662661876,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03121",
+      "Observado": 1,
+      "Probabilidad": 0.31330258243685427,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01713",
+      "Observado": 1,
+      "Probabilidad": 0.2699964243102826,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01632",
+      "Observado": 1,
+      "Probabilidad": 0.2395408187595479,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01000",
+      "Observado": 1,
+      "Probabilidad": 0.23907747023176873,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03232",
+      "Observado": 1,
+      "Probabilidad": 0.39660428113085544,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03363",
+      "Observado": 0,
+      "Probabilidad": 0.5152157387278337,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00832",
+      "Observado": 1,
+      "Probabilidad": 0.33167833722253937,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04304",
+      "Observado": 1,
+      "Probabilidad": 0.15215746545638834,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00459",
+      "Observado": 1,
+      "Probabilidad": 0.1949758651047628,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02427",
+      "Observado": 1,
+      "Probabilidad": 0.47377833438367417,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00494",
+      "Observado": 1,
+      "Probabilidad": 0.286741303886969,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01765",
+      "Observado": 1,
+      "Probabilidad": 0.34048444169968034,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03931",
+      "Observado": 1,
+      "Probabilidad": 0.2531439833588867,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02159",
+      "Observado": 1,
+      "Probabilidad": 0.27568535748127077,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02213",
+      "Observado": 1,
+      "Probabilidad": 0.23855168089388726,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02965",
+      "Observado": 1,
+      "Probabilidad": 0.22585034667603332,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03141",
+      "Observado": 1,
+      "Probabilidad": 0.2915882017749447,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04384",
+      "Observado": 1,
+      "Probabilidad": 0.22649674163446668,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00455",
+      "Observado": 1,
+      "Probabilidad": 0.4882408439855169,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04320",
+      "Observado": 1,
+      "Probabilidad": 0.3527928183108925,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00019",
+      "Observado": 1,
+      "Probabilidad": 0.18181084820320342,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04119",
+      "Observado": 0,
+      "Probabilidad": 0.5203727935487743,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03618",
+      "Observado": 1,
+      "Probabilidad": 0.31647390727770763,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03472",
+      "Observado": 0,
+      "Probabilidad": 0.5138539760806612,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03166",
+      "Observado": 1,
+      "Probabilidad": 0.3188638336335987,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01126",
+      "Observado": 1,
+      "Probabilidad": 0.31963779651074853,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02670",
+      "Observado": 1,
+      "Probabilidad": 0.30985113895121175,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03125",
+      "Observado": 1,
+      "Probabilidad": 0.10406335234310925,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00378",
+      "Observado": 1,
+      "Probabilidad": 0.3547986601494005,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01697",
+      "Observado": 1,
+      "Probabilidad": 0.47489450455253795,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04209",
+      "Observado": 1,
+      "Probabilidad": 0.32726114677105866,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00382",
+      "Observado": 1,
+      "Probabilidad": 0.3248515135104597,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01565",
+      "Observado": 0,
+      "Probabilidad": 0.5109796969386083,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02647",
+      "Observado": 1,
+      "Probabilidad": 0.2960521174673578,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00070",
+      "Observado": 0,
+      "Probabilidad": 0.5278008151020281,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02125",
+      "Observado": 1,
+      "Probabilidad": 0.12667845124159752,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03114",
+      "Observado": 1,
+      "Probabilidad": 0.14494450403792958,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03576",
+      "Observado": 1,
+      "Probabilidad": 0.4336176560871472,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02165",
+      "Observado": 1,
+      "Probabilidad": 0.40294364791714726,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03367",
+      "Observado": 1,
+      "Probabilidad": 0.30074145203697733,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02842",
+      "Observado": 1,
+      "Probabilidad": 0.20456692641319527,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01538",
+      "Observado": 1,
+      "Probabilidad": 0.16954881182131756,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03873",
+      "Observado": 1,
+      "Probabilidad": 0.3006531271761615,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01629",
+      "Observado": 1,
+      "Probabilidad": 0.1446535930844725,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03617",
+      "Observado": 1,
+      "Probabilidad": 0.2191069882893677,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00369",
+      "Observado": 1,
+      "Probabilidad": 0.45126355216621294,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02106",
+      "Observado": 1,
+      "Probabilidad": 0.12517089934620157,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02054",
+      "Observado": 1,
+      "Probabilidad": 0.3932901826164333,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04896",
+      "Observado": 1,
+      "Probabilidad": 0.1983480962282841,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01799",
+      "Observado": 1,
+      "Probabilidad": 0.4180828023619478,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04702",
+      "Observado": 1,
+      "Probabilidad": 0.2660135715099235,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01810",
+      "Observado": 1,
+      "Probabilidad": 0.1941251749581685,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00935",
+      "Observado": 1,
+      "Probabilidad": 0.4167481284018875,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04763",
+      "Observado": 0,
+      "Probabilidad": 0.5308740642376257,
+      "Tipo": "Falso positivo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03579",
+      "Observado": 1,
+      "Probabilidad": 0.20130191554880578,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03881",
+      "Observado": 1,
+      "Probabilidad": 0.2796287129732615,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03013",
+      "Observado": 1,
+      "Probabilidad": 0.26462542446995385,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02584",
+      "Observado": 1,
+      "Probabilidad": 0.27524263959286815,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04794",
+      "Observado": 1,
+      "Probabilidad": 0.32903873030425174,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04059",
+      "Observado": 1,
+      "Probabilidad": 0.3554572877112101,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00794",
+      "Observado": 1,
+      "Probabilidad": 0.19977951641450606,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02879",
+      "Observado": 1,
+      "Probabilidad": 0.26909326093841934,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03727",
+      "Observado": 1,
+      "Probabilidad": 0.3489474069571705,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04798",
+      "Observado": 1,
+      "Probabilidad": 0.3242977964294454,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00895",
+      "Observado": 1,
+      "Probabilidad": 0.24851552976546304,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00562",
+      "Observado": 1,
+      "Probabilidad": 0.23530400725305328,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04503",
+      "Observado": 1,
+      "Probabilidad": 0.1256668507260313,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03473",
+      "Observado": 1,
+      "Probabilidad": 0.32345627067914867,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04111",
+      "Observado": 1,
+      "Probabilidad": 0.19052253073728814,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02332",
+      "Observado": 1,
+      "Probabilidad": 0.1951807424343571,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03293",
+      "Observado": 1,
+      "Probabilidad": 0.4102780117097953,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01588",
+      "Observado": 1,
+      "Probabilidad": 0.37259709256321705,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03954",
+      "Observado": 1,
+      "Probabilidad": 0.3058161275684148,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03891",
+      "Observado": 1,
+      "Probabilidad": 0.3144304498186611,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00124",
+      "Observado": 1,
+      "Probabilidad": 0.2649899527003695,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03284",
+      "Observado": 1,
+      "Probabilidad": 0.1356852089013001,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02197",
+      "Observado": 1,
+      "Probabilidad": 0.3670360091458813,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00575",
+      "Observado": 1,
+      "Probabilidad": 0.15812601879259605,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03282",
+      "Observado": 1,
+      "Probabilidad": 0.32044208445038813,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04322",
+      "Observado": 1,
+      "Probabilidad": 0.36031437248122217,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02995",
+      "Observado": 1,
+      "Probabilidad": 0.3858938315121073,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00213",
+      "Observado": 1,
+      "Probabilidad": 0.30845964486843214,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03014",
+      "Observado": 1,
+      "Probabilidad": 0.3299293799351766,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00347",
+      "Observado": 1,
+      "Probabilidad": 0.1375160963242687,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04546",
+      "Observado": 1,
+      "Probabilidad": 0.2546584719595842,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01803",
+      "Observado": 1,
+      "Probabilidad": 0.144620287854037,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03081",
+      "Observado": 1,
+      "Probabilidad": 0.4363937584527072,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03362",
+      "Observado": 1,
+      "Probabilidad": 0.29624059639282363,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00219",
+      "Observado": 1,
+      "Probabilidad": 0.46193740459372273,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04818",
+      "Observado": 1,
+      "Probabilidad": 0.19975035201730867,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00672",
+      "Observado": 1,
+      "Probabilidad": 0.4464677673126544,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-02942",
+      "Observado": 1,
+      "Probabilidad": 0.22673428371720658,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04637",
+      "Observado": 1,
+      "Probabilidad": 0.18877883585156044,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-01542",
+      "Observado": 1,
+      "Probabilidad": 0.20231125273558803,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03425",
+      "Observado": 1,
+      "Probabilidad": 0.25932512577085537,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-03722",
+      "Observado": 1,
+      "Probabilidad": 0.11714603609775334,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00380",
+      "Observado": 1,
+      "Probabilidad": 0.13393388286737312,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00348",
+      "Observado": 1,
+      "Probabilidad": 0.31769355836338614,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04337",
+      "Observado": 1,
+      "Probabilidad": 0.4106119833115189,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04959",
+      "Observado": 1,
+      "Probabilidad": 0.3461908109381628,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-04765",
+      "Observado": 1,
+      "Probabilidad": 0.3436005967357702,
+      "Tipo": "Falso negativo"
+    },
+    {
+      "Modelo": "Random Forest",
+      "Caso": "S-00697",
+      "Observado": 1,
+      "Probabilidad": 0.19964913252915317,
+      "Tipo": "Falso negativo"
+    }
+  ]
+}
