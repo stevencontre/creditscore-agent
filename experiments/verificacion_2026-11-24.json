@@ -1,0 +1,44 @@
+{
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "semilla": 2026,
+  "resultado": {
+    "metricas": [
+      {
+        "Modelo": "Frecuencia histórica",
+        "Parámetro": "—",
+        "AUC validación": 0.5,
+        "AUC prueba": 0.5,
+        "F1 (0.5)": 0.0,
+        "Brier": 0.17455844897959186
+      },
+      {
+        "Modelo": "Regresión logística",
+        "Parámetro": "10",
+        "AUC validación": 0.7578343806332684,
+        "AUC prueba": 0.7786411919868824,
+        "F1 (0.5)": 0.2857142857142857,
+        "Brier": 0.14364756374784915
+      },
+      {
+        "Modelo": "Random Forest",
+        "Parámetro": "4",
+        "AUC validación": 0.753505993543065,
+        "AUC prueba": 0.7717870637240423,
+        "F1 (0.5)": 0.19095477386934673,
+        "Brier": 0.14726739458350313
+      }
+    ],
+    "n_errores": 316
+  },
+  "unitarias": 20,
+  "dependencias": {
+    "numpy": "2.3.5",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.8.0",
+    "plotly": "6.5.2",
+    "numpy-financial": "1.0.0",
+    "pypdf": "5.9.0",
+    "openpyxl": "3.1.5"
+  },
+  "streamlit": "no instalado; no verificado"
+}
