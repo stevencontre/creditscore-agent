@@ -1,42 +1,62 @@
-# Kredia
+# Kredia V6.3
 
-### Banca de Proyectos & Crédito Inteligente
-Laboratorio de Inteligencia Artificial · Universidad Tecnológica de Bolívar (UTB)
+**Banca de Proyectos & Crédito Inteligente · Laboratorio de IA UTB**
+
+Universidad Tecnológica de Bolívar — Proyecto académico de inteligencia artificial.
+
+Integrantes: Steven David Contreras y Andres Camilo Castaño.
 
 [![Abrir Kredia](https://img.shields.io/badge/Abrir-Kredia-820AD1?style=for-the-badge)](https://kredia-utb.streamlit.app/)
 
-## Aplicación en línea
+**Aplicación pública:** https://kredia-utb.streamlit.app/
 
-https://kredia-utb.streamlit.app/
+## Descripción y alcance
 
-Kredia es un agente inteligente de simulación crediticia y análisis de proyectos desarrollado con Python, Streamlit y técnicas de aprendizaje automático.
+Kredia es la evolución de CREDITSCORE-AGENT, un agente de simulación crediticia basado en aprendizaje automático y reglas de decisión. Su propósito es estudiar la estimación de riesgo, la trazabilidad y la gestión de incertidumbre en un entorno sintético. No es un servicio financiero real ni debe emplearse para decidir créditos de personas o empresas.
 
-Proyecto académico basado en datos sintéticos. No constituye un servicio financiero real.
-## Estructura
+## Arquitectura y funcionalidades
+
+El ciclo Percepción → Decisión → Acción valida las entradas, estima `p_default`, asigna una calificación A–E cuando corresponde y ejecuta una acción simulada o remite a revisión humana. La memoria y el registro permiten consultar casos y auditar eventos. El núcleo se mantiene separado de la interfaz.
+
+- Panel principal, evaluación individual, procesamiento por lotes e historial.
+- Comparación de modelos, aprendizaje, memoria histórica, monitoreo y laboratorio de pruebas.
+- Navegación horizontal, formularios numéricos vacíos y gráficos Plotly.
+- Laboratorio de proyectos: carga de escenario demo o importación CSV/XLSX/PDF textual con campos identificables (`monto`, `ingresos`, `costos`, `plazo`, `tasa`, `gracia`).
+- Simulación de caída de ventas, retraso operativo y variación de tasa; cálculo ilustrativo de VAN, TIR mensual, DSCR agregado y cuotas.
+- Comité de análisis determinista (auditor, riesgo y estructurador), asistente de comandos para plazo, tasa y gracia, y descarga de ficha de escenario.
+
+El laboratorio de proyectos es independiente del modelo crediticio original. El comité no contiene tres modelos autónomos y el chat no utiliza un LLM. La ficha descargable no constituye una oferta de crédito.
+
+## Estructura del repositorio
 
 | Ruta | Contenido |
 |---|---|
-| `src/creditscore/` | Código del agente: `percepcion.py` (sensores), `decision.py`, `acciones.py` (actuadores), `memoria.py`, `modelo.py`, `agente.py` (ciclo Percepción → Decisión → Acción), `entorno.py`/`simulador.py`/`fabrica.py`, `registro.py`, `evaluacion.py`, `escenarios.py` |
-| `config/` | `config.json` (parámetros), `umbrales.json` (umbrales fijados **antes** de las pruebas), `linea_base_manual.json` (la llena `scripts/medir_linea_base_manual.py`) |
-| `scripts/` | `run_agente.py`, `run_escenarios.py`, `run_pruebas_desempeno.py`, `matriz_decision.py` |
-| `tests/` | 20 pruebas unitarias (`unittest`) |
-| `logs/` | Registros de las ejecuciones reales (JSONL, CSV, JSON, TXT) |
-| `app.py` | Interfaz web (Streamlit) para la Opción A: evaluar solicitudes, correr lotes y ejecutar las pruebas en vivo |
-| `docs/` | Informe (PDF y DOCX), matriz de decisión, diagramas, guion del video, bitácora de IA, lista de verificación |
+| `app.py` | Interfaz Streamlit de Kredia V6.3 |
+| `src/creditscore/` | Percepción, decisión, acciones, memoria, modelo, agente, entorno, simulador, fábrica, registro, evaluación, escenarios, métricas y comparación de modelos |
+| `config/` | Parámetros, umbrales preestablecidos y medición manual |
+| `scripts/` | Ejecución, escenarios, desempeño, medición manual y matriz de decisión |
+| `experiments/` | Resultados de comparación de modelos (`comparacion_2026.json`) |
+| `tests/` | Pruebas unitarias |
+| `logs/` | Evidencias experimentales archivadas en CSV, JSON, JSONL y TXT |
+| `docs/` | Documentación histórica, diagramas, bitácora de IA y guías |
+| `entrega_anterior_taller_ngramas/` | Evidencias de una entrega anterior |
+| `requirements.txt` | Dependencias de ejecución |
+| `requirements-docs.txt` | Dependencias para regenerar documentación histórica |
 
-## Instalación (Windows, PowerShell)
+## Instalación
 
-Requiere Python 3.10 o superior (se probó con 3.12.3).
+Se recomienda Python 3.12 o un entorno compatible con las dependencias declaradas.
 
 ```powershell
-cd creditscore_agent
 python -m venv .venv
 .venv\Scripts\Activate.ps1
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
+streamlit run app.py
 ```
-El agente solo necesita `numpy`; `pandas` y `streamlit` son para la app web. Para regenerar figuras e informe también: `pip install -r requirements-docs.txt` (más Graphviz y LibreOffice instalados).
 
-En Linux/macOS: `source .venv/bin/activate`.
+En Linux/macOS, activar con `source .venv/bin/activate`.
+
+Dependencias: NumPy, pandas, Streamlit, scikit-learn 1.8.0, Plotly, numpy-financial, pypdf y openpyxl. Para regenerar la documentación histórica, consultar `requirements-docs.txt`; también puede requerir Graphviz y LibreOffice.
 
 ## Ejecución
 
@@ -65,31 +85,49 @@ python docs\construir_informe.py
 ```
 Cada ejecución del agente escribe un log JSONL con marca de tiempo (`logs/ejecucion_AAAAMMDD_HHMMSS.jsonl`) con los eventos `PERCEPCION`, `DECISION`, `ACCION`, `AUDITORIA`, `SENSOR_FALLO`, etc.
 
-## App web (Opción A: plataforma de despliegue)
-```powershell
-streamlit run app.py
-```
-Guía de despliegue en Streamlit Community Cloud, instrucciones de uso y casos de prueba sugeridos: `docs/guia_despliegue.md`.
+## Comparación experimental
 
-**Enlace público de la app:** https://creditscore-agent-7pyg7dzx7yiykdggfwoinw.streamlit.app/
+Experimento sintético de 5.000 solicitudes, semilla 2026, partición estratificada 70/15/15 para entrenamiento, validación y prueba. Selección de hiperparámetros por AUC de validación.
 
-## Reproducibilidad
-Todo es determinista dado el valor de semilla (`config/config.json` y `config/umbrales.json`). Las latencias dependen del equipo y varían ligeramente entre ejecuciones; el resto de cifras se reproduce exactamente.
-Antes de repetir las pruebas, no modifique `config/umbrales.json`: sus umbrales se fijaron antes de ejecutar (su SHA-256 queda en `logs/resultados_pruebas.json`).
+| Modelo | AUC prueba | F1 (umbral 0,5) | Brier |
+|---|---:|---:|---:|
+| Frecuencia histórica | 0,5000 | 0,0000 | 0,1746 |
+| Regresión logística | 0,7786 | 0,2857 | 0,1436 |
+| Random Forest | 0,7718 | 0,1910 | 0,1473 |
 
-## Pendiente por los integrantes
-1. Medir el tiempo del proceso manual (≥ 10 solicitudes) con `python scripts/medir_linea_base_manual.py` y luego `python scripts/run_pruebas_desempeno.py` (medida M2b).
-2. Contrastar `docs/matriz_decision.json`: los puntajes del agente B (Cartrescue) se basan en la descripción del caso (Intelligent Agents – Use Cases, p. 3), no en su diseño completo; si lo tienen, ajustarlos y volver a ejecutar `python scripts/matriz_decision.py`.
-3. Desplegar la app (`docs/guia_despliegue.md`), publicar el repositorio y pegar los enlaces en la sección 9.9 del informe (`docs/construir_informe.py` o el DOCX).
-4. Completar las verificaciones humanas de `docs/bitacora_uso_ia.md`.
+La regresión logística obtuvo el mejor resultado de esta comparación, aunque su F1 bajo indica limitaciones en la clasificación de incumplimientos al umbral evaluado. Los resultados no validan el uso en poblaciones reales.
 
-## Git (publicación segura)
-```powershell
-git init
-git add .
-git status          # revise que no haya credenciales ni archivos temporales
-git commit -m "Entrega 2: CREDITSCORE-AGENT, pruebas y documento ajustado"
-git remote add origin <URL-DE-SU-REPOSITORIO>
-git push -u origin main
-```
-Si ya tienen un repositorio de la entrega anterior, clónenlo, copien estas carpetas dentro y hagan `git add`/`commit` sin borrar los archivos originales.
+Fuente: `experiments/comparacion_2026.json`. Para repetir la comparación, usar la vista Comparación de modelos.
+
+## Pruebas y reproducibilidad
+
+Resultados históricos archivados (no son una nueva ejecución de V6.3):
+
+| Indicador | Resultado |
+|---|---|
+| AUC promedio, cinco semillas | 0,7793 ± 0,0101 |
+| Latencia p95 del núcleo simulado | 0,701 ms |
+| ECE promedio | 0,0237 |
+| Remisión de entradas inválidas | 1.000/1.000 |
+| Trazabilidad | 9.000/9.000 |
+| Reproducibilidad de decisiones | 1.500/1.500 |
+| Detección de deriva y mejora de Brier tras recalibración | 5/5 semillas en cada indicador |
+| Pruebas unitarias archivadas | 20, todas correctas |
+
+La medición manual archivada incluye diez solicitudes y un promedio de 3,6 segundos; no incluye digitación ni consulta real al buró. No es una comparación de procesos bancarios completos.
+
+Fuentes: `logs/tabla_resultados.md`, `logs/resultados_pruebas.json`, `logs/unittest.txt` y `config/linea_base_manual.json`.
+
+No modificar `config/umbrales.json` antes de repetir las pruebas. Las semillas permiten reproducir los resultados en condiciones equivalentes; las latencias dependen del equipo.
+
+## IA responsable y limitaciones
+
+Utilizar exclusivamente datos sintéticos. No introducir información personal ni documentos financieros reales. La revisión humana y la auditoría son mecanismos del entorno simulado; no garantizan equidad ni validez externa. Los indicadores de proyectos suponen costos constantes, inversión inicial igual al monto, gracia de capital y descuento igual a la tasa simulada, sin impuestos ni valor residual.
+
+## Documentación y cierre académico
+
+Los archivos de `docs/` conservan la evidencia de las entregas anteriores. El informe final, la presentación y el guion definitivo deben incorporarse cuando estén terminados y revisados por los integrantes. Revisar la bitácora de IA y las contribuciones individuales; los puntajes históricos de Cartrescue deben interpretarse considerando que se basaron en la descripción del caso.
+
+## Actualización del repositorio
+
+Conservar el historial Git y revisar `git status` antes de confirmar cambios. No publicar credenciales ni datos personales. El enlace público vigente comunicado por los integrantes es https://kredia-utb.streamlit.app/.
