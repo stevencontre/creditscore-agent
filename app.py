@@ -26,7 +26,7 @@ from creditscore.evaluacion import CORRUPCIONES, _corromper, ejecutar  # noqa: E
 from creditscore.fabrica import construir  # noqa: E402
 from creditscore.simulador import generar_solicitudes  # noqa: E402
 
-st.set_page_config(page_title="Kredia · UTB", page_icon="💳", layout="wide")
+st.set_page_config(page_title="Kredia · UTB", page_icon="💳", layout="wide", initial_sidebar_state="collapsed")
 st.markdown("""<style>
 .stApp {background:#0B0D12;color:#f4f0fa;}
 .block-container {max-width:1350px;padding-top:2rem;}
@@ -43,6 +43,19 @@ button[kind="primary"] {background:#820AD1;color:white;}
 .cs-flow {display:flex;flex-wrap:wrap;gap:10px;}
 .cs-flow span {flex:1;min-width:120px;background:#161922;border:1px solid #ffffff14;border-radius:16px;padding:16px;}
 .cs-flow b {display:block;color:#e3b4ff;}
+ 
+.stApp, [data-testid="stAppViewContainer"] {background:#0B0D12;color:#F8FAFC;}
+[data-testid="stSidebar"],[data-testid="stSidebarCollapsedControl"],[data-testid="stHeader"],#MainMenu,footer {display:none!important;}
+.stApp label,.stApp p,.stApp span,[data-testid="stMetricLabel"] {color:#CBD5E1;}
+.stApp h1,.stApp h2,.stApp h3 {color:#F8FAFC;}
+.stButton button,.stDownloadButton button,.stFormSubmitButton button,[data-testid="stFileUploader"] button {background:#1E2230!important;border:1px solid #820AD1!important;color:white!important;border-radius:14px;}
+button[kind="primary"],button[data-testid="stBaseButton-primary"],button[data-testid="stBaseButton-primaryFormSubmit"] {background:linear-gradient(90deg,#820AD1,#DA0081)!important;border:0!important;font-weight:700;}
+.stApp button p,.stApp button span {color:white!important;}
+.stApp input,.stApp textarea,[data-baseweb="input"],[data-baseweb="select"] > div,[data-baseweb="popover"],[role="listbox"],[role="option"],[data-testid="stFileUploaderDropzone"] {background:#1A1E29!important;color:white!important;border-color:rgba(255,255,255,.15)!important;}
+.stApp input::placeholder,.stApp textarea::placeholder {color:#94A3B8!important;opacity:1;}
+[data-testid="stRadio"] [role="radiogroup"] {display:flex;flex-wrap:wrap;gap:8px;}
+[data-testid="stRadio"] [role="radiogroup"] label {background:#161922;border:1px solid #820AD1;border-radius:20px;padding:8px 12px;}
+[data-testid="stRadio"] [role="radiogroup"] label:has(input:checked) {background:#820AD1;}
 </style>""",unsafe_allow_html=True)
 
 CAMPOS = [  # (clave del widget, etiqueta, grupo, campo del agente, ayuda)
@@ -147,18 +160,34 @@ def tabla_eventos(eventos):
 # ------------------------------------------------------------------ estado inicial
 if "c" not in st.session_state:
     for k, x in zip(CLAVES, PRESETS["Típico: bajo riesgo (aprobar)"]):
-        st.session_state.setdefault(k, float(x) if k in CLAVES[:2] else int(x) if k in CLAVES[2:5] else x)
+        st.session_state.setdefault(k, None if k in CLAVES[:5] else False)
     iniciar(cargar_config()["simulador"]["semilla_base"])
 
 c = st.session_state.c
 
 # ------------------------------------------------------------------ barra lateral
-with st.sidebar:
-    st.header("Kredia")
-    semilla = st.number_input("Semilla del simulador", value=int(st.session_state.semilla_activa), step=1)
+
+st.markdown("""<div class="cs-hero"><div class="cs-kicker">LABORATORIO DE INTELIGENCIA ARTIFICIAL · UTB</div><h1>Kredia</h1><div>Banca de Proyectos & Crédito Inteligente · Laboratorio de IA UTB</div></div>""", unsafe_allow_html=True)
+st.caption("Prototipo académico · No apto para decisiones crediticias reales")
+st.markdown("Agente de **aprendizaje con decisión basada en utilidad**: estima la probabilidad de incumplimiento de una "
+            "solicitud de crédito y recomienda **aprobar, rechazar o remitir a revisión humana**. "
+            "El entorno (formulario, buró, originación y cartera) es un **simulador**.")
+
+for clave in CLAVES + ["pr_monto","pr_ingresos","pr_costos","pr_plazo","pr_tasa","pr_gracia","pr_caida","pr_retraso","pr_shock"]:
+    if clave in st.session_state: st.session_state[clave] = st.session_state[clave]
+nav = st.radio("Navegación", ["📊 Panel Principal","🚀 Evaluar Proyecto","⚡ Simulador de Crisis","💬 Negociar con Kredia","🗂️ Historial"], horizontal=True,label_visibility="collapsed",key="nav")
+pagina = {"📊 Panel Principal":"Inicio","🚀 Evaluar Proyecto":"Laboratorio de proyectos","⚡ Simulador de Crisis":"Laboratorio de proyectos","💬 Negociar con Kredia":"Laboratorio de proyectos","🗂️ Historial":"Historial"}[nav]
+if nav == "🚀 Evaluar Proyecto":
+    pagina = st.radio("Tipo de evaluación", ["Laboratorio de proyectos","Nueva evaluación"],horizontal=True)
+if pagina == "Inicio":
+    pagina = st.selectbox("Herramientas del laboratorio", ["Inicio","Nueva evaluación","Comparación de modelos","Aprendizaje","Procesamiento por lotes","Memoria inteligente","Monitoreo","Laboratorio","Arquitectura"])
+with st.expander("Configuración y estado del agente"):
+    semilla = st.number_input("Semilla del simulador", value=None, step=1, placeholder="Ej: 2026")
     if st.button("Reiniciar agente (desde cero)"):
-        iniciar(int(semilla))
-        st.rerun()
+        if semilla is None: st.warning("Introduce la semilla.")
+        else:
+            iniciar(int(semilla))
+            st.rerun()
     st.caption(f"Modelo: **{c['modelo'].version}** · histórico: **{c['memoria'].n}** casos")
     ent = c["entorno"]
     st.metric("Casos en bandeja del analista", len(ent.bandeja))
@@ -169,13 +198,7 @@ with st.sidebar:
                            file_name=Path(st.session_state.ruta).name, mime="application/json")
     st.caption("Datos 100 % sintéticos: no hay solicitudes reales.")
 
-st.markdown("""<div class="cs-hero"><div class="cs-kicker">LABORATORIO DE INTELIGENCIA ARTIFICIAL · UTB</div><h1>Kredia</h1><div>Banca de Proyectos & Crédito Inteligente · Simulador académico</div></div>""", unsafe_allow_html=True)
-st.caption("Prototipo académico · No apto para decisiones crediticias reales")
-st.markdown("Agente de **aprendizaje con decisión basada en utilidad**: estima la probabilidad de incumplimiento de una "
-            "solicitud de crédito y recomienda **aprobar, rechazar o remitir a revisión humana**. "
-            "El entorno (formulario, buró, originación y cartera) es un **simulador**.")
 
-pagina = st.sidebar.radio("Navegación", ["Inicio", "Laboratorio de proyectos", "Nueva evaluación", "Historial", "Comparación de modelos", "Aprendizaje", "Procesamiento por lotes", "Memoria inteligente", "Monitoreo", "Laboratorio", "Arquitectura"])
 if pagina == "Inicio":
     st.subheader("Panel de actividad")
     h = pd.DataFrame(st.session_state.historial)
@@ -200,7 +223,7 @@ if pagina == "Nueva evaluación":
     elegido = a.selectbox("Perfil de ejemplo", opciones, format_func=lambda x: ["Perfil A", "Perfil B", "Perfil C"][opciones.index(x)])
     b.button("Cargar ejemplo", on_click=cargar, args=(elegido,))
     def limpiar():
-        cargar(opciones[0])
+        for k in CLAVES: st.session_state[k] = None if k in CLAVES[:5] else False
         st.session_state.ultimo = None
         st.session_state.pop("comparar_escenario", None)
     st.button("Reiniciar formulario", on_click=limpiar)
@@ -208,9 +231,11 @@ if pagina == "Nueva evaluación":
         cols = st.columns(2)
         for i, (clave, etiqueta, _, _, ayuda) in enumerate(CAMPOS):
             minimo,maximo,paso = [(500000.,50000000.,100000.),(0.,100000000.,100000.),(0,24,1),(0,600,1),(0,30,1)][i]
-            cols[i%2].number_input(etiqueta, min_value=minimo,max_value=maximo,step=paso,key=clave,help=ayuda)
+            cols[i%2].number_input(etiqueta, min_value=minimo,max_value=maximo,step=paso,key=clave,help=ayuda,value=None,placeholder=["Ej: 8.000.000","Ej: 800.000","Ej: 0","Ej: 120","Ej: 3"][i])
         enviar = st.form_submit_button("Analizar caso sintético", type="primary", use_container_width=True)
-    if enviar:
+    faltantes = [etiqueta for clave, etiqueta, *_ in CAMPOS if st.session_state.get(clave) is None]
+    if enviar and faltantes: st.warning("Completa: " + ", ".join(faltantes))
+    if enviar and not faltantes:
         st.session_state.t_buro = False
         st.session_state.t_orig = False
         st.session_state.pop("comparar_escenario", None)
@@ -261,9 +286,10 @@ if pagina == "Nueva evaluación":
             st.markdown("**Comparar dos escenarios sintéticos**")
             st.caption("Experimento de sensibilidad del modelo, sin registrar otra decisión.")
             with st.form("sensibilidad"):
-                atrasos = st.number_input("Pagos atrasados del escenario alternativo",0,24,int(u["entrada"]["buro"]["pagos_atrasados_24m"]),key=f"alt_{r['id']}")
+                atrasos = st.number_input("Pagos atrasados del escenario alternativo",0,24,value=None,placeholder="Ej: 2",key=f"alt_{r['id']}")
                 comparar = st.form_submit_button("Comparar predicciones")
-            if comparar:
+            if comparar and atrasos is None: st.warning("Introduce los pagos atrasados.")
+            if comparar and atrasos is not None:
                 alt = copy.deepcopy(u["entrada"])
                 alt["buro"]["pagos_atrasados_24m"] = atrasos
                 st.session_state.comparar_escenario = (p,c["modelo"].predict_proba(features_de(alt)))
@@ -292,7 +318,13 @@ if pagina == "Historial":
         hist = pd.DataFrame(st.session_state.historial)
         filtro = st.multiselect("Filtrar por recomendación", ["APROBAR","RECHAZAR","REVISION_HUMANA"], default=["APROBAR","RECHAZAR","REVISION_HUMANA"], key="filtro_hist")
         vista = hist[hist["acción"].isin(filtro)]
-        st.dataframe(vista, width="stretch", hide_index=True)
+        visible = vista.drop(columns=["acciones"],errors="ignore").copy()
+        visible["acción"] = visible["acción"].map({"APROBAR":"Aprobado (simulado)","RECHAZAR":"Rechazado (simulado)","REVISION_HUMANA":"Revisión manual"})
+        visible["p_default"] = visible["p_default"] * 100
+        visible = visible.rename(columns={"id":"Radicado","acción":"Decisión","p_default":"Riesgo de Impago","latencia_ms":"Tiempo de Respuesta"})
+        st.dataframe(visible, width="stretch", hide_index=True,column_config={"Riesgo de Impago":st.column_config.NumberColumn(format="%.2f%%"),"Tiempo de Respuesta":st.column_config.NumberColumn(format="%.2f ms")})
+        with st.expander("Ver auditoría técnica"):
+            st.dataframe(vista,hide_index=True)
         st.download_button("Descargar historial filtrado (CSV)", vista.to_csv(index=False).encode("utf-8-sig"), "historial.csv", "text/csv")
 
 # ------------------------------------------------------------------ pestaña 2
@@ -302,8 +334,10 @@ if pagina == "Procesamiento por lotes":
     e1, e2, e3 = st.columns(3)
     escenario = e1.selectbox("Escenario", ["normal", "invalidas", "fallo_buro", "fallo_originacion", "deriva"])
     n = e2.slider("Solicitudes", 5, 50, 15)
-    sem = e3.number_input("Semilla", value=2026, step=1, key="sem_lote")
-    if st.button("Ejecutar escenario", type="primary"):
+    sem = e3.number_input("Semilla", value=None, step=1, placeholder="Ej: 2026", key="sem_lote")
+    ejecutar_lote = st.button("Ejecutar escenario", type="primary")
+    if ejecutar_lote and sem is None: st.warning("Introduce la semilla.")
+    if ejecutar_lote and sem is not None:
         pf = 0.5 if escenario == "fallo_buro" else None
         po = 0.5 if escenario == "fallo_originacion" else None
         cl, ruta = construir_con_log("web_lote", int(sem), p_fallo_buro=pf, p_fallo_originacion=po)
@@ -477,13 +511,20 @@ if pagina == "Laboratorio de proyectos":
     st.caption("Escenarios educativos independientes del modelo crediticio. No introduzcas datos personales ni utilices los resultados para contratar créditos.")
     defaults = {"monto":20000000., "ingresos":8000000., "costos":5000000., "plazo":24, "tasa":18., "gracia":0}
     for k,v in defaults.items():
-        st.session_state.setdefault("pr_"+k,v)
+        st.session_state.setdefault("pr_"+k,None)
     st.session_state.setdefault("pr_chat",[])
     def demo():
         for k,v in defaults.items(): st.session_state["pr_"+k]=v
     st.button("Cargar proyecto demo",on_click=demo)
+    def limpiar_proyecto():
+        for k in defaults: st.session_state["pr_"+k]=None
+    st.button("Reiniciar proyecto",on_click=limpiar_proyecto)
     archivo=st.file_uploader("Importar escenario sintético",type=["csv","xlsx","pdf"])
-    if archivo and st.button("Extraer datos"):
+    import hashlib
+    firma = hashlib.sha256(archivo.getvalue()).hexdigest() if archivo else None
+    if archivo is None: st.session_state.pop("pr_firma",None)
+    if archivo and firma != st.session_state.get("pr_firma"):
+        st.session_state["pr_firma"]=firma
         try:
             if archivo.name.lower().endswith(".pdf"):
                 from pypdf import PdfReader
@@ -509,64 +550,75 @@ if pagina == "Laboratorio de proyectos":
         except Exception as e: st.error("No se pudo importar. Usa la plantilla de ejemplo: "+str(e))
     st.download_button("Plantilla CSV",pd.DataFrame([defaults]).to_csv(index=False),"proyecto_demo.csv")
     a,b,c1=st.columns(3)
-    a.number_input("Monto sintético (COP)",min_value=1.,key="pr_monto")
-    b.number_input("Ingresos mensuales (COP)",min_value=0.,key="pr_ingresos")
-    c1.number_input("Costos mensuales (COP)",min_value=0.,key="pr_costos")
-    a.number_input("Plazo (meses)",1,120,key="pr_plazo")
-    b.number_input("Tasa anual efectiva (%)",0.,100.,key="pr_tasa")
-    c1.number_input("Gracia de capital (meses)",0,119,key="pr_gracia")
-    with st.sidebar:
+    a.number_input("Monto sintético (COP)",min_value=1.,key="pr_monto",value=None,placeholder="Ej: 50.000.000 COP")
+    b.number_input("Ingresos mensuales (COP)",min_value=0.,key="pr_ingresos",value=None,placeholder="Ej: 12.000.000")
+    c1.number_input("Costos mensuales (COP)",min_value=0.,key="pr_costos",value=None,placeholder="Ej: 7.000.000")
+    a.number_input("Plazo (meses)",1,120,key="pr_plazo",value=None,placeholder="Ej: 24 meses")
+    b.number_input("Tasa anual efectiva (%)",0.,100.,key="pr_tasa",value=None,placeholder="Ej: 18")
+    c1.number_input("Gracia de capital (meses)",0,119,key="pr_gracia",value=None,placeholder="Ej: 0")
+    if nav == "⚡ Simulador de Crisis":
         st.subheader("Modo crisis")
         caida=st.slider("Caída de ventas (%)",0,90,0,key="pr_caida")
         retraso=st.slider("Retraso operativo (meses)",0,24,0,key="pr_retraso")
         shock=st.slider("Variación tasa (puntos porcentuales)",-10,30,0,key="pr_shock")
+    else:
+        caida=st.session_state.get("pr_caida",0)
+        retraso=st.session_state.get("pr_retraso",0)
+        shock=st.session_state.get("pr_shock",0)
     p={k:st.session_state["pr_"+k] for k in defaults}
-    n=p["plazo"]; g=min(p["gracia"],n-1)
-    tasa=max(0,p["tasa"]+shock); r=(1+tasa/100)**(1/12)-1
-    cuota=float(-nf.pmt(r,n-g,p["monto"]))
-    meses=np.arange(1,n+1)
-    flujo=np.where(meses>retraso,p["ingresos"]*(1-caida/100),0)-p["costos"]
-    pagos=np.where(meses<=g,p["monto"]*r,cuota)
-    dscr=float(flujo.sum()/pagos.sum())
-    van=float(nf.npv(r, np.r_[-p["monto"],flujo]))
-    tir=float(nf.irr(np.r_[-p["monto"],flujo]))
-    a,b,c1=st.columns(3)
-    a.metric("VAN ilustrativo",f"$ {van:,.0f}")
-    b.metric("TIR mensual",f"{tir:.2%}" if np.isfinite(tir) else "N/D")
-    c1.metric("DSCR agregado",f"{dscr:.2f}x")
-    st.caption("Supuestos: inversión inicial igual al monto, costos constantes, gracia solo de capital, descuento igual a tasa del escenario; sin impuestos ni valor residual.")
-    fig=go.Figure([go.Bar(x=meses,y=flujo,name="Flujo operativo",marker_color="#820AD1"),go.Scatter(x=meses,y=pagos,name="Cuota simulada",line=dict(color="#DA0081",width=3))])
-    if g: fig.add_vrect(x0=.5,x1=g+.5,fillcolor="#ffffff",opacity=.1,line_width=0)
-    fig.update_layout(template="plotly_dark",paper_bgcolor="rgba(0,0,0,0)",plot_bgcolor="rgba(0,0,0,0)",xaxis_title="Mes",yaxis_title="COP")
-    st.plotly_chart(fig,use_container_width=True)
-    if st.button("Ejecutar comité académico",type="primary"):
-        with st.status("Comité de análisis",expanded=True) as estado:
-            st.write(f"Auditor: margen operativo acumulado {flujo.sum():,.0f} COP.")
-            st.write(f"Riesgo: caída {caida} %, retraso {retraso} meses; DSCR {dscr:.2f}.")
-            st.write(f"Estructurador: VAN {van:,.0f}; cuota {cuota:,.0f} COP.")
-            estado.update(label="Análisis registrado",state="complete")
-        st.session_state.setdefault("pr_hist",[]).append({**p,"caida":caida,"retraso":retraso,"shock":shock,"VAN":van,"DSCR":dscr})
-    st.caption("Los tres roles son etapas de cálculo deterministas, no modelos autónomos independientes.")
-    with st.expander("Historial de escenarios"):
-        st.dataframe(pd.DataFrame(st.session_state.get("pr_hist",[])),hide_index=True)
-    st.subheader("Asistente de escenarios")
-    for msg in st.session_state.pr_chat:
-        with st.chat_message(msg["role"]): st.write(msg["content"])
-    pregunta=st.chat_input("Ejemplo: plazo 36, tasa 15 o gracia 3")
-    if pregunta:
-        import re
-        cambios={}
-        for k,lim in [("plazo",120),("tasa",100),("gracia",119)]:
-            m=re.search(r"\\b"+k+r"\\s*(?:a|de|=|:)?\\s*(\\d+(?:[.,]\\d+)?)",pregunta.lower())
-            if m:
-                v=float(m.group(1).replace(",","."))
-                if 0<=v<=lim and (k!="plazo" or v>=1): cambios[k]=v if k=="tasa" else int(v)
-        respuesta="Escenario solicitado: "+str(cambios) if cambios else "Prueba con plazo 36, tasa 15 o gracia 3. Las garantías no forman parte de este modelo."
-        st.session_state.pr_chat.extend([{"role":"user","content":pregunta},{"role":"assistant","content":respuesta}])
-        st.session_state["pr_pending"]=cambios
-        st.rerun()
-    def aplicar():
-        for k,v in st.session_state.pop("pr_pending",{}).items(): st.session_state["pr_"+k]=v
-    if st.session_state.get("pr_pending"): st.button("Aplicar escenario solicitado",on_click=aplicar)
-    informe=f"KREDIA · UTB\\nSIMULACIÓN ACADÉMICA — NO ES UNA OFERTA DE CRÉDITO\\nMonto: {p['monto']:,.0f} COP\\nPlazo: {n} meses\\nTasa simulada: {tasa:.2f}% EA\\nCuota: {cuota:,.0f} COP\\nVAN: {van:,.0f} COP\\nDSCR: {dscr:.2f}"
-    st.download_button("Descargar ficha de escenario",informe,"kredia_escenario.txt")
+    faltantes = [k for k,v in p.items() if v is None]
+    if faltantes:
+        if st.button("Analizar proyecto",type="primary"):
+            st.warning("Completa los siguientes datos: "+", ".join({"monto":"Monto solicitado","ingresos":"Ingresos mensuales","costos":"Costos mensuales","plazo":"Plazo","tasa":"Tasa anual","gracia":"Meses de gracia"}[k] for k in faltantes))
+        st.info("Introduce los datos o carga el proyecto demo para activar los cálculos.")
+    else:
+        n=p["plazo"]; g=min(p["gracia"],n-1)
+        tasa=max(0,p["tasa"]+shock); r=(1+tasa/100)**(1/12)-1
+        cuota=float(-nf.pmt(r,n-g,p["monto"]))
+        meses=np.arange(1,n+1)
+        flujo=np.where(meses>retraso,p["ingresos"]*(1-caida/100),0)-p["costos"]
+        pagos=np.where(meses<=g,p["monto"]*r,cuota)
+        dscr=float(flujo.sum()/pagos.sum())
+        van=float(nf.npv(r, np.r_[-p["monto"],flujo]))
+        tir=float(nf.irr(np.r_[-p["monto"],flujo]))
+        a,b,c1=st.columns(3)
+        a.metric("VAN ilustrativo",f"$ {van:,.0f}")
+        b.metric("TIR mensual",f"{tir:.2%}" if np.isfinite(tir) else "N/D")
+        c1.metric("DSCR agregado",f"{dscr:.2f}x")
+        st.caption("Supuestos: inversión inicial igual al monto, costos constantes, gracia solo de capital, descuento igual a tasa del escenario; sin impuestos ni valor residual.")
+        fig=go.Figure([go.Bar(x=meses,y=flujo,name="Flujo operativo",marker_color="#820AD1"),go.Scatter(x=meses,y=pagos,name="Cuota simulada",line=dict(color="#DA0081",width=3))])
+        if g: fig.add_vrect(x0=.5,x1=g+.5,fillcolor="#ffffff",opacity=.1,line_width=0)
+        fig.update_layout(template="plotly_dark",paper_bgcolor="rgba(0,0,0,0)",plot_bgcolor="rgba(0,0,0,0)",xaxis_title="Mes",yaxis_title="COP")
+        st.plotly_chart(fig,use_container_width=True)
+        if st.button("Analizar proyecto",type="primary"):
+            with st.status("Comité de análisis",expanded=True) as estado:
+                st.write(f"Auditor: margen operativo acumulado {flujo.sum():,.0f} COP.")
+                st.write(f"Riesgo: caída {caida} %, retraso {retraso} meses; DSCR {dscr:.2f}.")
+                st.write(f"Estructurador: VAN {van:,.0f}; cuota {cuota:,.0f} COP.")
+                estado.update(label="Análisis registrado",state="complete")
+            st.session_state.setdefault("pr_hist",[]).append({**p,"caida":caida,"retraso":retraso,"shock":shock,"VAN":van,"DSCR":dscr})
+        st.caption("Los tres roles son etapas de cálculo deterministas, no modelos autónomos independientes.")
+        with st.expander("Historial de escenarios"):
+            st.dataframe(pd.DataFrame(st.session_state.get("pr_hist",[])),hide_index=True)
+        if nav == "💬 Negociar con Kredia":
+            st.subheader("Asistente de escenarios")
+            for msg in st.session_state.pr_chat:
+                with st.chat_message(msg["role"]): st.write(msg["content"])
+            pregunta=st.chat_input("Ejemplo: plazo 36, tasa 15 o gracia 3")
+            if pregunta:
+                import re
+                cambios={}
+                for k,lim in [("plazo",120),("tasa",100),("gracia",119)]:
+                    m=re.search(r"\\b"+k+r"\\s*(?:a|de|=|:)?\\s*(\\d+(?:[.,]\\d+)?)",pregunta.lower())
+                    if m:
+                        v=float(m.group(1).replace(",","."))
+                        if 0<=v<=lim and (k!="plazo" or v>=1): cambios[k]=v if k=="tasa" else int(v)
+                respuesta="Escenario solicitado: "+str(cambios) if cambios else "Prueba con plazo 36, tasa 15 o gracia 3. Las garantías no forman parte de este modelo."
+                st.session_state.pr_chat.extend([{"role":"user","content":pregunta},{"role":"assistant","content":respuesta}])
+                st.session_state["pr_pending"]=cambios
+                st.rerun()
+            def aplicar():
+                for k,v in st.session_state.pop("pr_pending",{}).items(): st.session_state["pr_"+k]=v
+            if st.session_state.get("pr_pending"): st.button("Aplicar escenario solicitado",on_click=aplicar)
+        informe=f"KREDIA · UTB\\nSIMULACIÓN ACADÉMICA — NO ES UNA OFERTA DE CRÉDITO\\nMonto: {p['monto']:,.0f} COP\\nPlazo: {n} meses\\nTasa simulada: {tasa:.2f}% EA\\nCuota: {cuota:,.0f} COP\\nVAN: {van:,.0f} COP\\nDSCR: {dscr:.2f}"
+        st.download_button("Descargar ficha de escenario",informe,"kredia_escenario.txt")
