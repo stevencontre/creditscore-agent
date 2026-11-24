@@ -1,4 +1,4 @@
-# Kredia V6.3
+# Kredia 
 
 **Banca de Proyectos & Crédito Inteligente · Laboratorio de IA UTB**
 
