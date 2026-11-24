@@ -28,10 +28,31 @@ from creditscore.simulador import generar_solicitudes  # noqa: E402
 
 st.set_page_config(page_title="CREDITSCORE-AGENT", page_icon="💳", layout="wide")
 st.markdown("""<style>
-.block-container {max-width: 1120px; padding-top: 2rem; padding-bottom: 2rem;}
-[data-testid="stMetric"] {border: 1px solid #94a3b855; border-radius: 20px; padding: 16px; border-color:#8B39B555;}
-[data-testid="stMetricValue"] {font-size: 1.55rem;}
-[data-testid="stSidebar"] {border-right: 2px solid #8B39B533;}\n.stButton button {border-radius: 14px;}\n</style>""", unsafe_allow_html=True)
+:root {--cs-ink:#25113b;--cs-purple:#7029a0;--cs-yellow:#ffda45;}
+.stApp {background:#f7f4fa;color:#25113b;}
+.block-container {max-width:1240px;padding-top:2rem;padding-bottom:3rem;}
+[data-testid="stHeader"] {background:#f7f4fa;}
+[data-testid="stSidebar"] {background:#eee5f7;border-right:1px solid #dfd0ed;}
+[data-testid="stSidebar"] [data-testid="stMetric"] {padding:12px;}
+[data-testid="stMetric"] {background:white;border:1px solid #e8dff0;border-radius:22px;padding:20px;box-shadow:0 5px 18px #25113b0a;}
+[data-testid="stMetricValue"] {font-size:1.65rem;color:#7029a0;font-weight:750;}
+[data-testid="stMetricLabel"] {color:#25113b;}
+.stButton button,.stDownloadButton button,[data-testid="stFormSubmitButton"] button {border-radius:14px;font-weight:650;border:1px solid #d9c6e9;min-height:44px;}
+.stButton button:hover,.stDownloadButton button:hover {border-color:#7029a0;color:#7029a0;}
+button[kind="primary"],[data-testid="stFormSubmitButton"] button {background:#ffda45!important;color:#25113b!important;border-color:#ffda45!important;}
+[data-testid="stForm"] {background:white;border:1px solid #e8dff0;border-radius:22px;padding:22px;}
+[data-testid="stExpander"] {background:white;border-radius:16px;}
+[data-testid="stSidebar"] [role="radiogroup"] label {padding:8px 10px;border-radius:12px;}
+[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {background:#dfc9f0;}
+h1,h2,h3 {letter-spacing:-.035em;}
+.cs-hero {background:linear-gradient(115deg,#25113b,#62258c);padding:32px;border-radius:26px;color:white;box-shadow:0 12px 30px #25113b22;}
+.cs-hero h1 {color:white!important;font-size:2.5rem;margin:8px 0;}
+.cs-kicker {color:#ffda45;font-size:.75rem;font-weight:750;letter-spacing:.13em;}
+.cs-flow {display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
+.cs-flow span {flex:1;min-width:130px;background:white;border:1px solid #e8dff0;border-radius:16px;padding:16px;color:#25113b;font-weight:650;}
+.cs-flow b {display:block;color:#7029a0;font-size:.75rem;margin-bottom:5px;}
+@media(max-width:640px){.cs-hero{padding:20px}.cs-hero h1{font-size:1.8rem}}
+</style>""", unsafe_allow_html=True)
 
 CAMPOS = [  # (clave del widget, etiqueta, grupo, campo del agente, ayuda)
     ("f_ing", "Ingresos mensuales (COP)", "formulario", "ingresos_mensuales", "Formulario. Rango válido: 500.000 a 50.000.000"),
@@ -157,7 +178,7 @@ with st.sidebar:
                            file_name=Path(st.session_state.ruta).name, mime="application/json")
     st.caption("Datos 100 % sintéticos: no hay solicitudes reales.")
 
-st.markdown("""<div style="background:linear-gradient(120deg,#250D39,#7136A0);padding:26px;border-radius:18px;color:white"><div style="font-size:12px;letter-spacing:2px;color:#FFD83D">LABORATORIO DE INTELIGENCIA ARTIFICIAL · UTB</div><h1 style="color:white;margin:8px 0">CreditScore AI · V5</h1><div>Simulación de riesgo · Decisiones explicables · Supervisión humana</div></div>""", unsafe_allow_html=True)
+st.markdown("""<div class="cs-hero"><div class="cs-kicker">LABORATORIO DE INTELIGENCIA ARTIFICIAL · UTB</div><h1>CreditScore AI</h1><div>Simulación de riesgo · Decisiones explicables · Supervisión humana</div></div>""", unsafe_allow_html=True)
 st.caption("Prototipo académico · No apto para decisiones crediticias reales")
 st.markdown("Agente de **aprendizaje con decisión basada en utilidad**: estima la probabilidad de incumplimiento de una "
             "solicitud de crédito y recomienda **aprobar, rechazar o remitir a revisión humana**. "
@@ -177,7 +198,7 @@ if pagina == "Inicio":
     else:
         st.info("Realiza una evaluación sintética para visualizar la actividad.")
     st.subheader("Flujo del agente")
-    st.markdown("**01 · Percepción** → **02 · Predicción** → **03 · Decisión** → **04 · Acción y auditoría**")
+    st.markdown("""<div class="cs-flow"><span><b>01</b>Percepción</span><span><b>02</b>Predicción</span><span><b>03</b>Decisión</span><span><b>04</b>Acción y auditoría</span></div>""", unsafe_allow_html=True)
     st.caption("Los indicadores corresponden exclusivamente a esta sesión.")
 
 # ------------------------------------------------------------------ pestaña 1
