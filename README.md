@@ -1,9 +1,17 @@
-# CREDITSCORE-AGENT — Agente inteligente de evaluación de riesgo crediticio
+# Kredia
 
-Proyecto de Inteligencia Artificial (Universidad Tecnológica de Bolívar). Agente de **aprendizaje con decisión basada en utilidad** que estima la probabilidad de incumplimiento de una solicitud de crédito y recomienda **aprobar, rechazar o remitir a revisión humana**.
+### Banca de Proyectos & Crédito Inteligente
+Laboratorio de Inteligencia Artificial · Universidad Tecnológica de Bolívar (UTB)
 
-> **Datos sintéticos.** No hay datos reales de solicitudes: el entorno (formulario, buró, originación y cartera) lo genera `src/creditscore/simulador.py` y `entorno.py`. Los resultados demuestran el funcionamiento del agente, no su desempeño en una entidad financiera real.
+[![Abrir Kredia](https://img.shields.io/badge/Abrir-Kredia-820AD1?style=for-the-badge)](https://kredia-utb.streamlit.app/)
 
+## Aplicación en línea
+
+https://kredia-utb.streamlit.app/
+
+Kredia es un agente inteligente de simulación crediticia y análisis de proyectos desarrollado con Python, Streamlit y técnicas de aprendizaje automático.
+
+Proyecto académico basado en datos sintéticos. No constituye un servicio financiero real.
 ## Estructura
 
 | Ruta | Contenido |
