@@ -26,33 +26,24 @@ from creditscore.evaluacion import CORRUPCIONES, _corromper, ejecutar  # noqa: E
 from creditscore.fabrica import construir  # noqa: E402
 from creditscore.simulador import generar_solicitudes  # noqa: E402
 
-st.set_page_config(page_title="CREDITSCORE-AGENT", page_icon="💳", layout="wide")
+st.set_page_config(page_title="Kredia · UTB", page_icon="💳", layout="wide")
 st.markdown("""<style>
-:root {--cs-ink:#25113b;--cs-purple:#7029a0;--cs-yellow:#ffda45;}
-.stApp {background:#f7f4fa;color:#25113b;}
-.block-container {max-width:1240px;padding-top:2rem;padding-bottom:3rem;}
-[data-testid="stHeader"] {background:#f7f4fa;}
-[data-testid="stSidebar"] {background:#eee5f7;border-right:1px solid #dfd0ed;}
-[data-testid="stSidebar"] [data-testid="stMetric"] {padding:12px;}
-[data-testid="stMetric"] {background:white;border:1px solid #e8dff0;border-radius:22px;padding:20px;box-shadow:0 5px 18px #25113b0a;}
-[data-testid="stMetricValue"] {font-size:1.65rem;color:#7029a0;font-weight:750;}
-[data-testid="stMetricLabel"] {color:#25113b;}
-.stButton button,.stDownloadButton button,[data-testid="stFormSubmitButton"] button {border-radius:14px;font-weight:650;border:1px solid #d9c6e9;min-height:44px;}
-.stButton button:hover,.stDownloadButton button:hover {border-color:#7029a0;color:#7029a0;}
-button[kind="primary"],[data-testid="stFormSubmitButton"] button {background:#ffda45!important;color:#25113b!important;border-color:#ffda45!important;}
-[data-testid="stForm"] {background:white;border:1px solid #e8dff0;border-radius:22px;padding:22px;}
-[data-testid="stExpander"] {background:white;border-radius:16px;}
-[data-testid="stSidebar"] [role="radiogroup"] label {padding:8px 10px;border-radius:12px;}
-[data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {background:#dfc9f0;}
-h1,h2,h3 {letter-spacing:-.035em;}
-.cs-hero {background:linear-gradient(115deg,#25113b,#62258c);padding:32px;border-radius:26px;color:white;box-shadow:0 12px 30px #25113b22;}
-.cs-hero h1 {color:white!important;font-size:2.5rem;margin:8px 0;}
-.cs-kicker {color:#ffda45;font-size:.75rem;font-weight:750;letter-spacing:.13em;}
-.cs-flow {display:flex;flex-wrap:wrap;gap:10px;margin:12px 0;}
-.cs-flow span {flex:1;min-width:130px;background:white;border:1px solid #e8dff0;border-radius:16px;padding:16px;color:#25113b;font-weight:650;}
-.cs-flow b {display:block;color:#7029a0;font-size:.75rem;margin-bottom:5px;}
-@media(max-width:640px){.cs-hero{padding:20px}.cs-hero h1{font-size:1.8rem}}
-</style>""", unsafe_allow_html=True)
+.stApp {background:#0B0D12;color:#f4f0fa;}
+.block-container {max-width:1350px;padding-top:2rem;}
+[data-testid="stSidebar"] {background:#11051F;border-right:1px solid #ffffff15;}
+[data-testid="stMetric"],[data-testid="stForm"],[data-testid="stExpander"] {background:#161922;border:1px solid #ffffff14;border-radius:16px;padding:16px;}
+[data-testid="stMetricValue"] {color:#e3b4ff;font-weight:750;}
+.stButton button,.stDownloadButton button {border-radius:14px;min-height:44px;}
+button[kind="primary"] {background:#820AD1;color:white;}
+#MainMenu,footer {visibility:hidden;}
+[data-testid="stHeader"] {background:transparent;}
+.cs-hero {background:linear-gradient(120deg,#250c43,#51106d,#25112f);padding:30px;border-radius:24px;border:1px solid #ffffff18;}
+.cs-hero h1 {color:white;font-size:3rem;margin:4px 0;}
+.cs-kicker {color:#e4b7ff;font-size:.75rem;letter-spacing:.13em;}
+.cs-flow {display:flex;flex-wrap:wrap;gap:10px;}
+.cs-flow span {flex:1;min-width:120px;background:#161922;border:1px solid #ffffff14;border-radius:16px;padding:16px;}
+.cs-flow b {display:block;color:#e3b4ff;}
+</style>""",unsafe_allow_html=True)
 
 CAMPOS = [  # (clave del widget, etiqueta, grupo, campo del agente, ayuda)
     ("f_ing", "Ingresos mensuales (COP)", "formulario", "ingresos_mensuales", "Formulario. Rango válido: 500.000 a 50.000.000"),
@@ -163,7 +154,7 @@ c = st.session_state.c
 
 # ------------------------------------------------------------------ barra lateral
 with st.sidebar:
-    st.header("CreditScore AI")
+    st.header("Kredia")
     semilla = st.number_input("Semilla del simulador", value=int(st.session_state.semilla_activa), step=1)
     if st.button("Reiniciar agente (desde cero)"):
         iniciar(int(semilla))
@@ -178,13 +169,13 @@ with st.sidebar:
                            file_name=Path(st.session_state.ruta).name, mime="application/json")
     st.caption("Datos 100 % sintéticos: no hay solicitudes reales.")
 
-st.markdown("""<div class="cs-hero"><div class="cs-kicker">LABORATORIO DE INTELIGENCIA ARTIFICIAL · UTB</div><h1>CreditScore AI</h1><div>Simulación de riesgo · Decisiones explicables · Supervisión humana</div></div>""", unsafe_allow_html=True)
+st.markdown("""<div class="cs-hero"><div class="cs-kicker">LABORATORIO DE INTELIGENCIA ARTIFICIAL · UTB</div><h1>Kredia</h1><div>Banca de Proyectos & Crédito Inteligente · Simulador académico</div></div>""", unsafe_allow_html=True)
 st.caption("Prototipo académico · No apto para decisiones crediticias reales")
 st.markdown("Agente de **aprendizaje con decisión basada en utilidad**: estima la probabilidad de incumplimiento de una "
             "solicitud de crédito y recomienda **aprobar, rechazar o remitir a revisión humana**. "
             "El entorno (formulario, buró, originación y cartera) es un **simulador**.")
 
-pagina = st.sidebar.radio("Navegación", ["Inicio", "Nueva evaluación", "Historial", "Comparación de modelos", "Aprendizaje", "Procesamiento por lotes", "Memoria inteligente", "Monitoreo", "Laboratorio", "Arquitectura"])
+pagina = st.sidebar.radio("Navegación", ["Inicio", "Laboratorio de proyectos", "Nueva evaluación", "Historial", "Comparación de modelos", "Aprendizaje", "Procesamiento por lotes", "Memoria inteligente", "Monitoreo", "Laboratorio", "Arquitectura"])
 if pagina == "Inicio":
     st.subheader("Panel de actividad")
     h = pd.DataFrame(st.session_state.historial)
@@ -478,3 +469,104 @@ if pagina == "Monitoreo":
         st.download_button("Exportar eventos",vista.to_csv(index=False),"eventos.csv")
     else:
         st.info("Todavía no hay eventos.")
+
+if pagina == "Laboratorio de proyectos":
+    import plotly.graph_objects as go
+    import numpy_financial as nf
+    st.subheader("Laboratorio de proyectos sintéticos")
+    st.caption("Escenarios educativos independientes del modelo crediticio. No introduzcas datos personales ni utilices los resultados para contratar créditos.")
+    defaults = {"monto":20000000., "ingresos":8000000., "costos":5000000., "plazo":24, "tasa":18., "gracia":0}
+    for k,v in defaults.items():
+        st.session_state.setdefault("pr_"+k,v)
+    st.session_state.setdefault("pr_chat",[])
+    def demo():
+        for k,v in defaults.items(): st.session_state["pr_"+k]=v
+    st.button("Cargar proyecto demo",on_click=demo)
+    archivo=st.file_uploader("Importar escenario sintético",type=["csv","xlsx","pdf"])
+    if archivo and st.button("Extraer datos"):
+        try:
+            if archivo.name.lower().endswith(".pdf"):
+                from pypdf import PdfReader
+                import re
+                texto=" ".join(p.extract_text() or "" for p in PdfReader(archivo).pages)
+                datos={}
+                for k in defaults:
+                    m=re.search(r"\\b"+k+r"\\s*[:=]\\s*(\\d+(?:\\.\\d+)?)",texto,re.I)
+                    if m: datos[k]=float(m.group(1))
+            else:
+                df=pd.read_csv(archivo) if archivo.name.lower().endswith(".csv") else pd.read_excel(archivo)
+                datos=df.iloc[0].to_dict()
+            nuevos={}
+            for k,v in defaults.items():
+                if k in datos:
+                    x=float(datos[k])
+                    if not np.isfinite(x) or x<0 or (k in ("monto","plazo") and x<=0): raise ValueError(k)
+                    if k=="plazo" and x>120 or k=="gracia" and x>119 or k=="tasa" and x>100: raise ValueError(k)
+                    nuevos["pr_"+k]=int(x) if isinstance(v,int) else x
+            if not nuevos: raise ValueError("No se encontraron campos compatibles")
+            st.session_state.update(nuevos)
+            st.success("Campos importados: "+", ".join(nuevos))
+        except Exception as e: st.error("No se pudo importar. Usa la plantilla de ejemplo: "+str(e))
+    st.download_button("Plantilla CSV",pd.DataFrame([defaults]).to_csv(index=False),"proyecto_demo.csv")
+    a,b,c1=st.columns(3)
+    a.number_input("Monto sintético (COP)",min_value=1.,key="pr_monto")
+    b.number_input("Ingresos mensuales (COP)",min_value=0.,key="pr_ingresos")
+    c1.number_input("Costos mensuales (COP)",min_value=0.,key="pr_costos")
+    a.number_input("Plazo (meses)",1,120,key="pr_plazo")
+    b.number_input("Tasa anual efectiva (%)",0.,100.,key="pr_tasa")
+    c1.number_input("Gracia de capital (meses)",0,119,key="pr_gracia")
+    with st.sidebar:
+        st.subheader("Modo crisis")
+        caida=st.slider("Caída de ventas (%)",0,90,0,key="pr_caida")
+        retraso=st.slider("Retraso operativo (meses)",0,24,0,key="pr_retraso")
+        shock=st.slider("Variación tasa (puntos porcentuales)",-10,30,0,key="pr_shock")
+    p={k:st.session_state["pr_"+k] for k in defaults}
+    n=p["plazo"]; g=min(p["gracia"],n-1)
+    tasa=max(0,p["tasa"]+shock); r=(1+tasa/100)**(1/12)-1
+    cuota=float(-nf.pmt(r,n-g,p["monto"]))
+    meses=np.arange(1,n+1)
+    flujo=np.where(meses>retraso,p["ingresos"]*(1-caida/100),0)-p["costos"]
+    pagos=np.where(meses<=g,p["monto"]*r,cuota)
+    dscr=float(flujo.sum()/pagos.sum())
+    van=float(nf.npv(r, np.r_[-p["monto"],flujo]))
+    tir=float(nf.irr(np.r_[-p["monto"],flujo]))
+    a,b,c1=st.columns(3)
+    a.metric("VAN ilustrativo",f"$ {van:,.0f}")
+    b.metric("TIR mensual",f"{tir:.2%}" if np.isfinite(tir) else "N/D")
+    c1.metric("DSCR agregado",f"{dscr:.2f}x")
+    st.caption("Supuestos: inversión inicial igual al monto, costos constantes, gracia solo de capital, descuento igual a tasa del escenario; sin impuestos ni valor residual.")
+    fig=go.Figure([go.Bar(x=meses,y=flujo,name="Flujo operativo",marker_color="#820AD1"),go.Scatter(x=meses,y=pagos,name="Cuota simulada",line=dict(color="#DA0081",width=3))])
+    if g: fig.add_vrect(x0=.5,x1=g+.5,fillcolor="#ffffff",opacity=.1,line_width=0)
+    fig.update_layout(template="plotly_dark",paper_bgcolor="rgba(0,0,0,0)",plot_bgcolor="rgba(0,0,0,0)",xaxis_title="Mes",yaxis_title="COP")
+    st.plotly_chart(fig,use_container_width=True)
+    if st.button("Ejecutar comité académico",type="primary"):
+        with st.status("Comité de análisis",expanded=True) as estado:
+            st.write(f"Auditor: margen operativo acumulado {flujo.sum():,.0f} COP.")
+            st.write(f"Riesgo: caída {caida} %, retraso {retraso} meses; DSCR {dscr:.2f}.")
+            st.write(f"Estructurador: VAN {van:,.0f}; cuota {cuota:,.0f} COP.")
+            estado.update(label="Análisis registrado",state="complete")
+        st.session_state.setdefault("pr_hist",[]).append({**p,"caida":caida,"retraso":retraso,"shock":shock,"VAN":van,"DSCR":dscr})
+    st.caption("Los tres roles son etapas de cálculo deterministas, no modelos autónomos independientes.")
+    with st.expander("Historial de escenarios"):
+        st.dataframe(pd.DataFrame(st.session_state.get("pr_hist",[])),hide_index=True)
+    st.subheader("Asistente de escenarios")
+    for msg in st.session_state.pr_chat:
+        with st.chat_message(msg["role"]): st.write(msg["content"])
+    pregunta=st.chat_input("Ejemplo: plazo 36, tasa 15 o gracia 3")
+    if pregunta:
+        import re
+        cambios={}
+        for k,lim in [("plazo",120),("tasa",100),("gracia",119)]:
+            m=re.search(r"\\b"+k+r"\\s*(?:a|de|=|:)?\\s*(\\d+(?:[.,]\\d+)?)",pregunta.lower())
+            if m:
+                v=float(m.group(1).replace(",","."))
+                if 0<=v<=lim and (k!="plazo" or v>=1): cambios[k]=v if k=="tasa" else int(v)
+        respuesta="Escenario solicitado: "+str(cambios) if cambios else "Prueba con plazo 36, tasa 15 o gracia 3. Las garantías no forman parte de este modelo."
+        st.session_state.pr_chat.extend([{"role":"user","content":pregunta},{"role":"assistant","content":respuesta}])
+        st.session_state["pr_pending"]=cambios
+        st.rerun()
+    def aplicar():
+        for k,v in st.session_state.pop("pr_pending",{}).items(): st.session_state["pr_"+k]=v
+    if st.session_state.get("pr_pending"): st.button("Aplicar escenario solicitado",on_click=aplicar)
+    informe=f"KREDIA · UTB\\nSIMULACIÓN ACADÉMICA — NO ES UNA OFERTA DE CRÉDITO\\nMonto: {p['monto']:,.0f} COP\\nPlazo: {n} meses\\nTasa simulada: {tasa:.2f}% EA\\nCuota: {cuota:,.0f} COP\\nVAN: {van:,.0f} COP\\nDSCR: {dscr:.2f}"
+    st.download_button("Descargar ficha de escenario",informe,"kredia_escenario.txt")
