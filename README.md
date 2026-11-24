@@ -6,6 +6,8 @@ Universidad Tecnológica de Bolívar — Proyecto académico de inteligencia art
 
 Integrantes: Steven David Contreras y Andres Camilo Castaño.
 
+**Repositorio oficial:** https://github.com/stevencontre/kredia-utb
+
 [![Abrir Kredia](https://img.shields.io/badge/Abrir-Kredia-820AD1?style=for-the-badge)](https://kredia-utb.streamlit.app/)
 
 **Aplicación pública:** https://kredia-utb.streamlit.app/
