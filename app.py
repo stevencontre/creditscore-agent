@@ -29,9 +29,9 @@ from creditscore.simulador import generar_solicitudes  # noqa: E402
 st.set_page_config(page_title="CREDITSCORE-AGENT", page_icon="💳", layout="wide")
 st.markdown("""<style>
 .block-container {max-width: 1120px; padding-top: 2rem; padding-bottom: 2rem;}
-[data-testid="stMetric"] {border: 1px solid #94a3b855; border-radius: 12px; padding: 12px;}
+[data-testid="stMetric"] {border: 1px solid #94a3b855; border-radius: 20px; padding: 16px; border-color:#8B39B555;}
 [data-testid="stMetricValue"] {font-size: 1.55rem;}
-</style>""", unsafe_allow_html=True)
+[data-testid="stSidebar"] {border-right: 2px solid #8B39B533;}\n.stButton button {border-radius: 14px;}\n</style>""", unsafe_allow_html=True)
 
 CAMPOS = [  # (clave del widget, etiqueta, grupo, campo del agente, ayuda)
     ("f_ing", "Ingresos mensuales (COP)", "formulario", "ingresos_mensuales", "Formulario. Rango válido: 500.000 a 50.000.000"),
@@ -96,7 +96,7 @@ def cargar(nombre):
         st.session_state[k] = float(x) if k in CLAVES[:2] else int(x) if k in CLAVES[2:5] else x
 
 
-def evaluar_manual():
+def evaluar_manual(observador=None):
     c = st.session_state.c
     ent, ag, reg = c["entorno"], c["agente"], c["registro"]
     st.session_state.n += 1
@@ -112,7 +112,11 @@ def evaluar_manual():
     ent.buro_caido = bool(st.session_state.t_buro)
     ent.originacion_caida = bool(st.session_state.t_orig)
     n0 = len(reg.eventos)
-    res = ag.evaluar(id_)
+    reg.observador = observador
+    try:
+        res = ag.evaluar(id_)
+    finally:
+        reg.observador = None
     st.session_state.ultimo = {"res": res, "eventos": reg.eventos[n0:], "entrada": sol,
                                "buro_caido": ent.buro_caido, "orig_caida": ent.originacion_caida}
     st.session_state.historial.append({
@@ -153,13 +157,13 @@ with st.sidebar:
                            file_name=Path(st.session_state.ruta).name, mime="application/json")
     st.caption("Datos 100 % sintéticos: no hay solicitudes reales.")
 
-st.markdown("""<div style="background:linear-gradient(120deg,#10243e,#14566b);padding:26px;border-radius:18px;color:white"><div style="font-size:12px;letter-spacing:2px;color:#99f6e4">LABORATORIO DE INTELIGENCIA ARTIFICIAL · UTB</div><h1 style="color:white;margin:8px 0">CreditScore Agent</h1><div>Simulación de riesgo · Decisiones explicables · Supervisión humana</div></div>""", unsafe_allow_html=True)
+st.markdown("""<div style="background:linear-gradient(120deg,#250D39,#7136A0);padding:26px;border-radius:18px;color:white"><div style="font-size:12px;letter-spacing:2px;color:#FFD83D">LABORATORIO DE INTELIGENCIA ARTIFICIAL · UTB</div><h1 style="color:white;margin:8px 0">CreditScore AI · V5</h1><div>Simulación de riesgo · Decisiones explicables · Supervisión humana</div></div>""", unsafe_allow_html=True)
 st.caption("Prototipo académico · No apto para decisiones crediticias reales")
 st.markdown("Agente de **aprendizaje con decisión basada en utilidad**: estima la probabilidad de incumplimiento de una "
             "solicitud de crédito y recomienda **aprobar, rechazar o remitir a revisión humana**. "
             "El entorno (formulario, buró, originación y cartera) es un **simulador**.")
 
-pagina = st.sidebar.radio("Navegación", ["Inicio", "Nueva evaluación", "Historial", "Comparación de modelos", "Aprendizaje", "Laboratorio", "Arquitectura"])
+pagina = st.sidebar.radio("Navegación", ["Inicio", "Nueva evaluación", "Historial", "Comparación de modelos", "Aprendizaje", "Procesamiento por lotes", "Memoria inteligente", "Monitoreo", "Laboratorio", "Arquitectura"])
 if pagina == "Inicio":
     st.subheader("Panel de actividad")
     h = pd.DataFrame(st.session_state.historial)
@@ -198,7 +202,13 @@ if pagina == "Nueva evaluación":
         st.session_state.t_buro = False
         st.session_state.t_orig = False
         st.session_state.pop("comparar_escenario", None)
-        evaluar_manual()
+        with st.status("Motor de IA · ejecución real", expanded=True) as estado:
+            def mostrar(e):
+                nombres = {"EVALUACION_INICIO":"Solicitud recibida","PERCEPCION":"Validación y percepción","DECISION":"Predicción, memoria y reglas","ACCION":"Acciones del simulador","AUDITORIA":"Registro de auditoría","EVALUACION_COMPLETA":"Evaluación finalizada"}
+                if e["evento"] in nombres:
+                    st.write(nombres[e["evento"]], "·", e["timestamp"])
+            evaluar_manual(mostrar)
+            estado.update(label="Ejecución registrada", state="complete")
     u = st.session_state.ultimo
     if u:
         from creditscore.fabrica import features_de
@@ -274,7 +284,7 @@ if pagina == "Historial":
         st.download_button("Descargar historial filtrado (CSV)", vista.to_csv(index=False).encode("utf-8-sig"), "historial.csv", "text/csv")
 
 # ------------------------------------------------------------------ pestaña 2
-if pagina == "Laboratorio":
+if pagina == "Procesamiento por lotes":
     st.subheader("Ejecutar un escenario sobre solicitudes simuladas")
     st.caption("Equivale a `python scripts/run_agente.py --n N --escenario X`. Crea un agente nuevo desde cero.")
     e1, e2, e3 = st.columns(3)
@@ -416,3 +426,34 @@ if pagina == "Aprendizaje":
         y.metric("Versión posterior",despues)
         st.write("Se recalibró el modelo." if antes!=despues else "No se activó la recalibración.")
         st.write(resultado)
+
+if pagina == "Memoria inteligente":
+    st.subheader("Memoria histórica sintética")
+    mem, mod = c["memoria"], c["modelo"]
+    X, y, ids = mem.datos_con_resultado()
+    a,b = st.columns(2)
+    a.metric("Casos con resultado conocido",len(y))
+    b.metric("Incumplimiento observado",f"{y.mean():.1%}" if len(y) else "N/D")
+    u = st.session_state.ultimo
+    if u and u["res"]["p_default"] is not None:
+        from creditscore.fabrica import features_de
+        x = features_de(u["entrada"])
+        dist = np.linalg.norm((X-x)/mod.sigma,axis=1)
+        idx = np.argsort(dist)[:25]
+        st.caption("Consulta de los 25 vecinos actuales con resultado conocido, usando distancia estandarizada.")
+        st.dataframe(pd.DataFrame({"Caso sintético":[ids[i] for i in idx],"Distancia":dist[idx],"Incumplió":y[idx].astype(int)}),hide_index=True)
+    else:
+        st.info("Ejecuta una evaluación válida para consultar sus vecinos.")
+
+if pagina == "Monitoreo":
+    st.subheader("Eventos reales de la sesión")
+    eventos = c["registro"].eventos
+    if eventos:
+        df = tabla_eventos(eventos)
+        st.bar_chart(df["evento"].value_counts())
+        filtro = st.multiselect("Tipos de evento",sorted(df["evento"].unique()),default=sorted(df["evento"].unique()))
+        vista = df[df["evento"].isin(filtro)]
+        st.dataframe(vista,hide_index=True)
+        st.download_button("Exportar eventos",vista.to_csv(index=False),"eventos.csv")
+    else:
+        st.info("Todavía no hay eventos.")

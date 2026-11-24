@@ -35,6 +35,12 @@ class RegistroEventos:
         if self._f:
             self._f.write(json.dumps(e, ensure_ascii=False, default=_json_default) + "\n")
             self._f.flush()
+        observador = getattr(self, "observador", None)
+        if observador is not None:
+            try:
+                observador(e)
+            except Exception:
+                pass  # La visualización no altera el agente.
         return e
 
     def cerrar(self):
