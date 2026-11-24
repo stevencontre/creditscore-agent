@@ -27,6 +27,11 @@ from creditscore.fabrica import construir  # noqa: E402
 from creditscore.simulador import generar_solicitudes  # noqa: E402
 
 st.set_page_config(page_title="CREDITSCORE-AGENT", page_icon="💳", layout="wide")
+st.markdown("""<style>
+.block-container {max-width: 1120px; padding-top: 2rem; padding-bottom: 2rem;}
+[data-testid="stMetric"] {border: 1px solid #94a3b855; border-radius: 12px; padding: 12px;}
+[data-testid="stMetricValue"] {font-size: 1.55rem;}
+</style>""", unsafe_allow_html=True)
 
 CAMPOS = [  # (clave del widget, etiqueta, grupo, campo del agente, ayuda)
     ("f_ing", "Ingresos mensuales (COP)", "formulario", "ingresos_mensuales", "Formulario. Rango válido: 500.000 a 50.000.000"),
@@ -80,7 +85,9 @@ def iniciar(semilla):
     if ant:
         ant["registro"].cerrar()
     c, ruta = construir_con_log("web", semilla)
-    st.session_state.pop("lote_resultado", None)
+    
+    for key in ("lote_resultado", "comparar_escenario", "comparacion", "aprendizaje"):
+        st.session_state.pop(key, None)
     st.session_state.update(c=c, ruta=ruta, n=0, historial=[], ultimo=None, semilla_activa=semilla)
 
 
@@ -131,7 +138,7 @@ c = st.session_state.c
 
 # ------------------------------------------------------------------ barra lateral
 with st.sidebar:
-    st.header("CreditScore | Laboratorio")
+    st.header("CreditScore AI")
     semilla = st.number_input("Semilla del simulador", value=int(st.session_state.semilla_activa), step=1)
     if st.button("Reiniciar agente (desde cero)"):
         iniciar(int(semilla))
@@ -173,54 +180,87 @@ if pagina == "Inicio":
 if pagina == "Nueva evaluación":
     st.subheader("Nueva evaluación sintética")
     opciones = list(PRESETS)[:3]
-    elegido = st.selectbox("Ejemplo de datos", opciones, format_func=lambda x: ["Perfil A", "Perfil B", "Perfil C"][opciones.index(x)])
-    st.button("Cargar ejemplo", on_click=cargar, args=(elegido,))
+    a,b = st.columns([3,1])
+    elegido = a.selectbox("Perfil de ejemplo", opciones, format_func=lambda x: ["Perfil A", "Perfil B", "Perfil C"][opciones.index(x)])
+    b.button("Cargar ejemplo", on_click=cargar, args=(elegido,))
+    def limpiar():
+        cargar(opciones[0])
+        st.session_state.ultimo = None
+        st.session_state.pop("comparar_escenario", None)
+    st.button("Reiniciar formulario", on_click=limpiar)
     with st.form("solicitud"):
+        cols = st.columns(2)
         for i, (clave, etiqueta, _, _, ayuda) in enumerate(CAMPOS):
-            limites = [(500000.,50000000.,100000.),(0.,100000000.,100000.),(0,24,1),(0,600,1),(0,30,1)]
-            minimo,maximo,paso = limites[i]
-            st.number_input(etiqueta, min_value=minimo,max_value=maximo,step=paso,key=clave,help=ayuda)
-        enviar = st.form_submit_button("Analizar caso sintético", type="primary")
+            minimo,maximo,paso = [(500000.,50000000.,100000.),(0.,100000000.,100000.),(0,24,1),(0,600,1),(0,30,1)][i]
+            cols[i%2].number_input(etiqueta, min_value=minimo,max_value=maximo,step=paso,key=clave,help=ayuda)
+        enviar = st.form_submit_button("Analizar caso sintético", type="primary", use_container_width=True)
     if enviar:
         st.session_state.t_buro = False
         st.session_state.t_orig = False
+        st.session_state.pop("comparar_escenario", None)
         evaluar_manual()
     u = st.session_state.ultimo
     if u:
+        from creditscore.fabrica import features_de
+        import copy
         r = u["res"]
+        p = r["p_default"]
+        etiquetas = {"APROBAR":"Aprobación simulada","RECHAZAR":"Rechazo simulado","REVISION_HUMANA":"Revisión humana"}
+        nombres = {"log_ingresos":"Ingresos","dti":"Relación deuda-ingreso","pagos_atrasados_24m":"Pagos atrasados","log1p_antiguedad":"Antigüedad del historial","lineas_credito":"Líneas abiertas"}
         st.divider()
-        st.subheader(f"Resultado de {r['id']}")
-        getattr(st, COLORES[r["accion"]])(f"**{r['accion']}** — {r['razon']}")
+        st.subheader(f"Resultado · {r['id']}")
+        getattr(st, COLORES[r["accion"]])(etiquetas[r["accion"]])
+        f = u["entrada"]["formulario"]
+        dti = f["obligaciones_mensuales"]/f["ingresos_mensuales"]
         m = st.columns(4)
-        m[0].metric("Probabilidad estimada", "n/d" if r["p_default"] is None else f"{r['p_default']:.1%}")
+        m[0].metric("Riesgo estimado", "No disponible" if p is None else f"{p:.1%}")
         m[1].metric("Calificación", r["calificacion"])
-        m[2].metric("Percepción", r["estado_percepcion"])
+        m[2].metric("Deuda / ingreso", f"{dti:.1%}")
         m[3].metric("Latencia", f"{r['latencia_ms']:.2f} ms")
-        if r["p_default"] is not None:
-            st.progress(float(r["p_default"]), text=f"Probabilidad estimada de incumplimiento: {r['p_default']:.1%}")
+        dec = next((e for e in u["eventos"] if e["evento"] == "DECISION"), {})
+        if p is not None:
+            st.progress(float(p))
+            a,b = st.columns(2)
+            with a:
+                st.markdown("**¿Qué influyó en el resultado?**")
+                factores = c["modelo"].contribuciones(features_de(u["entrada"]), top=5)
+                for nombre, valor_ in factores:
+                    st.write(f"{nombres.get(nombre,nombre)}: {'aumenta' if valor_>0 else 'reduce' if valor_<0 else 'no cambia'} el riesgo ({valor_:+.2f})")
+                st.caption("Contribuciones al logit respecto al perfil medio; no son efectos causales.")
+            with b:
+                st.markdown("**Consistencia de la predicción**")
+                vecinos = dec.get("p_vecinos")
+                if vecinos is not None:
+                    st.metric("Tasa en casos similares", f"{vecinos:.1%}")
+                    st.metric("Diferencia absoluta", f"{abs(p-vecinos):.1%}")
+                    st.caption("La diferencia es una señal de desacuerdo, no un intervalo de confianza.")
+                else:
+                    st.info("No hay comparación histórica disponible.")
+            st.markdown("**Comparar dos escenarios sintéticos**")
+            st.caption("Experimento de sensibilidad del modelo, sin registrar otra decisión.")
+            with st.form("sensibilidad"):
+                atrasos = st.number_input("Pagos atrasados del escenario alternativo",0,24,int(u["entrada"]["buro"]["pagos_atrasados_24m"]),key=f"alt_{r['id']}")
+                comparar = st.form_submit_button("Comparar predicciones")
+            if comparar:
+                alt = copy.deepcopy(u["entrada"])
+                alt["buro"]["pagos_atrasados_24m"] = atrasos
+                st.session_state.comparar_escenario = (p,c["modelo"].predict_proba(features_de(alt)))
+            if "comparar_escenario" in st.session_state:
+                original,alternativo = st.session_state.comparar_escenario
+                x,y = st.columns(2)
+                x.metric("Escenario original",f"{original:.1%}")
+                y.metric("Escenario alternativo",f"{alternativo:.1%}",f"{100*(alternativo-original):+.1f} pp",delta_color="off")
         else:
-            st.info("Sin estimación válida: el agente se abstuvo de calcular el riesgo.")
-        a, b = st.columns(2)
-        a.markdown("**Acciones ejecutadas en el entorno**")
-        a.write({k: v for k,v in r["estado_acciones"].items()})
-        b.markdown("**Reglas activadas**")
-        b.write(", ".join(r["reglas"]) if r["reglas"] else "ninguna")
-        dec = next((e for e in u["eventos"] if e["evento"] == "DECISION"), None)
-        if dec and dec.get("p_vecinos") is not None and r["p_default"] is not None:
-            st.markdown("**Modelo frente a memoria histórica**")
-            st.bar_chart(pd.Series({"Modelo": r["p_default"], "Casos similares": dec["p_vecinos"]}, name="Probabilidad"))
-        if r["p_default"] is not None:
-            from creditscore.fabrica import features_de
-            factores = c["modelo"].contribuciones(features_de(u["entrada"]))
-            st.subheader("Factores explicativos")
-            st.bar_chart(pd.Series(dict(factores), name="Contribución al logit"))
-            st.caption("Positivo: aumenta el riesgo estimado; negativo: lo reduce. No implica causalidad.")
-        if dec and dec.get("costos"):
-            with st.expander("Cómo decidió (costo esperado de cada acción)"):
-                st.json({"costos": dec["costos"], "p_vecinos (memoria)": dec.get("p_vecinos"),
-                         "desacuerdo": dec.get("desacuerdo")})
-        with st.expander("Registro de eventos con marca de tiempo (Percepción → Decisión → Acción)", expanded=False):
-            st.dataframe(tabla_eventos(u["eventos"]), width="stretch", hide_index=True)
+            st.info("El agente se abstuvo de estimar el riesgo.")
+        reglas = " ".join(r["reglas"])
+        motivo = ("Datos no válidos o incompletos." if "R1" in reglas else "Límite de endeudamiento del simulador superado." if "R4" in reglas else "Desacuerdo elevado entre modelo y memoria." if "R3" in reglas else "Acción de menor costo esperado según los parámetros simulados." if "R2" in reglas else "Consulta el detalle técnico.")
+        st.write("**Motivo:** "+motivo)
+        resumen = f"Evaluación académica sintética {r['id']}\\nResultado: {etiquetas[r['accion']]}\\nRiesgo: {p if p is not None else 'N/D'}\\nMotivo: {motivo}\\nNo apto para decisiones reales."
+        st.download_button("Descargar resumen",resumen,"evaluacion_sintetica.txt","text/plain")
+        with st.expander("Detalle técnico y auditoría"):
+            st.write(r["razon"])
+            st.json({"reglas":r["reglas"],"acciones":r["estado_acciones"],"costos":dec.get("costos")})
+            st.dataframe(tabla_eventos(u["eventos"]),width="stretch",hide_index=True)
 if pagina == "Historial":
     if not st.session_state.historial:
         st.info("Todavía no hay evaluaciones en esta sesión.")
