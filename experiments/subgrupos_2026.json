@@ -1,0 +1,38 @@
+{
+  "semilla": 2026,
+  "corte_ingreso_cop": 2827728.0,
+  "umbral": 0.5,
+  "nota": "Auditoría exploratoria posterior, no prueba de equidad demográfica.",
+  "resultados": [
+    {
+      "grupo": "Total",
+      "n": 750,
+      "positivos": 169,
+      "auc": 0.7786411919868824,
+      "f1": 0.2857142857142857,
+      "brier": 0.14364756374784915,
+      "fnr": 0.8165680473372781,
+      "fpr": 0.029259896729776247
+    },
+    {
+      "grupo": "Ingreso hasta mediana",
+      "n": 385,
+      "positivos": 108,
+      "auc": 0.7825912555154432,
+      "f1": 0.34285714285714286,
+      "brier": 0.16338560076813513,
+      "fnr": 0.7777777777777778,
+      "fpr": 0.02888086642599278
+    },
+    {
+      "grupo": "Ingreso superior a mediana",
+      "n": 365,
+      "positivos": 61,
+      "auc": 0.7526423641069888,
+      "f1": 0.18181818181818182,
+      "brier": 0.12282799045247905,
+      "fnr": 0.8852459016393442,
+      "fpr": 0.029605263157894735
+    }
+  ]
+}
