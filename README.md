@@ -12,6 +12,12 @@ Integrantes: Steven David Contreras y Andres Camilo Castaño.
 
 **Aplicación pública:** https://kredia-utb.streamlit.app/
 
+## Documentación y entrega final
+
+- [Informe técnico IEEE](docs/Kredia_Informe_IEEE_Entrega_Final.pdf)
+- [Video de sustentación](https://drive.google.com/file/d/1RwOo35jRcApNJaZanHC31vU4h1Jdbz--/view?usp=sharing)
+- [Prototipo funcional de Kredia](https://kredia-utb.streamlit.app/)
+
 ## Descripción y alcance
 
 Kredia es la evolución de CREDITSCORE-AGENT, un agente de simulación crediticia basado en aprendizaje automático y reglas de decisión. Su propósito es estudiar la estimación de riesgo, la trazabilidad y la gestión de incertidumbre en un entorno sintético. No es un servicio financiero real ni debe emplearse para decidir créditos de personas o empresas.
